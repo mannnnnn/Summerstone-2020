@@ -1,0 +1,68 @@
+- Collect cards as "daily" actions
+
+
+Cycle: Harvest -> Encounter -> Fight
+
+Cycle: Obtain cards -> Influence next cards -> Spend cards
+
+
+Factions of animals, build reputation with each:
+- Lord of Wolves (big bad angry wolf king, kind to his people, not so much to others) (ORDER) (FAMILIAL) (MORTAL)
+- Lord of Deer (territorial king, shamenistic, concerned about matters of the whole forrest) (ORDER) (ELEMENTAL) (MAGIC)
+- Sleepless Night (CHAOS) (FAMILIAL) (PATIENCE)
+- Fortunate Day (CHAOS) (ELEMENTAL) (LUCK)
+- Oxx (ORDER) (ELEMENTAL) (PATIENCE) (MORTAL)
+- Bark (CHAOS) (FAMILIAL) (MAGIC) (LUCK)
+
+Card Types:
+- MORTAL (Good for mortal scenarios)
+- MAGIC (Good for magic scenarios)
+- PATIENCE (Grow more effective when not played, but very specific)
+- LUCK (Always chance to fail, but also always chance to succeed, very broad)
+
+Character appearances:
+Lord of the Wolves- Kinda like wolf link, but with the shoulder cape things like in fe3h
+Lord of Deer- Deer with a glowing skull detatched from its head.
+Sleepless Night- Woman with
+Fortunate Day- Woman with
+Oxx- Small jumping mouse in human clothing, carries around an axe. Not acknowledged by the others except Bark.
+Bark- Rukey Greentail-like character. Medium dog made of tree bark.
+
+
+Mortal Cards:
+Work - Set aside the time and do things right.
+Band Together - Teamwork is a precious skill, seldom seen and rarely mastered.
+
+Magic Cards:
+Alter - If reality does not meet expectations, reach out and change it.
+Rise Above - Take the burdens of others, if you can handle such things.
+
+Patience Cards:
+Understand - Gleaning information helps build up a stronger understanding of what's really going on.
+Master - Some trades take years to learn, but you must start somewhere.
+
+Luck Cards:
+Guess - A broken clock is right twice a day.
+Friends - Sometimes you run into the right person at the right time.
+
+
+Every card has an outcome in text if it is an option, otherwise ("try as you might... [fail]")
+Variants determine whether or not a card can be used (or for luck, an additional bonus)
+
+Card Variants:
+Work - (Build, Delegate, Assist, Fight)
+Band Together - (Legion, Workforce, Search Party, Inclusion)
+Alter - (Reality, Time, Outcomes, Creature)
+Rise Above - (Sorcery, Capable Leader, All-Knowing, ???)
+Understand - (Seek, Examine, Remember, Observe)
+Master - (Weaponry, Stealth, Words, Tricks)
+Guess - (Based on: History, Rumors, Readings, Personal Experience)
+Friends - (Canines, Vermin, Hunters, Craftsmen, Leaders)
+
+
+
+Card Names:
+Alter [x]
+Master of [x]
+Guess Based on [x]
+[x] Friends
