@@ -9,17 +9,18 @@ public class Chimera : MonoBehaviour
     [SerializeField]
     public enum MainGameState
     {
-        Week,
+        Week, //Camera State 1
         FactionPick,
-        WeekResult,
-        Weekend,
+        WeekResult, //Camera State 2
+        Weekend, //Camera State 3
         CardPick,
-        WeekendResult
+        WeekendResult //Camera State 4
     }
     private int gameStateSize = 4; //c# has a dumb way of handling this.
 
     public MainGameState currState = MainGameState.Week;
     public int week = 0;
+
 
     private GameObject currScreen;
 
@@ -27,6 +28,7 @@ public class Chimera : MonoBehaviour
     public GameObject factionScreen;
     public GameObject resultsScreen;
     public GameObject cardChooserScreen;
+    public Animator MainCameraAnimator;
 
     // Start is called before the first frame update
     void Start()
@@ -68,12 +70,28 @@ public class Chimera : MonoBehaviour
             case MainGameState.WeekendResult:
             default: if (!resultsScreen.activeSelf) nextScreen = resultsScreen; break;
         }
+
         currScreen.SetActive(false);
         nextScreen.SetActive(true);
         currScreen = nextScreen;
+
+
+        if (shouldMoveCamera())
+        {
+            MainCameraAnimator.SetTrigger("MoveCamera");
+        }
+       
     }
 
+    private bool shouldMoveCamera()
+    {
+        if (currState == MainGameState.Week) return true;
+        if (currState == MainGameState.WeekResult) return true;
+        if (currState == MainGameState.Weekend) return true;
+        if (currState == MainGameState.WeekendResult) return true;
 
+        return false;
+    }
 
 
 }
