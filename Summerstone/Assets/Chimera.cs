@@ -16,7 +16,7 @@ public class Chimera : MonoBehaviour
         CardPick,
         WeekendResult //Camera State 4
     }
-    private int gameStateSize = 4; //c# has a dumb way of handling this.
+    private int gameStateSize = 5; //c# has a dumb way of handling this.
 
     public MainGameState currState = MainGameState.Week;
     public int week = 0;
@@ -30,6 +30,8 @@ public class Chimera : MonoBehaviour
     public GameObject cardChooserScreen;
     public Animator MainCameraAnimator;
 
+    public Material[] skyboxes = new Material[4];
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +40,7 @@ public class Chimera : MonoBehaviour
         if (resultsScreen.activeSelf) currScreen = resultsScreen;
         if (cardChooserScreen.activeSelf) currScreen = cardChooserScreen;
 
+        updateSkybox();
     }
 
     // Update is called once per frame
@@ -78,6 +81,7 @@ public class Chimera : MonoBehaviour
 
         if (shouldMoveCamera())
         {
+            updateSkybox();
             MainCameraAnimator.SetTrigger("MoveCamera");
         }
        
@@ -85,14 +89,33 @@ public class Chimera : MonoBehaviour
 
     private bool shouldMoveCamera()
     {
+
+       
         if (currState == MainGameState.Week) return true;
+        
         if (currState == MainGameState.WeekResult) return true;
+
         if (currState == MainGameState.Weekend) return true;
+
         if (currState == MainGameState.WeekendResult) return true;
 
         return false;
     }
 
+    private void updateSkybox()
+    {
+        int nextSkybox = 0;
+        switch (currState)
+        {
+            case MainGameState.Week: nextSkybox = 0; break;
+            case MainGameState.WeekResult: nextSkybox = 1; break;
+            case MainGameState.Weekend: nextSkybox = 2; break;
+            case MainGameState.WeekendResult: 
+            default: nextSkybox = 3; break;
+        }
+
+        RenderSettings.skybox = skyboxes[nextSkybox];
+    }
 
 }
 
