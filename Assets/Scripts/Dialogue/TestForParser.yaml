@@ -1,0 +1,52 @@
+- character:
+    id: R
+    name: Rubus
+- character:
+    id: H
+    name: Hedera
+- character:
+    id: S
+    name: Sternella
+- character:
+    id: A
+    name: Agelaius
+- character:
+    id: O
+    name: Sternella
+- character:
+    id: B
+    name: Agelaius
+- character:
+    id: Z
+    name: Riddance
+    
+
+- show:
+    id: R
+    image: rubus
+- R: Such barbaric practices, stealing away travellers in the middle of night...
+- show:
+    id: S
+    image: hedera
+- H: Is that not what your children do, Rubus?
+- H: You seem to only feign distaste when I suggest the course of action.
+- R: I'm just saying I didn't want to be involved in this, that's all.
+- H: And yet you show up on my doorstep with your pack asking for this exact miracle.
+- H: If the forest is to survive, then sacrifices must be made.
+- R: And that sacrifice has to be an innocent bystander lost in the woods?
+- H: Are you volunteering for the position?
+- R: ...
+- H: I thought not.
+- H: Now, pay tribute to the spirit of the Summerstone, before we set it free.
+- R: And thank it for what, killing our land?
+- R: Driving out the families that once called this place home?
+- H: Thank it for its many, many years of service to this forest.
+- H: And bid it a swift journey onwards.
+- R: Hmph.
+- R: Thank you, O Summerstone.
+- H: Under your direction, we have seen this forest thrive and wither through many a-year.
+- H: But the time has come to change hands. Summerstone, we bid you farewell."
+- R: And good riddance.
+- H: Now... bring the human forward.
+- R: This is barbaric.
+- R: At least let me take off the bag before you-

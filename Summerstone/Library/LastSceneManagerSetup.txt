@@ -1,0 +1,4 @@
+sceneSetups:
+- path: C:/Users/Savvy/Documents/GitHub/Summerstone-2020/Assets/Scenes/Main.unity
+  isLoaded: 1
+  isActive: 1

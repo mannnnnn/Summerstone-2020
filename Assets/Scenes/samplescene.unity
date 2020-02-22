@@ -4086,10 +4086,10 @@ MonoBehaviour:
   cardChooserScreen: {fileID: 1640626969}
   MainCameraAnimator: {fileID: 1687258587}
   skyboxes:
-  - {fileID: 2100000, guid: d9dca9ae1786c394f9e79c637aa9a7bf, type: 2}
+  - {fileID: 2100000, guid: 72deae4d18418f94688abef8e8483df0, type: 2}
   - {fileID: 2100000, guid: 3e5399bd195de7649b874f58c1b9f8a3, type: 2}
   - {fileID: 2100000, guid: c52c5d7968fa6c9499b0b5752f899bfb, type: 2}
-  - {fileID: 2100000, guid: 2039a0ad0a9d05549928b70362f54902, type: 2}
+  - {fileID: 2100000, guid: d4454f71d85928744be7771e2143dab7, type: 2}
 --- !u!1001 &1404851436
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5999,7 +5999,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 273672596}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.20121634
+  m_Size: 0.20121735
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
