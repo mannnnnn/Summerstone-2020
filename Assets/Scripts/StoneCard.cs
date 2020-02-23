@@ -6,63 +6,37 @@ using UnityEngine.EventSystems;
 
 public class StoneCard : MonoBehaviour
 {
-    public Spellbook card;
-    public Spellbook myCardCopy;
+    public Card card;
     public GameObject typeLabel;
     public GameObject subTypeLabel;
     public GameObject variantLabel;
     public GameObject ageLabel;
     public GameObject tooltip;
+    Rigidbody2D rb;
+    Spellbook spellbook;
 
     void Awake()
     {
+        rb = GetComponent<Rigidbody2D>();
         tooltip.SetActive(false);
-
-        if(card == null){
-            card = GameObject.FindGameObjectsWithTag("chimera")[0].GetComponent<Spellbook>();
-            myCardCopy = new Spellbook();
-        }
-
-        if(myCardCopy == null){
-            myCardCopy.type = card.type;
-            myCardCopy.subType = card.subType;
-            myCardCopy.variant = card.variant;
-            myCardCopy.age = 0;
-        }
-        typeLabel.GetComponent<Text>().text = myCardCopy.type.ToString();
-        subTypeLabel.GetComponent<Text>().text = myCardCopy.subType.ToString();
-        variantLabel.GetComponent<Text>().text = myCardCopy.variant.ToString();
-        ageLabel.GetComponent<Text>().text = myCardCopy.age.ToString();
-
-
-    }
-
-
-    public void RandomizeMe(){
-        //card.type = (Spellbook.CardType)Random.Range(1, 4);
-        //card.subtype = (Spellbook.CardSubType)Random.Range(1, 8);
-        myCardCopy.variant = (Spellbook.CardVariants)Random.Range(1, 32);
-        myCardCopy.subType = myCardCopy.getCardSubType(myCardCopy.variant);
-        myCardCopy.type = myCardCopy.getCardType(myCardCopy.subType);
-
-
-        gameObject.GetComponent<Image>().sprite = card.getCardArt(myCardCopy.variant);
+        spellbook = Spellbook.GetInstance();
+        Set(card);
     }
 
     public void showHideTooltip(){
-        if(tooltip.active){
+        if(tooltip.activeSelf)
+        {
             tooltip.SetActive(false);
-        } else {
-        tooltip.SetActive(true);
-        typeLabel.GetComponent<Text>().text = myCardCopy.type.ToString();
-        subTypeLabel.GetComponent<Text>().text = myCardCopy.subType.ToString();
-        variantLabel.GetComponent<Text>().text = myCardCopy.variant.ToString();
-        ageLabel.GetComponent<Text>().text = myCardCopy.age.ToString();
+        }
+        else
+        {
+            tooltip.SetActive(true);
+            Set(card);
         }
     }
 
     public void OnPointerDown(PointerEventData eventData){
-        if(tooltip.active){
+        if(tooltip.activeSelf){
             tooltip.SetActive(false);
         }
     }
@@ -72,20 +46,26 @@ public class StoneCard : MonoBehaviour
     }
 
     public void AgeCard(){
-        myCardCopy.age = myCardCopy.age++;
+        card.age = card.age++;
     }
 
     public void DiscardCard(){
         
     }
 
+    // display a card
+    public void Set(Card c, bool physics = true)
+    {
+        card = c;
+        typeLabel.GetComponent<Text>().text = card.type.ToString();
+        subTypeLabel.GetComponent<Text>().text = card.subType.ToString();
+        variantLabel.GetComponent<Text>().text = card.variant.ToString();
+        ageLabel.GetComponent<Text>().text = card.age.ToString();
+        gameObject.GetComponent<Image>().sprite = spellbook.getCardArt(card.variant);
+        rb.isKinematic = !physics;
+    }
 
     void Update()
     {
-        //ow this feels expensive
-        typeLabel.GetComponent<Text>().text = myCardCopy.type.ToString();
-        subTypeLabel.GetComponent<Text>().text = myCardCopy.subType.ToString();
-        variantLabel.GetComponent<Text>().text = myCardCopy.variant.ToString();
-        ageLabel.GetComponent<Text>().text = myCardCopy.age.ToString();
     }
 }
