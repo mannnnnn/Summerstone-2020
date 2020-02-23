@@ -57,7 +57,6 @@ public class DialogUI : MonoBehaviour, IDialogUI
     public void Next()
     {
         nextPressed = true;
-        Debug.Log("Next");
     }
 
     public void Run(string s)
