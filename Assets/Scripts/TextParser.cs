@@ -5,10 +5,11 @@ using System.IO;
 using UnityEditor;
 using UnityEngine.UI;
 
-public class TextParser : MonoBehaviour {
+public class TextParser : MonoBehaviour
+{
     //Note that the speed you want the typewriter effect to be going at is the yield waitforseconds (in my case it's 1 letter for every      0.03 seconds, replace this with a public float if you want to experiment with speed in from the editor)
     [Header("Essentials")]
-    [Range(0,0.05f)]
+    [Range(0, 0.05f)]
     public float typeSpeed = 0.025f;
     public string textFile;
     public string currPackage; //let user change
@@ -16,8 +17,6 @@ public class TextParser : MonoBehaviour {
     public Text lineBox;
     public Text speakerBox;
     public int currLineNum = -1;
-    public float yBounce = 2;
-    public float yPos;
     public AudioSource sfx;
     public Color32 greyColor;
     public Color32 whiteColor;
@@ -27,23 +26,26 @@ public class TextParser : MonoBehaviour {
     private int currEnd = -1;
     private int printNum = -1;
 
-    public GameObject spawnParent;
-    public GameObject chatBox;
-    //1 speakerInfo, 2 the actual text, 3 name
+    //Speaker objects should be a parent object
+    //Their child should contain and animator and sprite
+    [Header("Speaker Objects")]
+    public GameObject[] speakerList = new GameObject[4];
 
     [Header("Typewriter Sounds")]
     public AudioClip clickNoise1;
     public AudioClip clickNoise2;
     public AudioClip clickNoise3;
-	
+
     [Header("Misc.")]
-    private bool showEmote = false;
-    private float[] storedEmotePositions = new float[4];
     private List<string> speakers = new List<string>();
     private bool bounceComplete = false;
     private int randInt = 0;
 
-    [Header("Do Not Touch")]
+    //Stored Portraits are the sprites used for speakers
+    //which have already been defined
+    //Aka, mwPortrait is the default portrait that will be
+    //displayed when mw talks
+    [Header("Stored Portraits")]
     public Sprite mysteryPortrait;
     public Sprite mwPortrait;
     public Sprite prPortrait;
@@ -53,72 +55,85 @@ public class TextParser : MonoBehaviour {
     public bool moveOn = false;
     public bool letsTalk = false;
 
-    //To be moved later - - - - - - -
-    public float aniEnterOffsetY = -1;
-    public float aniEnterSpeed = 5;
-    public float aniBobOffsetY = 0.4f;
-    public float aniBobSpeed = 1;
-
-    private List<GameObject> aniObjects = new List<GameObject>();
-    private List<GameObject> aniBobs = new List<GameObject>();
-    public List<Vector3> targets = new List<Vector3>();
-    public List<Vector3> bobTargets = new List<Vector3>();
-    public List<Vector3> bobStarts = new List<Vector3>();
-    bool bobUp = true;
-    // - - - - - - - - - - - -
+    public List<SpriteRenderer> speakerSprites = new List<SpriteRenderer>();
+    public List<Animator> speakerAnimators = new List<Animator>();
 
     // Use this for initialization
-    void Start () {
-        if(textFile != null)
+    void Start()
+    {
+        if (textFile != null)
         {
-           fullText = getFileText();
+            fullText = getFileText();
+        }
+        fillDialogArray();
+
+        foreach (GameObject speaker in speakerList)
+        {
+            speakerSprites.Add(speaker.GetComponent<SpriteRenderer>());
+            speakerAnimators.Add(speaker.GetComponent<Animator>());
+        }
+
+
+    }
+
+
+    public void changeTextFile(string newFileName)
+    {
+        talkScript.Clear();
+        textFile = newFileName;
+        if (textFile != null)
+        {
+            fullText = getFileText();
         }
         fillDialogArray();
     }
 
+    // Update is called once per frame
+    void Update()
+    {
 
-    public void changeTextFile(string newFileName){
-      //  talkScript.Clear();
-        textFile = newFileName;
-         if(textFile != null)
+        //TODO: Request Advance + Finish should be around here
+        if ((Input.GetKeyDown("space") || moveOn) && letsTalk)
         {
-          // fullText = getFileText();
-        }
-        //fillDialogArray();
-    }
-	
-	// Update is called once per frame
-	void Update () {
-        //check proximity
-        if ((Input.GetKeyDown("space") || moveOn) && letsTalk && aniObjects.Count == 0 && aniBobs.Count == 0){
             moveOn = false;
-            if ((printNum < 0 || currLineNum < 0)){
+            if ((printNum < 0 || currLineNum < 0))
+            {
                 playNextLine();
             }
-            else if (printNum < talkScript[currLineNum].getLine().Length){
-                printNum = talkScript[currLineNum].getLine().Length-1;
-            } else{
+            else if (printNum < talkScript[currLineNum].getLine().Length)
+            {
+                printNum = talkScript[currLineNum].getLine().Length - 1;
+            }
+            else
+            {
                 currLineNum++;
                 StopAllCoroutines();
                 playNextLine();
-            }  
-        } 
-	}
+            }
 
-    private string getFileText() {
+        }
+
+    }
+
+    //TFBM's parser pulls in the entire file, breaks it into DialogPieces, and then reads over DialogPieces in runtime
+    private string getFileText()
+    {
         string readText = "";
-        
-        if(Resources.Load<TextAsset>("TextFiles/" + textFile) == null){
+
+        if (Resources.Load<TextAsset>("TextFiles/" + textFile) == null)
+        {
             Debug.Log("it's completely null!");
         }
         readText = Resources.Load<TextAsset>("TextFiles/" + textFile).text;
-        if(readText == null){
+        if (readText == null)
+        {
             Debug.Log("It's null text!");
         }
 
         return readText;
     }
 
+    //Parses raw text from the file into vars that can be interpreted by the rest of TextParser
     private void fillDialogArray()
     {
         DialogPieces currDia = gameObject.AddComponent<DialogPieces>();
@@ -126,42 +141,43 @@ public class TextParser : MonoBehaviour {
         string currSpeaker = "";
         string currPackage = "";
 
-        for (int i = 0; currEnd < fullText.Length && i<1000; i++)
+        for (int i = 0; currEnd < fullText.Length && i < 1000; i++)
         {
             currDia = gameObject.AddComponent<DialogPieces>();
             currLine = "";
 
-            if(fullText.IndexOf("\n", currStart) < 0)
+            if (fullText.IndexOf("\n", currStart) < 0)
             {
                 return;
             }
 
             if (fullText.IndexOf("Callname:", currStart) >= 0 && fullText.IndexOf("\n", currStart) >= 0 && fullText.IndexOf("Callname:", currStart) < fullText.IndexOf("\n", currStart))
             {
-                if(fullText.Substring(fullText.IndexOf(":", currStart)+1, fullText.IndexOf("\n", currStart) - fullText.IndexOf(":", currStart)) == "END"){
+                if (fullText.Substring(fullText.IndexOf(":", currStart) + 1, fullText.IndexOf("\n", currStart) - fullText.IndexOf(":", currStart)) == "END")
+                {
                     return;
                 }
 
                 //Debug.Log("CALLNAME FOUND: " + fullText.Substring(fullText.IndexOf(":", currStart)+1, fullText.IndexOf("\n", currStart) - fullText.IndexOf(":", currStart)));
-                currPackage = fullText.Substring(fullText.IndexOf(":", currStart)+1, fullText.IndexOf("\n", currStart) - fullText.IndexOf(":", currStart));
-                currStart = fullText.IndexOf("\n", currStart)+1;
+                currPackage = fullText.Substring(fullText.IndexOf(":", currStart) + 1, fullText.IndexOf("\n", currStart) - fullText.IndexOf(":", currStart));
+                currStart = fullText.IndexOf("\n", currStart) + 1;
             }
 
 
             if (fullText.IndexOf(":", currStart) >= 0)
             {
-                currSpeaker = fullText.Substring(currStart, fullText.IndexOf(":", currStart)-currStart);
-                currStart = fullText.IndexOf(":", currStart)+1;
+                currSpeaker = fullText.Substring(currStart, fullText.IndexOf(":", currStart) - currStart);
+                currStart = fullText.IndexOf(":", currStart) + 1;
             }
-          
-                currDia.setSpeaker(currSpeaker, mysteryPortrait, mwPortrait, prPortrait, ttPortrait, elPortrait); //carries over if not specified
-                currStart = fullText.IndexOf("\"", currStart) + 1;
-                currEnd = fullText.IndexOf("\"", currStart); //second quote
-                currLine = fullText.Substring(currStart, currEnd - currStart);
-                currDia.setLine(currLine);
-                currDia.setPackage(currPackage);
-            
-                talkScript.Add(currDia);
+
+            currDia.setSpeaker(currSpeaker, mysteryPortrait, mwPortrait, prPortrait, ttPortrait, elPortrait); //carries over if not specified
+            currStart = fullText.IndexOf("\"", currStart) + 1;
+            currEnd = fullText.IndexOf("\"", currStart); //second quote
+            currLine = fullText.Substring(currStart, currEnd - currStart);
+            currDia.setLine(currLine);
+            currDia.setPackage(currPackage);
+
+            talkScript.Add(currDia);
 
 
             if (fullText.IndexOf("\n", currStart) >= 0)
@@ -179,12 +195,18 @@ public class TextParser : MonoBehaviour {
 
         }
 
-       
+
     }
 
-    private void endShowingText(){
+    private void endShowingText()
+    {
         currLineNum = -1;
         fullBox.SetActive(false);
+        foreach (GameObject speaker in speakerList)
+        {
+            speaker.GetComponent<SpriteRenderer>().flipX = false;
+            speaker.SetActive(false);
+        }
         speakers = new List<string>();
         letsTalk = false;
     }
@@ -192,65 +214,126 @@ public class TextParser : MonoBehaviour {
 
     public void playNextLine()
     {
-        if(currLineNum >= talkScript.Count){
+
+        if (currLineNum >= talkScript.Count)
+        {
             endShowingText();
             return;
         }
 
         //set up w/ package name
-        for(int i = 0; i<talkScript.Count && currLineNum == -1 && i<1000; i++){
-            if (talkScript[i].getPackage().Trim().Equals(currPackage.Trim())){
+        for (int i = 0; i < talkScript.Count && currLineNum == -1 && i < 1000; i++)
+        {
+            if (talkScript[i].getPackage().Trim().Equals(currPackage.Trim()))
+            {
                 currLineNum = i;
             }
         }
 
-       if(currLineNum < 0){
+        if (currLineNum < 0)
+        {
             Debug.Log("No dialog lines with the selected package name was found.");
             return;
         }
 
         //check if at end
-        if(!talkScript[currLineNum].getPackage().Trim().Equals(currPackage.Trim())){
-           endShowingText();
-        } 
-        else{
-            GameObject chatBoxSpawn = Instantiate(chatBox, spawnParent.transform);
-            Image portrait = chatBoxSpawn.transform.GetChild(0).GetComponent<Image>();
-            Text namePlate = chatBoxSpawn.transform.GetChild(1).GetComponent<Text>();
-            Text dialog = chatBoxSpawn.transform.GetChild(2).GetComponent<Text>();
-
-            if(talkScript[currLineNum].getLine() == "flipSprite"){
-                moveOn = true;
-                //TODO: actually put in the other card
+        if (!talkScript[currLineNum].getPackage().Trim().Equals(currPackage.Trim()))
+        {
+            endShowingText();
+        }
+        else
+        {
+            if (!fullBox.activeSelf)
+            {
+                fullBox.SetActive(true);
             }
-            else{
-                portrait.sprite = talkScript[currLineNum].getPortrait();
-                namePlate.text = talkScript[currLineNum].getSpeaker();
-                StartCoroutine(AnimateText(dialog));   
-            }    
+
+            //*DEBUG*/Debug.Log(talkScript[currLineNum].getLine());
+            bool showEnterance = true;
+            int speakerIndex = -1; //if it remains at -1, then the speaker was not found
+            for (int i = 0; i < speakers.Count; i++)
+            {
+                if (speakers[i].Equals(talkScript[currLineNum].getSpeaker()))
+                {
+                    showEnterance = false;
+                    speakerIndex = i;
+                }
+            }
+
+            if (speakerIndex < 0)
+            {
+                speakerIndex = speakers.Count; //uh this'll crash on 5, right?
+            }
+
+
+
+            if (talkScript[currLineNum].getLine() == "flipSprite")
+            {
+                moveOn = true;
+                speakerSprites[speakerIndex].flipX = !speakerSprites[speakerIndex].flipX;
+            }
+            else
+            {
+                if (!speakers.Contains(talkScript[currLineNum].getSpeaker()))
+                {
+                    speakers.Add(talkScript[currLineNum].getSpeaker());
+                    for (int i = 0; i < speakerList.Length; i++)
+                    {
+                        if (i == speakerIndex && !speakerList[i].activeSelf)
+                        {
+                            speakerSprites[i].sprite = talkScript[currLineNum].getPortrait();
+                            speakerList[i].SetActive(true);
+                        }
+                    }
+                }
+                speakerBox.text = talkScript[currLineNum].getSpeaker();
+
+                if (currLineNum - 1 < 0 || talkScript[currLineNum - 1] == null || talkScript[currLineNum - 1].getPackage() != currPackage || talkScript[currLineNum - 1].getSpeaker() != talkScript[currLineNum].getSpeaker())
+                {
+
+
+                    for (int i = 0; i < speakerList.Length; i++)
+                    {
+                        if (i == speakerIndex)
+                        {
+                            if (!showEnterance)
+                            {
+                                speakerAnimators[i].Play("Bob", 0, 0);
+                            }
+                            speakerSprites[i].color = whiteColor;
+                        }
+                        else
+                        {
+                            speakerSprites[i].color = greyColor;
+                        }
+                    }
+                }
+                StartCoroutine(AnimateText());
+            }
         }
     }
-        
-    
-    IEnumerator AnimateText(Text prefabTextbox){
+
+
+    IEnumerator AnimateText()
+    {
         printNum = 0;
-        
-        for (printNum = 0; printNum < (talkScript[currLineNum].getLine().Length+1); printNum++)
+
+        for (printNum = 0; printNum < (talkScript[currLineNum].getLine().Length + 1); printNum++)
         {
-            prefabTextbox.text = talkScript[currLineNum].getLine().Substring(0, printNum);
+            lineBox.text = talkScript[currLineNum].getLine().Substring(0, printNum);
             randInt = Random.Range(1, 4);
-            switch(randInt){
-                case(1): sfx.clip = clickNoise1; break;
-                case(2): sfx.clip = clickNoise2; break;
-                case(3): sfx.clip = clickNoise3; break;
+            switch (randInt)
+            {
+                case (1): sfx.clip = clickNoise1; break;
+                case (2): sfx.clip = clickNoise2; break;
+                case (3): sfx.clip = clickNoise3; break;
                 default: break;
             }
             sfx.Play(0);
             yield return new WaitForSeconds(typeSpeed);
         }
-        
-    }
 
+    }
 }
 
 
