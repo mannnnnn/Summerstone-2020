@@ -104,6 +104,17 @@ public class DialogUI : MonoBehaviour, IDialogUI
         textScroll = null;
     }
 
+    public void Finish()
+    {
+        // stop text scroll
+        if (textScroll != null)
+        {
+            StopCoroutine(textScroll);
+            textScroll = null;
+        }
+        chimera.nextGameState();
+    }
+
     public void ShowCharacter(string id, string image, DialogImageOptions options)
     {
         throw new NotImplementedException();
@@ -112,17 +123,5 @@ public class DialogUI : MonoBehaviour, IDialogUI
     public void HideCharacter(string id)
     {
         throw new NotImplementedException();
-    }
-
-    public void Finish()
-    {
-        Debug.Log("Finish");
-        // stop text scroll
-        if (textScroll != null)
-        {
-            StopCoroutine(textScroll);
-            textScroll = null;
-        }
-        chimera.nextGameState();
     }
 }
