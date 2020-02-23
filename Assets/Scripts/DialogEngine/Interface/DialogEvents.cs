@@ -14,7 +14,7 @@ public class DialogEvents : MonoBehaviour
 {
     public static DialogEvents GetInstance()
     {
-        return GameObject.FindGameObjectWithTag("DialogEvents")?.GetComponent<DialogEvents>();
+        return GameObject.FindGameObjectWithTag("chimera")?.GetComponent<DialogEvents>();
     }
 
     Dictionary<string, bool> flags;

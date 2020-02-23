@@ -237,8 +237,9 @@ GameObject:
   - component: {fileID: 5462126868342640272}
   - component: {fileID: 5462126868342640274}
   - component: {fileID: 5462126868342640275}
+  - component: {fileID: 1871755718628680931}
   m_Layer: 5
-  m_Name: ChatRow
+  m_Name: ChatRowRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -301,3 +302,18 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &1871755718628680931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5462126868342640273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fac14ebbd8859084fbff833b0cbf7d70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nametag: {fileID: 5462126867642510765}
+  text: {fileID: 5462126868221120688}
+  speaker: {fileID: 5462126866985435494}

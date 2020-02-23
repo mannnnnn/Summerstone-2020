@@ -12,22 +12,15 @@
     name: Agelaius
 - character:
     id: O
-    name: Sternella
+    name: Oxx
 - character:
     id: B
-    name: Agelaius
+    name: Bark
 - character:
     id: Z
     name: Riddance
     
-
-- show:
-    id: R
-    image: rubus
 - R: Such barbaric practices, stealing away travellers in the middle of night...
-- show:
-    id: S
-    image: hedera
 - H: Is that not what your children do, Rubus?
 - H: You seem to only feign distaste when I suggest the course of action.
 - R: I'm just saying I didn't want to be involved in this, that's all.

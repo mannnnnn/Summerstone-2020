@@ -49,6 +49,11 @@ public class Chimera : MonoBehaviour
         
     }
 
+    public static Chimera GetInstance()
+    {
+        return GameObject.FindGameObjectWithTag("chimera").GetComponent<Chimera>();
+    }
+
     public void nextGameState()
     {
         int nextState = (int)currState + 1;
