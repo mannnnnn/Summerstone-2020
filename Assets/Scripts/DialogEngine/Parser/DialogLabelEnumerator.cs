@@ -8,7 +8,7 @@ public class DialogLabelEnumerator : IEnumerator<object>
 {
     // next statement to execute
     // will throw InvalidOperationError if accessed while MoveNext returns false
-    public object Current => stack.Peek().label.block[stack.Peek().index];
+    public object Current { get; private set; }
 
     // root dialog label
     private DialogLabel root;
@@ -83,8 +83,12 @@ public class DialogLabelEnumerator : IEnumerator<object>
         // pass: does nothing
         else if (CheckStatement(Current, "pass"))
         {
-            stack.Peek().index++;
             return true;
+        }
+        // pause: does nothing, but consumes an advance
+        else if (CheckStatement(Current, "pause"))
+        {
+            return false;
         }
         // conditionals: if statement and variables
         else if (CheckStatement(Current, "if"))
@@ -180,8 +184,9 @@ public class DialogLabelEnumerator : IEnumerator<object>
     public bool MoveNext()
     {
         // advance
-        stack.Peek().index++;
         RunAll();
+        Current = stack.Peek().label.block[stack.Peek().index];
+        stack.Peek().index++;
         // if stack is empty, we are done, return false
         return stack.Count > 0;
     }

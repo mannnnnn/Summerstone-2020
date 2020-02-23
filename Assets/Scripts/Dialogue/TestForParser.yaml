@@ -1,3 +1,4 @@
+---
 - character:
     id: R
     name: Rubus
@@ -19,7 +20,7 @@
 - character:
     id: Z
     name: Riddance
-    
+
 - R: Such barbaric practices, stealing away travellers in the middle of night...
 - H: Is that not what your children do, Rubus?
 - H: You seem to only feign distaste when I suggest the course of action.
