@@ -63,6 +63,10 @@ public class DialogUI : MonoBehaviour, IDialogUI
     {
         // load dialog and run, such as "Assets/Dialog/control_test.yaml"
         DialogRunner.Run(this, s);
+        foreach (Transform child in chatBoxParent)
+        {
+            Destroy(child.gameObject);
+        }
     }
 
     // creates a new dialog box and scrolls up
