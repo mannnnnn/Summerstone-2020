@@ -19,7 +19,6 @@ public class DialogUI : MonoBehaviour, IDialogUI
     {
         dialogSprites = DialogSprites.GetInstance();
         chimera = Chimera.GetInstance();
-        Transform canvas = transform.Find("Canvas");
         Run("Assets/Scripts/Dialogue/TestForParser.yaml");
     }
 
@@ -46,6 +45,12 @@ public class DialogUI : MonoBehaviour, IDialogUI
     public void Next()
     {
         nextPressed = true;
+        // if we forgot to start dialog, allow user to advance
+        // actually, this should probably throw an error but...
+        if (!DialogRunner.Active)
+        {
+            chimera.nextGameState();
+        }
     }
 
     public void Run(string s)

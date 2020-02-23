@@ -1117,6 +1117,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: FactionBtnParent (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1299485220}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ClickFactionButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Night
+      objectReference: {fileID: 0}
     - target: {fileID: 7975866610007617968, guid: e1ca4c09608088946981baee2f48a3e7,
         type: 3}
       propertyPath: m_Sprite
@@ -1161,7 +1196,7 @@ PrefabInstance:
     - target: {fileID: 8125977363156002903, guid: e1ca4c09608088946981baee2f48a3e7,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8125977363156002903, guid: e1ca4c09608088946981baee2f48a3e7,
         type: 3}
@@ -3208,6 +3243,7 @@ GameObject:
   - component: {fileID: 1299485218}
   - component: {fileID: 1299485217}
   - component: {fileID: 1299485219}
+  - component: {fileID: 1299485220}
   m_Layer: 5
   m_Name: FactionChoiceScreen
   m_TagString: Untagged
@@ -3230,9 +3266,9 @@ RectTransform:
   - {fileID: 1449403530}
   - {fileID: 8125977363156002903}
   - {fileID: 243187688}
+  - {fileID: 2141527838}
   - {fileID: 1900614107}
   - {fileID: 610303742}
-  - {fileID: 2141527838}
   - {fileID: 1574094973}
   m_Father: {fileID: 1065077048}
   m_RootOrder: 3
@@ -3296,6 +3332,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1299485220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299485215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6233da9197ff274daa9d6511ea1cd54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flyUpPanel: {fileID: 1449403529}
+  flyUpPanelText: {fileID: 1490566079}
 --- !u!1001 &1325266806
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3322,6 +3372,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FactionBtnParent (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1299485220}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ClickFactionButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Deer
       objectReference: {fileID: 0}
     - target: {fileID: 7975866610007617968, guid: e1ca4c09608088946981baee2f48a3e7,
         type: 3}
@@ -3367,7 +3452,7 @@ PrefabInstance:
     - target: {fileID: 8125977363156002903, guid: e1ca4c09608088946981baee2f48a3e7,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8125977363156002903, guid: e1ca4c09608088946981baee2f48a3e7,
         type: 3}
@@ -3450,6 +3535,7 @@ GameObject:
   - component: {fileID: 1342540819}
   - component: {fileID: 1342540818}
   - component: {fileID: 1342540820}
+  - component: {fileID: 1342540821}
   m_Layer: 0
   m_Name: ChimeraController
   m_TagString: chimera
@@ -3590,6 +3676,18 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: da40d8141f869f44fb970e7adf0aa3c8, type: 3}
   - name: Riddance
     sprite: {fileID: 21300000, guid: 2969d90b86698124696637a6df64a112, type: 3}
+--- !u!114 &1342540821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1342540814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71daf8523e6492c4790e226003e95aa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1404851436
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3796,7 +3894,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1449403530
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4318,6 +4416,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FactionBtnParent (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1299485220}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ClickFactionButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Bark
       objectReference: {fileID: 0}
     - target: {fileID: 7975866610007617968, guid: e1ca4c09608088946981baee2f48a3e7,
         type: 3}
@@ -5032,6 +5165,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: FactionBtnParent (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1299485220}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ClickFactionButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Wolf
+      objectReference: {fileID: 0}
     - target: {fileID: 7975866610007617968, guid: e1ca4c09608088946981baee2f48a3e7,
         type: 3}
       propertyPath: m_Sprite
@@ -5076,7 +5244,7 @@ PrefabInstance:
     - target: {fileID: 8125977363156002903, guid: e1ca4c09608088946981baee2f48a3e7,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8125977363156002903, guid: e1ca4c09608088946981baee2f48a3e7,
         type: 3}
@@ -5683,6 +5851,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: FactionBtnParent (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1299485220}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ClickFactionButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Day
+      objectReference: {fileID: 0}
     - target: {fileID: 5351591315145996400, guid: e1ca4c09608088946981baee2f48a3e7,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -6170,6 +6373,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FactionBtnParent
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1299485220}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ClickFactionButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3922499940790545749, guid: e1ca4c09608088946981baee2f48a3e7,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Oxx
       objectReference: {fileID: 0}
     - target: {fileID: 7975866610007617968, guid: e1ca4c09608088946981baee2f48a3e7,
         type: 3}
