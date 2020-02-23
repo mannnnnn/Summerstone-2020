@@ -5,15 +5,6 @@ using UnityEngine;
 
 public class DialogUI : MonoBehaviour, IDialogUI
 {
-    [Serializable]
-    public struct DialogSprite
-    {
-        public string name;
-        public Sprite sprite;
-    }
-    public List<DialogSprite> spriteList = new List<DialogSprite>();
-    Dictionary<string, Sprite> sprites = new Dictionary<string, Sprite>();
-
     // text scroll animation
     Coroutine textScroll;
 
@@ -21,16 +12,14 @@ public class DialogUI : MonoBehaviour, IDialogUI
     public Transform chatBoxParent;
     Chimera chimera;
 
+    DialogSprites dialogSprites;
+
     // Start is called before the first frame update
     void Start()
     {
+        dialogSprites = DialogSprites.GetInstance();
         chimera = Chimera.GetInstance();
         Transform canvas = transform.Find("Canvas");
-        // get dialog sprites
-        foreach (DialogSprite s in spriteList)
-        {
-            sprites[s.name] = s.sprite;
-        }
         Run("Assets/Scripts/Dialogue/TestForParser.yaml");
     }
 
@@ -75,7 +64,7 @@ public class DialogUI : MonoBehaviour, IDialogUI
         // create new chat box
         GameObject go = Instantiate(chatBoxPrefab, chatBoxParent);
         ChatRow chatbox = go.GetComponent<ChatRow>();
-        chatbox.Set(name, text, sprites[name]);
+        chatbox.Set(name, text, dialogSprites.GetByName(name));
         // stop old text scroll animation if it is still running
         if (textScroll != null)
         {

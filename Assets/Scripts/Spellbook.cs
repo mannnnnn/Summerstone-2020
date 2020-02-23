@@ -29,7 +29,6 @@ public class Card
     public static Card Random()
     {
         Variant variant = (Variant)random.Next(0, 31);
-        Debug.Log(variant);
         SubType subType = Spellbook.getCardSubType(variant);
         Type type = Spellbook.getCardType(subType);
         return new Card(type, subType, variant, 0f);
