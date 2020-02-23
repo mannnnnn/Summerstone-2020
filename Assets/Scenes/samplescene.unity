@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.4122631, g: 0.48923588, b: 0.60327953, a: 1}
+  m_IndirectSpecularColor: {r: 0.41226333, g: 0.4892343, b: 0.6032816, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1591,7 +1591,7 @@ MonoBehaviour:
   - name: Rubus
     sprite: {fileID: 21300000, guid: 772757aef5614194d9b24a4bcda67a84, type: 3}
   - name: Hedera
-    sprite: {fileID: 21300000, guid: 58062f39c2837654f9789930eda23590, type: 3}
+    sprite: {fileID: 21300000, guid: 85d7eca64490a4b4bb371988ca04620d, type: 3}
   - name: Sternella
     sprite: {fileID: 21300000, guid: 84586fe53c1e50946bb8a211508c7e61, type: 3}
   - name: Agelaius
