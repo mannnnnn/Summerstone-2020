@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 159.2, y: 11.58}
-  m_SizeDelta: {x: 29.94, y: 25.44}
+  m_AnchoredPosition: {x: 231.6, y: 1.655}
+  m_SizeDelta: {x: 43.1, y: 40.842}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5462126866985435545
 CanvasRenderer:
@@ -106,8 +106,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -134.84, y: 38.25}
-  m_SizeDelta: {x: 79.83, y: 27.9}
+  m_AnchoredPosition: {x: -228.5, y: 63.225}
+  m_SizeDelta: {x: 162.8, y: 43.45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5462126867642510764
 CanvasRenderer:
@@ -183,8 +183,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -48.829987, y: -12.38}
-  m_SizeDelta: {x: 251.85, y: 79.64}
+  m_AnchoredPosition: {x: -104.1, y: -21.4}
+  m_SizeDelta: {x: 411.7, y: 125.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5462126868221120691
 CanvasRenderer:
@@ -225,7 +225,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'The quick brown fox jumped over the lazy dogs. '
+  m_Text: Stop generating projects
 --- !u!1 &5462126868342640273
 GameObject:
   m_ObjectHideFlags: 0
