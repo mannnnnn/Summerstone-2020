@@ -185,6 +185,10 @@ public class DialogLabelEnumerator : IEnumerator<object>
     {
         // advance
         RunAll();
+        if (stack.Count == 0)
+        {
+            return false;
+        }
         Current = stack.Peek().label.block[stack.Peek().index];
         stack.Peek().index++;
         // if stack is empty, we are done, return false

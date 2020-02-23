@@ -27,4 +27,8 @@ public class ChatRow : MonoBehaviour
         this.text.text = text;
         this.speaker.sprite = speaker;
     }
+    public void SetText(string text)
+    {
+        this.text.text = text;
+    }
 }

@@ -57,6 +57,7 @@ public class DialogUI : MonoBehaviour, IDialogUI
     public void Next()
     {
         nextPressed = true;
+        Debug.Log("Next");
     }
 
     public void Run(string s)
@@ -70,7 +71,8 @@ public class DialogUI : MonoBehaviour, IDialogUI
     {
         // create new chat box
         GameObject go = Instantiate(chatBoxPrefab, chatBoxParent);
-        go.GetComponent<ChatRow>().Set(name, text, sprites[name]);
+        ChatRow chatbox = go.GetComponent<ChatRow>();
+        chatbox.Set(name, text, sprites[name]);
         // stop old text scroll animation if it is still running
         if (textScroll != null)
         {
@@ -78,11 +80,11 @@ public class DialogUI : MonoBehaviour, IDialogUI
             textScroll = null;
         }
         // use speed as Mathf.Infinity to turn off scrolling
-        textScroll = StartCoroutine(ScrollText(text, 75f));
+        textScroll = StartCoroutine(ScrollText(chatbox, text, 75f));
     }
     // speed is in characters/second
     float scrollTimer = 0;
-    IEnumerator ScrollText(string text, float speed)
+    IEnumerator ScrollText(ChatRow chatbox, string text, float speed)
     {
         scrollTimer = Time.deltaTime;
         int len = 0;
@@ -92,7 +94,7 @@ public class DialogUI : MonoBehaviour, IDialogUI
             scrollTimer += Time.deltaTime;
             len = (int)Math.Min(text.Length, speed * scrollTimer);
             yield return null;
-            // textPanel.Show(text.Substring(0, len));
+            chatbox.SetText(text.Substring(0, len));
         }
         while (len < text.Length);
         // finish
@@ -111,6 +113,7 @@ public class DialogUI : MonoBehaviour, IDialogUI
 
     public void Finish()
     {
+        Debug.Log("Finish");
         // stop text scroll
         if (textScroll != null)
         {
