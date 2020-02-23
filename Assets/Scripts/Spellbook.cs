@@ -1,77 +1,106 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 [System.Serializable]
-public class Spellbook : MonoBehaviour
+public class Card
 {
-
-    public CardType type = CardType.Mortal;
-    public CardSubType subType = CardSubType.Work;
-    public CardVariants variant = CardVariants.Build;
+    public Type type = Type.Mortal;
+    public SubType subType = SubType.Work;
+    public Variant variant = Variant.Build;
     public float age = 0;
 
+    public Card(Type type, SubType subType, Variant variant, float age)
+    {
+        this.type = type;
+        this.subType = subType;
+        this.variant = variant;
+        this.age = age;
+    }
 
-     [SerializeField] public enum CardType
-     {
-         Mortal,
-         Magic,
-         Patience,
-         Luck
-     }
+    public Card Copy()
+    {
+        return new Card(type, subType, variant, age);
+    }
 
-     [SerializeField] public enum CardSubType
-     {
-         Work,
-         BandTogether,
-         Alter,
-         RiseAbove,
-         Understand,
-         Master,
-         Guess,
-         Friends,
-     }
+    public static System.Random random = new System.Random();
+    public static Card Random()
+    {
+        Variant variant = (Variant)random.Next(0, 31);
+        Debug.Log(variant);
+        SubType subType = Spellbook.getCardSubType(variant);
+        Type type = Spellbook.getCardType(subType);
+        return new Card(type, subType, variant, 0f);
+    }
 
-    [SerializeField] public enum CardVariants
-     {
-         Build,
-         Delegate,
-         Assist,
-         Fight,
-         Legion,
-         Workforce,
-         SearchParty,
-         Inclusion,
-         Reality,
-         Time,
-         Outcomes,
-         Creature,
-         Sorcery,
-         Leader,
-         AllKnowing,
-         Mystery,
-         Seek,
-         Examine,
-         Remember,
-         Observe,
-         Weaponry,
-         Stealth,
-         Words,
-         Tricks,
-         History,
-         Rumors,
-         Readings,
-         Experience,
-         Canines,
-         Vermin,
-         Commoners,
-         Leaders,
+    [SerializeField]
+    public enum Type
+    {
+        Mortal,
+        Magic,
+        Patience,
+        Luck
+    }
 
-     }
+    [SerializeField]
+    public enum SubType
+    {
+        Work,
+        BandTogether,
+        Alter,
+        RiseAbove,
+        Understand,
+        Master,
+        Guess,
+        Friends,
+    }
 
-    public GameObject card;
-    public GameObject canvas;
+    [SerializeField]
+    public enum Variant
+    {
+        Build,
+        Delegate,
+        Assist,
+        Fight,
+        Legion,
+        Workforce,
+        SearchParty,
+        Inclusion,
+        Reality,
+        Time,
+        Outcomes,
+        Creature,
+        Sorcery,
+        Leader,
+        AllKnowing,
+        Mystery,
+        Seek,
+        Examine,
+        Remember,
+        Observe,
+        Weaponry,
+        Stealth,
+        Words,
+        Tricks,
+        History,
+        Rumors,
+        Readings,
+        Experience,
+        Canines,
+        Vermin,
+        Commoners,
+        Leaders,
+    }
+}
+
+public class Spellbook : MonoBehaviour
+{
+    public static Spellbook GetInstance()
+    {
+        return GameObject.FindGameObjectWithTag("chimera").GetComponent<Spellbook>();
+    }
 
     //rune images
     public Sprite work1;
@@ -110,237 +139,235 @@ public class Spellbook : MonoBehaviour
     public Sprite luck7;
     public Sprite luck8;
 
+    public static Card.Type getCardType(Card.SubType type)
+    {
+        switch (type)
+        {
+            case Card.SubType.Work:
+            case Card.SubType.BandTogether:
+                return Card.Type.Mortal;
 
+            case Card.SubType.Alter:
+            case Card.SubType.RiseAbove:
+                return Card.Type.Magic;
 
+            case Card.SubType.Understand:
+            case Card.SubType.Master:
+                return Card.Type.Patience;
 
+            case Card.SubType.Guess:
+            case Card.SubType.Friends:
+                return Card.Type.Luck;
 
-
-    public CardType getCardType(CardSubType type){
-        switch(type){
-            case CardSubType.Work:
-            case CardSubType.BandTogether:
-            return CardType.Mortal;
-
-            case CardSubType.Alter:
-            case CardSubType.RiseAbove:
-            return CardType.Magic;
-
-            case CardSubType.Understand:
-            case CardSubType.Master:
-            return CardType.Patience;
-
-            case CardSubType.Guess:
-            case CardSubType.Friends:
-            return CardType.Luck;
-
-            default: 
-            Debug.Log("Could not retrieve card type.");
-            return CardType.Mortal;
+            default:
+                Debug.Log("Could not retrieve card type.");
+                return Card.Type.Mortal;
         }
     }
 
-    public List<CardSubType> getCardSubtypes(CardType type){
-        List<CardSubType> typeList = new List<CardSubType>();
+    public static List<Card.SubType> getCardSubtypes(Card.Type type)
+    {
+        List<Card.SubType> typeList = new List<Card.SubType>();
 
-         switch(type){
-            case CardType.Mortal:
-                typeList.Add(CardSubType.Work);
-                typeList.Add(CardSubType.BandTogether);
+        switch (type)
+        {
+            case Card.Type.Mortal:
+                typeList.Add(Card.SubType.Work);
+                typeList.Add(Card.SubType.BandTogether);
                 break;
-            case CardType.Magic:
-                typeList.Add(CardSubType.Alter);
-                typeList.Add(CardSubType.RiseAbove);
+            case Card.Type.Magic:
+                typeList.Add(Card.SubType.Alter);
+                typeList.Add(Card.SubType.RiseAbove);
                 break;
-            case CardType.Patience:
-                typeList.Add(CardSubType.Understand);
-                typeList.Add(CardSubType.Master);
+            case Card.Type.Patience:
+                typeList.Add(Card.SubType.Understand);
+                typeList.Add(Card.SubType.Master);
                 break;
-            case CardType.Luck:
-                typeList.Add(CardSubType.Guess);
-                typeList.Add(CardSubType.Friends);
+            case Card.Type.Luck:
+                typeList.Add(Card.SubType.Guess);
+                typeList.Add(Card.SubType.Friends);
                 break;
         }
 
-        if(typeList.Count <= 0){
+        if (typeList.Count <= 0)
+        {
             Debug.Log("Could not retrieve card subtypes.");
         }
-            
+
         return typeList;
     }
-    
-    public List<CardVariants> getCardVariants(CardSubType type){
-        List<CardVariants> typeList = new List<CardVariants>();
 
-         switch(type){
-            case CardSubType.Work:
-                typeList.Add(CardVariants.Build);
-                typeList.Add(CardVariants.Delegate);
-                typeList.Add(CardVariants.Assist);
-                typeList.Add(CardVariants.Fight);
+    public static List<Card.Variant> getCardVariants(Card.SubType type)
+    {
+        List<Card.Variant> typeList = new List<Card.Variant>();
+
+        switch (type)
+        {
+            case Card.SubType.Work:
+                typeList.Add(Card.Variant.Build);
+                typeList.Add(Card.Variant.Delegate);
+                typeList.Add(Card.Variant.Assist);
+                typeList.Add(Card.Variant.Fight);
                 break;
 
-            case CardSubType.BandTogether:
-                typeList.Add(CardVariants.Legion);
-                typeList.Add(CardVariants.Workforce);
-                typeList.Add(CardVariants.SearchParty);
-                typeList.Add(CardVariants.Inclusion);
+            case Card.SubType.BandTogether:
+                typeList.Add(Card.Variant.Legion);
+                typeList.Add(Card.Variant.Workforce);
+                typeList.Add(Card.Variant.SearchParty);
+                typeList.Add(Card.Variant.Inclusion);
                 break;
 
-            case CardSubType.Alter:
-                typeList.Add(CardVariants.Reality);
-                typeList.Add(CardVariants.Time);
-                typeList.Add(CardVariants.Outcomes);
-                typeList.Add(CardVariants.Creature);
+            case Card.SubType.Alter:
+                typeList.Add(Card.Variant.Reality);
+                typeList.Add(Card.Variant.Time);
+                typeList.Add(Card.Variant.Outcomes);
+                typeList.Add(Card.Variant.Creature);
                 break;
 
-            case CardSubType.RiseAbove:
-                typeList.Add(CardVariants.Sorcery);
-                typeList.Add(CardVariants.Leader);
-                typeList.Add(CardVariants.AllKnowing);
-                typeList.Add(CardVariants.Mystery);
+            case Card.SubType.RiseAbove:
+                typeList.Add(Card.Variant.Sorcery);
+                typeList.Add(Card.Variant.Leader);
+                typeList.Add(Card.Variant.AllKnowing);
+                typeList.Add(Card.Variant.Mystery);
                 break;
 
-            case CardSubType.Understand:
-                typeList.Add(CardVariants.Seek);
-                typeList.Add(CardVariants.Examine);
-                typeList.Add(CardVariants.Remember);
-                typeList.Add(CardVariants.Observe);
+            case Card.SubType.Understand:
+                typeList.Add(Card.Variant.Seek);
+                typeList.Add(Card.Variant.Examine);
+                typeList.Add(Card.Variant.Remember);
+                typeList.Add(Card.Variant.Observe);
                 break;
 
-            case CardSubType.Master:
-                typeList.Add(CardVariants.Weaponry);
-                typeList.Add(CardVariants.Stealth);
-                typeList.Add(CardVariants.Words);
-                typeList.Add(CardVariants.Tricks);
+            case Card.SubType.Master:
+                typeList.Add(Card.Variant.Weaponry);
+                typeList.Add(Card.Variant.Stealth);
+                typeList.Add(Card.Variant.Words);
+                typeList.Add(Card.Variant.Tricks);
                 break;
 
-             case CardSubType.Guess:
-                typeList.Add(CardVariants.History);
-                typeList.Add(CardVariants.Rumors);
-                typeList.Add(CardVariants.Readings);
-                typeList.Add(CardVariants.Experience);
+            case Card.SubType.Guess:
+                typeList.Add(Card.Variant.History);
+                typeList.Add(Card.Variant.Rumors);
+                typeList.Add(Card.Variant.Readings);
+                typeList.Add(Card.Variant.Experience);
                 break;
 
-            case CardSubType.Friends:
-                typeList.Add(CardVariants.Canines);
-                typeList.Add(CardVariants.Vermin);
-                typeList.Add(CardVariants.Commoners);
-                typeList.Add(CardVariants.Leaders);
-                break;   
+            case Card.SubType.Friends:
+                typeList.Add(Card.Variant.Canines);
+                typeList.Add(Card.Variant.Vermin);
+                typeList.Add(Card.Variant.Commoners);
+                typeList.Add(Card.Variant.Leaders);
+                break;
 
 
-           
+
         }
 
-        if(typeList.Count <= 0){
+        if (typeList.Count <= 0)
+        {
             Debug.Log("Could not retrieve card variants.");
         }
-            
+
         return typeList;
     }
 
-     public CardSubType getCardSubType(CardVariants type){
-        switch(type){
-            case CardVariants.Build:
-            case CardVariants.Delegate:
-            case CardVariants.Assist:
-            case CardVariants.Fight:
-            return CardSubType.Work;
+    public static Card.SubType getCardSubType(Card.Variant type)
+    {
+        switch (type)
+        {
+            case Card.Variant.Build:
+            case Card.Variant.Delegate:
+            case Card.Variant.Assist:
+            case Card.Variant.Fight:
+                return Card.SubType.Work;
 
-            case CardVariants.Legion:
-            case CardVariants.Workforce:
-            case CardVariants.SearchParty:
-            case CardVariants.Inclusion:
-            return CardSubType.BandTogether;
-            
-            case CardVariants.Reality:
-            case CardVariants.Time:
-            case CardVariants.Outcomes:
-            case CardVariants.Creature:
-            return CardSubType.Alter;
+            case Card.Variant.Legion:
+            case Card.Variant.Workforce:
+            case Card.Variant.SearchParty:
+            case Card.Variant.Inclusion:
+                return Card.SubType.BandTogether;
 
-            case CardVariants.Sorcery:
-            case CardVariants.Leader:
-            case CardVariants.AllKnowing:
-            case CardVariants.Mystery:
-            return CardSubType.RiseAbove;
+            case Card.Variant.Reality:
+            case Card.Variant.Time:
+            case Card.Variant.Outcomes:
+            case Card.Variant.Creature:
+                return Card.SubType.Alter;
 
-            case CardVariants.Seek:
-            case CardVariants.Examine:
-            case CardVariants.Remember:
-            case CardVariants.Observe:
-            return CardSubType.Understand;
+            case Card.Variant.Sorcery:
+            case Card.Variant.Leader:
+            case Card.Variant.AllKnowing:
+            case Card.Variant.Mystery:
+                return Card.SubType.RiseAbove;
 
-            case CardVariants.Weaponry:
-            case CardVariants.Stealth:
-            case CardVariants.Words:
-            case CardVariants.Tricks:
-            return CardSubType.Master;
+            case Card.Variant.Seek:
+            case Card.Variant.Examine:
+            case Card.Variant.Remember:
+            case Card.Variant.Observe:
+                return Card.SubType.Understand;
 
-            case CardVariants.History:
-            case CardVariants.Rumors:
-            case CardVariants.Readings:
-            case CardVariants.Experience:
-            return CardSubType.Guess;
+            case Card.Variant.Weaponry:
+            case Card.Variant.Stealth:
+            case Card.Variant.Words:
+            case Card.Variant.Tricks:
+                return Card.SubType.Master;
 
-            case CardVariants.Canines:
-            case CardVariants.Vermin:
-            case CardVariants.Commoners:
-            case CardVariants.Leaders:
-            return CardSubType.Friends;
+            case Card.Variant.History:
+            case Card.Variant.Rumors:
+            case Card.Variant.Readings:
+            case Card.Variant.Experience:
+                return Card.SubType.Guess;
 
-            default: 
-            Debug.Log("Could not retrieve card subtype.");
-            return CardSubType.Work;
+            case Card.Variant.Canines:
+            case Card.Variant.Vermin:
+            case Card.Variant.Commoners:
+            case Card.Variant.Leaders:
+                return Card.SubType.Friends;
+
+            default:
+                Debug.Log("Could not retrieve card subtype.");
+                return Card.SubType.Work;
         }
     }
 
-
-public void dropRandomCard(){
-    GameObject dropMe = Instantiate(card) as GameObject;
-    dropMe.transform.SetParent(canvas.transform, false);
-    dropMe.GetComponent<StoneCard>().RandomizeMe();
-}
-
-
-
- public Sprite getCardArt(CardVariants type){
-        switch(type){
-            case CardVariants.Build: return work1;
-            case CardVariants.Delegate:  return work2;
-            case CardVariants.Assist: return work3;
-            case CardVariants.Fight: return work4;
-            case CardVariants.Legion:  return work5;
-            case CardVariants.Workforce:  return work6;
-            case CardVariants.SearchParty:  return work7;
-            case CardVariants.Inclusion:  return work8;
-            case CardVariants.Reality:  return magic1;
-            case CardVariants.Time:  return magic2;
-            case CardVariants.Outcomes: return magic3;
-            case CardVariants.Creature:return magic4;
-            case CardVariants.Sorcery: return magic5;
-            case CardVariants.Leader: return magic6;
-            case CardVariants.AllKnowing: return magic7;
-            case CardVariants.Mystery:return magic8;
-            case CardVariants.Seek: return time1;
-            case CardVariants.Examine:  return time2;
-            case CardVariants.Remember: return time3;
-            case CardVariants.Observe: return time4;
-            case CardVariants.Weaponry: return time5;
-            case CardVariants.Stealth: return time6;
-            case CardVariants.Words: return time7;
-            case CardVariants.Tricks: return time8;
-            case CardVariants.History: return luck1;
-            case CardVariants.Rumors: return luck2;
-            case CardVariants.Readings: return luck3;
-            case CardVariants.Experience:return luck4;
-            case CardVariants.Canines:return luck5;
-            case CardVariants.Vermin:return luck6;
-            case CardVariants.Commoners:return luck7;
-            case CardVariants.Leaders:return luck8;
+    public Sprite getCardArt(Card.Variant type)
+    {
+        switch (type)
+        {
+            case Card.Variant.Build: return work1;
+            case Card.Variant.Delegate: return work2;
+            case Card.Variant.Assist: return work3;
+            case Card.Variant.Fight: return work4;
+            case Card.Variant.Legion: return work5;
+            case Card.Variant.Workforce: return work6;
+            case Card.Variant.SearchParty: return work7;
+            case Card.Variant.Inclusion: return work8;
+            case Card.Variant.Reality: return magic1;
+            case Card.Variant.Time: return magic2;
+            case Card.Variant.Outcomes: return magic3;
+            case Card.Variant.Creature: return magic4;
+            case Card.Variant.Sorcery: return magic5;
+            case Card.Variant.Leader: return magic6;
+            case Card.Variant.AllKnowing: return magic7;
+            case Card.Variant.Mystery: return magic8;
+            case Card.Variant.Seek: return time1;
+            case Card.Variant.Examine: return time2;
+            case Card.Variant.Remember: return time3;
+            case Card.Variant.Observe: return time4;
+            case Card.Variant.Weaponry: return time5;
+            case Card.Variant.Stealth: return time6;
+            case Card.Variant.Words: return time7;
+            case Card.Variant.Tricks: return time8;
+            case Card.Variant.History: return luck1;
+            case Card.Variant.Rumors: return luck2;
+            case Card.Variant.Readings: return luck3;
+            case Card.Variant.Experience: return luck4;
+            case Card.Variant.Canines: return luck5;
+            case Card.Variant.Vermin: return luck6;
+            case Card.Variant.Commoners: return luck7;
+            case Card.Variant.Leaders: return luck8;
             default: return work1;
         }
- }
+    }
 
 
 }

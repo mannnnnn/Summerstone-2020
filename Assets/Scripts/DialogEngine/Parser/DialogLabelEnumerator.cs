@@ -8,7 +8,7 @@ public class DialogLabelEnumerator : IEnumerator<object>
 {
     // next statement to execute
     // will throw InvalidOperationError if accessed while MoveNext returns false
-    public object Current => stack.Peek().label.block[stack.Peek().index];
+    public object Current { get; private set; }
 
     // root dialog label
     private DialogLabel root;
@@ -57,40 +57,46 @@ public class DialogLabelEnumerator : IEnumerator<object>
             Pop();
             return true;
         }
+        object cur = stack.Peek().label.block[stack.Peek().index];
         // handle all control flow statements
         // labels: calls and exiting
-        if (CheckStatement(Current, "exit"))
+        if (CheckStatement(cur, "exit"))
         {
             stack.Clear();
             return true;
         }
-        else if (CheckStatement(Current, "return"))
+        else if (CheckStatement(cur, "return"))
         {
             Pop();
             return true;
         }
-        else if (CheckStatement(Current, "jump"))
+        else if (CheckStatement(cur, "jump"))
         {
-            string arg = GetStatementArg(Current, "jump");
+            string arg = GetStatementArg(cur, "jump");
             DialogLabel next = FindLabel(arg, stack.Peek().label);
             if (next == null)
             {
-                throw new DialogError($"Label '{arg}' does not exist in this context.\nYAML: {Reserialize(Current)}");
+                throw new DialogError($"Label '{arg}' does not exist in this context.\nYAML: {Reserialize(cur)}");
             }
             Push(next);
             return true;
         }
         // pass: does nothing
-        else if (CheckStatement(Current, "pass"))
+        else if (CheckStatement(cur, "pass"))
         {
             stack.Peek().index++;
             return true;
         }
+        // pause: does nothing, but consumes an advance
+        else if (CheckStatement(cur, "pause"))
+        {
+            return false;
+        }
         // conditionals: if statement and variables
-        else if (CheckStatement(Current, "if"))
+        else if (CheckStatement(cur, "if"))
         {
             // load if statement block
-            DialogLabel l = DialogLabel.Load(Current, "if");
+            DialogLabel l = DialogLabel.Load(cur, "if");
             // if flag is true, run block
             if (FindFlag(l.id, stack.Peek().label))
             {
@@ -102,10 +108,10 @@ public class DialogLabelEnumerator : IEnumerator<object>
             }
             return true;
         }
-        else if (CheckStatement(Current, "ifnot"))
+        else if (CheckStatement(cur, "ifnot"))
         {
             // load ifnot statement block
-            DialogLabel l = DialogLabel.Load(Current, "ifnot");
+            DialogLabel l = DialogLabel.Load(cur, "ifnot");
             // if flag is false, run block
             if (!FindFlag(l.id, stack.Peek().label))
             {
@@ -117,16 +123,16 @@ public class DialogLabelEnumerator : IEnumerator<object>
             }
             return true;
         }
-        else if (CheckStatement(Current, "set"))
+        else if (CheckStatement(cur, "set"))
         {
-            string arg = GetStatementArg(Current, "set");
+            string arg = GetStatementArg(cur, "set");
             root.flags[arg] = true;
             stack.Peek().index++;
             return true;
         }
-        else if (CheckStatement(Current, "unset"))
+        else if (CheckStatement(cur, "unset"))
         {
-            string arg = GetStatementArg(Current, "unset");
+            string arg = GetStatementArg(cur, "unset");
             root.flags[arg] = false;
             stack.Peek().index++;
             return true;
@@ -180,8 +186,13 @@ public class DialogLabelEnumerator : IEnumerator<object>
     public bool MoveNext()
     {
         // advance
-        stack.Peek().index++;
         RunAll();
+        if (stack.Count == 0)
+        {
+            return false;
+        }
+        Current = stack.Peek().label.block[stack.Peek().index];
+        stack.Peek().index++;
         // if stack is empty, we are done, return false
         return stack.Count > 0;
     }
@@ -190,7 +201,6 @@ public class DialogLabelEnumerator : IEnumerator<object>
     {
         stack.Clear();
         stack.Push(new DialogStackEntry(root, 0));
-        Run();
     }
 
     public void Dispose() { }

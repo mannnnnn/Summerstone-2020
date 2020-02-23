@@ -8,7 +8,7 @@ public class DialogRunner : MonoBehaviour
 {
     public static DialogRunner GetInstance()
     {
-        return GameObject.FindGameObjectWithTag("DialogRunner")?.GetComponent<DialogRunner>();
+        return GameObject.FindGameObjectWithTag("chimera")?.GetComponent<DialogRunner>();
     }
 
     // single source of truth for dialog flags

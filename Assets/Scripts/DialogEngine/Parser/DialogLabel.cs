@@ -20,7 +20,16 @@ public class DialogLabel : IEnumerable<object>
     {
         this.id = id;
         this.block = new List<object>(block);
-        characters = new Dictionary<string, DialogCharacter>();
+        characters = new Dictionary<string, DialogCharacter>()
+        {
+            { "R", new DialogCharacter("R", "Rubus") },
+            { "H", new DialogCharacter("H", "Hedera") },
+            { "S", new DialogCharacter("S", "Sternella") },
+            { "A", new DialogCharacter("A", "Agelaius") },
+            { "O", new DialogCharacter("O", "Oxx") },
+            { "B", new DialogCharacter("B", "Bark") },
+            { "Z", new DialogCharacter("Z", "Riddance") },
+        };
         labels = new Dictionary<string, DialogLabel>();
         flags = new Dictionary<string, bool>();
         // find all characters and labels
