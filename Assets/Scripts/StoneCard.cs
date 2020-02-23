@@ -31,7 +31,7 @@ public class StoneCard : MonoBehaviour
         else
         {
             tooltip.SetActive(true);
-            Set(card);
+            Set(card, !rb.isKinematic);
         }
     }
 
