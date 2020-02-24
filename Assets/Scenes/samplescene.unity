@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.41226333, g: 0.4892343, b: 0.6032816, a: 1}
+  m_IndirectSpecularColor: {r: 0.4122631, g: 0.48923588, b: 0.60327953, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4879,6 +4879,7 @@ GameObject:
   - component: {fileID: 1640626972}
   - component: {fileID: 1640626971}
   - component: {fileID: 1640626973}
+  - component: {fileID: 1640626974}
   m_Layer: 5
   m_Name: RuneChoiceScreen
   m_TagString: Untagged
@@ -4964,6 +4965,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1640626974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640626969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 999d9e787ed53ff448381a295a1241cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runeParent: {fileID: 1640626969}
+  cardPrefab: {fileID: 4609418451231656623, guid: 6dc68c67ad4ee65489afba584ce3c5fe,
+    type: 3}
+  spawnPosition: {fileID: 2033004901}
 --- !u!1 &1687258581
 GameObject:
   m_ObjectHideFlags: 0
@@ -5777,6 +5794,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1939785566}
   m_CullTransparentMesh: 0
+--- !u!1 &2033004901 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3367042572585847636, guid: 47ea9fafe2ddc6245a42ba183416970e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1851044608}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2041103915
 GameObject:
   m_ObjectHideFlags: 0

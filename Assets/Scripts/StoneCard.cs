@@ -12,6 +12,7 @@ public class StoneCard : MonoBehaviour
     public GameObject variantLabel;
     public GameObject ageLabel;
     public GameObject tooltip;
+    public GameObject button;
     Rigidbody2D rb;
     Spellbook spellbook;
 
@@ -23,7 +24,8 @@ public class StoneCard : MonoBehaviour
         Set(card);
     }
 
-    public void showHideTooltip(){
+    public void showHideTooltip()
+    {
         if(tooltip.activeSelf)
         {
             tooltip.SetActive(false);
@@ -32,25 +34,35 @@ public class StoneCard : MonoBehaviour
         {
             tooltip.SetActive(true);
             Set(card, !rb.isKinematic);
+            if (rb.isKinematic)
+            {
+                button.SetActive(false);
+            }
         }
     }
 
-    public void OnPointerDown(PointerEventData eventData){
-        if(tooltip.activeSelf){
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        if (tooltip.activeSelf)
+        {
             tooltip.SetActive(false);
         }
     }
 
-    public void PlayCard(){
-
+    public void PlayCard()
+    {
+        Chimera.GetInstance().card = card;
+        Chimera.GetInstance().nextGameState();
     }
 
-    public void AgeCard(){
+    public void AgeCard()
+    {
         card.age = card.age++;
     }
 
-    public void DiscardCard(){
-        
+    public void DiscardCard()
+    {
+        Destroy(gameObject);
     }
 
     // display a card

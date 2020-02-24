@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Pulls from Assets/Scripts/Dialogue/FactionRequests.csv,
+// and displays the faction messages for that week.
+// To edit the messages, edit FactionRequests.csv.
 public class FactionChoiceScreen : MonoBehaviour
 {
     public GameObject flyUpPanel;
     public Text flyUpPanelText;
-
-    public string Faction { get; private set; }
 
     // Start is called before the first frame update
     void Start()
@@ -30,11 +31,10 @@ public class FactionChoiceScreen : MonoBehaviour
     // displays fly up screen
     public void ClickFactionButton(string faction)
     {
-        // TODO: fill in week
-        int week = 1;
+        int week = Chimera.GetInstance().week + 1;
         Dictionary<string, string> reqs = FactionRequests.GetInstance().GetFactionRequests(week);
         ShowFlyUp(reqs[faction]);
-        Faction = faction;
+        Chimera.GetInstance().faction = faction;
     }
 
     void ShowFlyUp(string message)

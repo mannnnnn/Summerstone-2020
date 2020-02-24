@@ -5,7 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class Chimera : MonoBehaviour
 {
-
     [SerializeField]
     public enum MainGameState
     {
@@ -21,7 +20,6 @@ public class Chimera : MonoBehaviour
     public MainGameState currState = MainGameState.Week;
     public int week = 0;
 
-
     private GameObject currScreen;
 
     public GameObject chatScreen;
@@ -31,6 +29,10 @@ public class Chimera : MonoBehaviour
     public Animator MainCameraAnimator;
 
     public Material[] skyboxes = new Material[4];
+
+    // currently selected player input
+    public Card card { get; set; }
+    public string faction { get; set; }
 
     // Start is called before the first frame update
     void Start()

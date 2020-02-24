@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Call the Set method in this class from Chimera.nextGameState before showing this screen
+// to specify its contents.
 public class ResultScreen : MonoBehaviour
 {
     public Text title;

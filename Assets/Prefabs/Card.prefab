@@ -685,13 +685,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7110a1b7302fe4a40898a832c9c625b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 0}
-  myCardCopy: {fileID: 0}
+  card:
+    type: 0
+    subType: 0
+    variant: 0
+    age: 0
   typeLabel: {fileID: 4609418449912204996}
   subTypeLabel: {fileID: 4609418451709226039}
   variantLabel: {fileID: 4609418450390921949}
   ageLabel: {fileID: 1977786293173184596}
   tooltip: {fileID: 2133908441192001017}
+  button: {fileID: 6894932309897048195}
 --- !u!50 &317240336
 Rigidbody2D:
   serializedVersion: 4
@@ -931,7 +935,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5656646188783611668}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4609418451231656593}
+        m_MethodName: PlayCard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8877235910733108277
 GameObject:
   m_ObjectHideFlags: 0

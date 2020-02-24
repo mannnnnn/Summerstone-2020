@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Call the Run method in this class from Chimera.nextGameState before showing this screen
+// to specify this screen's contents.
 public class DialogUI : MonoBehaviour, IDialogUI
 {
     // text scroll animation
