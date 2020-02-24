@@ -5331,6 +5331,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NextBtn
       objectReference: {fileID: 0}
+    - target: {fileID: 3367042572585847636, guid: 47ea9fafe2ddc6245a42ba183416970e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3367042572585847638, guid: 47ea9fafe2ddc6245a42ba183416970e,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
