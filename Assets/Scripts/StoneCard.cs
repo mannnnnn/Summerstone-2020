@@ -53,6 +53,7 @@ public class StoneCard : MonoBehaviour
     {
         Chimera.GetInstance().card = card;
         Chimera.GetInstance().nextGameState();
+        DiscardCard();
     }
 
     public void AgeCard()
