@@ -11,6 +11,7 @@ public class Chimera : MonoBehaviour
         Week, //Camera State 1
         FactionPick,
         WeekResult, //Camera State 2
+        Mastermind,
         Weekend, //Camera State 3
         CardPick,
         WeekendResult //Camera State 4
@@ -26,6 +27,7 @@ public class Chimera : MonoBehaviour
     public GameObject factionScreen;
     public GameObject resultsScreen;
     public GameObject cardChooserScreen;
+    public GameObject mastermindScreen;
     public Animator MainCameraAnimator;
 
     public Material[] skyboxes = new Material[4];
@@ -41,6 +43,7 @@ public class Chimera : MonoBehaviour
         if (factionScreen.activeSelf) currScreen = factionScreen;
         if (resultsScreen.activeSelf) currScreen = resultsScreen;
         if (cardChooserScreen.activeSelf) currScreen = cardChooserScreen;
+        if (mastermindScreen.activeSelf) currScreen = mastermindScreen;
 
         updateSkybox();
     }
@@ -76,6 +79,7 @@ public class Chimera : MonoBehaviour
             case MainGameState.Week: if (!chatScreen.activeSelf) nextScreen = chatScreen; break;
             case MainGameState.FactionPick: if (!factionScreen.activeSelf) nextScreen = factionScreen; break;
             case MainGameState.CardPick: if (!cardChooserScreen.activeSelf) nextScreen = cardChooserScreen; break;
+            case MainGameState.Mastermind: if (!mastermindScreen.activeSelf) nextScreen = mastermindScreen; break;
             case MainGameState.WeekResult:
             case MainGameState.WeekendResult:
             default: if (!resultsScreen.activeSelf) nextScreen = resultsScreen; break;
