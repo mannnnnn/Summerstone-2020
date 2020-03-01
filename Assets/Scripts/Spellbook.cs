@@ -12,26 +12,24 @@ public class Card
     public Variant variant = Variant.Build;
     public float age = 0;
 
-    public Card(Type type, SubType subType, Variant variant, float age)
+    public Card(Variant variant, float age = 0f)
     {
-        this.type = type;
-        this.subType = subType;
         this.variant = variant;
+        subType = Spellbook.getCardSubType(variant);
+        type = Spellbook.getCardType(subType);
         this.age = age;
     }
 
     public Card Copy()
     {
-        return new Card(type, subType, variant, age);
+        return new Card(variant, age);
     }
 
     public static System.Random random = new System.Random();
     public static Card Random()
     {
         Variant variant = (Variant)random.Next(0, 31);
-        SubType subType = Spellbook.getCardSubType(variant);
-        Type type = Spellbook.getCardType(subType);
-        return new Card(type, subType, variant, 0f);
+        return new Card(variant);
     }
 
     [SerializeField]
@@ -137,6 +135,50 @@ public class Spellbook : MonoBehaviour
     public Sprite luck6;
     public Sprite luck7;
     public Sprite luck8;
+
+    static Dictionary<Faction, List<Card.Variant>> pools = new Dictionary<Faction, List<Card.Variant>>();
+    static System.Random random = new System.Random();
+
+    static Spellbook()
+    {
+        foreach (Faction f in Enum.GetValues(typeof(Faction)))
+        {
+            pools[f] = new List<Card.Variant>();
+        }
+        foreach (Card.Variant v in Enum.GetValues(typeof(Card.Variant)))
+        {
+            switch (getCardType(getCardSubType(v)))
+            {
+                case Card.Type.Mortal:
+                    pools[Faction.Wolf].Add(v);
+                    pools[Faction.Bark].Add(v);
+                    break;
+                case Card.Type.Magic:
+                    pools[Faction.Deer].Add(v);
+                    pools[Faction.Oxx].Add(v);
+                    break;
+                case Card.Type.Patience:
+                    pools[Faction.Night].Add(v);
+                    pools[Faction.Oxx].Add(v);
+                    break;
+                case Card.Type.Luck:
+                    pools[Faction.Day].Add(v);
+                    pools[Faction.Bark].Add(v);
+                    break;
+            }
+            pools[Faction.Neutral].Add(v);
+        }
+    }
+
+    public static Card RandomFromPool(string faction)
+    {
+        Faction f = (Faction)Enum.Parse(typeof(Faction), faction);
+        if (!pools.ContainsKey(f))
+        {
+            throw new InvalidOperationException($"There is no card pool for Faction {faction}");
+        }
+        return new Card(pools[f][random.Next(pools[f].Count)]);
+    }
 
     public static Card.Type getCardType(Card.SubType type)
     {
@@ -257,9 +299,6 @@ public class Spellbook : MonoBehaviour
                 typeList.Add(Card.Variant.Commoners);
                 typeList.Add(Card.Variant.Leaders);
                 break;
-
-
-
         }
 
         if (typeList.Count <= 0)
@@ -367,6 +406,4 @@ public class Spellbook : MonoBehaviour
             default: return work1;
         }
     }
-
-
 }
