@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using UnityEngine;
 using YamlDotNet.Serialization;
 
 // loads dialog from a text file.
@@ -15,7 +16,7 @@ public class DialogFile : IEnumerable<object>
     public DialogFile(string path, Dictionary<string, bool> flags)
     {
         // read text from a file
-        StringReader stringReader = new StringReader(new StreamReader(path).ReadToEnd());
+        StringReader stringReader = new StringReader(Resources.Load<TextAsset>(path).text);
         // parse to runnable block
         List<object> block = new Deserializer().Deserialize<List<object>>(stringReader);
         main = new DialogLabel("main", block);

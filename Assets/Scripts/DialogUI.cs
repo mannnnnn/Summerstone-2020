@@ -21,7 +21,7 @@ public class DialogUI : MonoBehaviour, IDialogUI
     {
         dialogSprites = DialogSprites.GetInstance();
         chimera = Chimera.GetInstance();
-        Run("Assets/Scripts/Dialogue/TestForParser.yaml");
+        Run("Text/TestForParser");
     }
 
     // Update is called once per frame
