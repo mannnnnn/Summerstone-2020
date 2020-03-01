@@ -215,8 +215,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.5, y: -187.2}
-  m_SizeDelta: {x: 657, y: 184.1}
+  m_AnchoredPosition: {x: 1.5, y: -189.35}
+  m_SizeDelta: {x: 678.7, y: 227.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &41926334
 MonoBehaviour:
@@ -236,9 +236,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: b1eae810dc553414ab99189da51f1308, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -897,7 +897,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &259294057
 RectTransform:
   m_ObjectHideFlags: 0
@@ -914,7 +914,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -1.098}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.5, y: -281.4}
+  m_AnchoredPosition: {x: 13, y: -87}
   m_SizeDelta: {x: 744, y: 239.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &259294058
@@ -1694,27 +1694,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currImage: {fileID: 41926334}
   weekImages:
-  - {fileID: 21300000, guid: 282cac93bed3c4042b6d58e603858f2d, type: 3}
-  - {fileID: 21300000, guid: cb6060a6678f8ab44931c7acaf81935f, type: 3}
-  - {fileID: 21300000, guid: 2e0b4dfddca594f44bb443d0bb868719, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 54095f928bd4ae54fa80c66f544cef20, type: 3}
+  - {fileID: 21300000, guid: d5974d2ed0e6e6f4995fdbd6555539ee, type: 3}
+  - {fileID: 21300000, guid: 49925e7f846158a4a80c632dc7f1b219, type: 3}
+  - {fileID: 21300000, guid: 2367b77fc243b1e4eb6791cfe31cc3e9, type: 3}
+  - {fileID: 21300000, guid: 2781a58532d51c747afc9e0cd0faa77e, type: 3}
+  - {fileID: 21300000, guid: 49925e7f846158a4a80c632dc7f1b219, type: 3}
+  - {fileID: 21300000, guid: 41d21faab652d5f4eb0d9477097de5de, type: 3}
+  - {fileID: 21300000, guid: b8bfdd9776c9be4459e777b4cef9c69e, type: 3}
+  - {fileID: 21300000, guid: da9ea80084b0ed74ebd715a56b21bc38, type: 3}
+  - {fileID: 21300000, guid: 27962899f4eafed4f839bae850cce950, type: 3}
   weekendImages:
-  - {fileID: 21300000, guid: a66505e219bd1fd41bef97f5b5d155b4, type: 3}
-  - {fileID: 21300000, guid: e76e5a5899529e147b41f8c617d7d0b3, type: 3}
-  - {fileID: 21300000, guid: b392ce58c6614974893ef35855178fdc, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 6981f500dff31b94f9507592f9d8be3b, type: 3}
+  - {fileID: 21300000, guid: f5400be69a32ea741bf9f44981c9b830, type: 3}
+  - {fileID: 21300000, guid: b1eae810dc553414ab99189da51f1308, type: 3}
+  - {fileID: 21300000, guid: 2b92f81d2eeca7740a1ebd95bb4c8f5d, type: 3}
+  - {fileID: 21300000, guid: 9ba63be8a7e47a24e8a7ff8c6f7c8694, type: 3}
+  - {fileID: 21300000, guid: aef38d1798f237b498826da3ee343850, type: 3}
+  - {fileID: 21300000, guid: fc4026be9cdd30a4c9afd4cb234c397e, type: 3}
+  - {fileID: 21300000, guid: 795117177a2b84c4b874004906e20ad0, type: 3}
+  - {fileID: 21300000, guid: be5daf175b825e54aafcc09acecb1a2b, type: 3}
+  - {fileID: 21300000, guid: da8f7d0121a9c2345a7c8426d1202998, type: 3}
 --- !u!114 &588026382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4619,7 +4619,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.00030517578}
   m_SizeDelta: {x: 640, y: 10000}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1493878332
