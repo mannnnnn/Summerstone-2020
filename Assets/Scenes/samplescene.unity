@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.4122631, g: 0.48923588, b: 0.60327953, a: 1}
+  m_IndirectSpecularColor: {r: 0.41226333, g: 0.4892343, b: 0.6032816, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1595,6 +1595,7 @@ GameObject:
   - component: {fileID: 588026378}
   - component: {fileID: 588026380}
   - component: {fileID: 588026382}
+  - component: {fileID: 588026381}
   m_Layer: 5
   m_Name: ChatScreen
   m_TagString: Untagged
@@ -1679,6 +1680,41 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &588026381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 588026376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80265181cbadbc04791f3c4e535356b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currImage: {fileID: 41926334}
+  weekImages:
+  - {fileID: 21300000, guid: 282cac93bed3c4042b6d58e603858f2d, type: 3}
+  - {fileID: 21300000, guid: cb6060a6678f8ab44931c7acaf81935f, type: 3}
+  - {fileID: 21300000, guid: 2e0b4dfddca594f44bb443d0bb868719, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  weekendImages:
+  - {fileID: 21300000, guid: a66505e219bd1fd41bef97f5b5d155b4, type: 3}
+  - {fileID: 21300000, guid: e76e5a5899529e147b41f8c617d7d0b3, type: 3}
+  - {fileID: 21300000, guid: b392ce58c6614974893ef35855178fdc, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &588026382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3832,6 +3868,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 3e5399bd195de7649b874f58c1b9f8a3, type: 2}
   - {fileID: 2100000, guid: c52c5d7968fa6c9499b0b5752f899bfb, type: 2}
   - {fileID: 2100000, guid: d4454f71d85928744be7771e2143dab7, type: 2}
+  weekImageSwapper: {fileID: 588026381}
 --- !u!114 &1342540818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6025,8 +6062,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 273672597}
   m_HandleRect: {fileID: 273672596}
   m_Direction: 2
-  m_Value: 0.000000019660643
-  m_Size: 0.068670005
+  m_Value: 0.000000019660641
+  m_Size: 0.06867
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

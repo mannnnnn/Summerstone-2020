@@ -32,6 +32,8 @@ public class Chimera : MonoBehaviour
 
     public Material[] skyboxes = new Material[4];
 
+    public WeekImageSwapper weekImageSwapper;
+
     // currently selected player input
     public Card card { get; set; }
     public string faction { get; set; }
@@ -39,9 +41,16 @@ public class Chimera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (chatScreen.activeSelf) currScreen = chatScreen;
+        if (chatScreen.activeSelf)
+        {
+            weekImageSwapper.updateImage(currState == MainGameState.Week, week);
+            currScreen = chatScreen;
+        }
         if (factionScreen.activeSelf) currScreen = factionScreen;
-        if (resultsScreen.activeSelf) currScreen = resultsScreen;
+        if (resultsScreen.activeSelf)
+        {
+            currScreen = resultsScreen;
+        }
         if (cardChooserScreen.activeSelf) currScreen = cardChooserScreen;
         if (mastermindScreen.activeSelf) currScreen = mastermindScreen;
 
@@ -64,6 +73,7 @@ public class Chimera : MonoBehaviour
         int nextState = (int)currState + 1;
         if(nextState > gameStateSize)
         {
+            week++;
             nextState = 0;
         }
         currState = (MainGameState)nextState;
@@ -76,7 +86,11 @@ public class Chimera : MonoBehaviour
         switch (currState)
         {
             case MainGameState.Weekend:
-            case MainGameState.Week: if (!chatScreen.activeSelf) nextScreen = chatScreen; break;
+                weekImageSwapper.updateImage(false, week);
+                if (!chatScreen.activeSelf) nextScreen = chatScreen; break;
+            case MainGameState.Week:
+                weekImageSwapper.updateImage(true, week);
+                if (!chatScreen.activeSelf) nextScreen = chatScreen; break;
             case MainGameState.FactionPick: if (!factionScreen.activeSelf) nextScreen = factionScreen; break;
             case MainGameState.CardPick: if (!cardChooserScreen.activeSelf) nextScreen = cardChooserScreen; break;
             case MainGameState.Mastermind: if (!mastermindScreen.activeSelf) nextScreen = mastermindScreen; break;
