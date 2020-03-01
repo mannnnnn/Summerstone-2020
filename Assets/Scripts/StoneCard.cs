@@ -13,15 +13,10 @@ public class StoneCard : MonoBehaviour
     public GameObject ageLabel;
     public GameObject tooltip;
     public GameObject button;
-    Rigidbody2D rb;
-    Spellbook spellbook;
 
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
         tooltip.SetActive(false);
-        spellbook = Spellbook.GetInstance();
-        Set(card);
     }
 
     public void showHideTooltip()
@@ -33,8 +28,8 @@ public class StoneCard : MonoBehaviour
         else
         {
             tooltip.SetActive(true);
-            Set(card, !rb.isKinematic);
-            if (rb.isKinematic)
+            Set(card, !GetComponent<Rigidbody2D>().isKinematic);
+            if (GetComponent<Rigidbody2D>().isKinematic)
             {
                 button.SetActive(false);
             }
@@ -74,8 +69,12 @@ public class StoneCard : MonoBehaviour
         subTypeLabel.GetComponent<Text>().text = card.subType.ToString();
         variantLabel.GetComponent<Text>().text = card.variant.ToString();
         ageLabel.GetComponent<Text>().text = card.age.ToString();
-        gameObject.GetComponent<Image>().sprite = spellbook.getCardArt(card.variant);
-        rb.isKinematic = !physics;
+        Debug.Log(GetComponent<Image>());
+        Debug.Log(Spellbook.GetInstance());
+        Debug.Log(card);
+        GetComponent<Image>().sprite = Spellbook.GetInstance().getCardArt(card.variant);
+        Debug.Log(GetComponent<Rigidbody2D>());
+        GetComponent<Rigidbody2D>().isKinematic = !physics;
     }
 
     void Update()

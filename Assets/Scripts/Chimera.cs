@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,7 +20,8 @@ public class Chimera : MonoBehaviour
     private int gameStateSize = 5; //c# has a dumb way of handling this.
 
     public MainGameState currState = MainGameState.Week;
-    public int week = 0;
+    [NonSerialized]
+    public int week = 1;
 
     private GameObject currScreen;
 
@@ -37,6 +39,18 @@ public class Chimera : MonoBehaviour
     // currently selected player input
     public Card card { get; set; }
     public string faction { get; set; }
+
+    static System.Random random = new System.Random();
+
+    Dictionary<string, int> factionChoices = new Dictionary<string, int>();
+    void Awake()
+    {
+        // TODO: load data if it exists
+        foreach (Faction f in Enum.GetValues(typeof(Faction)))
+        {
+            factionChoices[f.ToString()] = 0;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -70,6 +84,55 @@ public class Chimera : MonoBehaviour
 
     public void nextGameState()
     {
+        // finish current game state
+        switch (currState)
+        {
+            case MainGameState.Week:
+                break;
+            case MainGameState.FactionPick:
+                // store faction choice
+                if (!factionChoices.ContainsKey(faction))
+                {
+                    throw new InvalidOperationException($"Faction {faction} does not exist.");
+                }
+                factionChoices[faction]++;
+                // add runes
+                List<Card> newRunes = new List<Card>()
+                {
+                    Spellbook.RandomFromPool(faction),
+                    Spellbook.RandomFromPool(faction),
+                };
+                resultsScreen.GetComponent<ResultScreen>().Set($"Week {week}", WeekResults.GetInstance().GetWeekResult(week, faction),
+                    newRunes, new List<Card>() { });
+                cardChooserScreen.GetComponent<RuneChoiceScreen>().AddRunes(newRunes);
+                break;
+            case MainGameState.WeekResult:
+                break;
+            case MainGameState.Mastermind:
+                break;
+            case MainGameState.Weekend:
+                break;
+            case MainGameState.CardPick:
+                string result = "Fail";
+                float chance = RuneStats.GetInstance().GetRuneChance(week, card);
+                if (chance == Mathf.Infinity)
+                {
+                    result = "Perfect";
+                }
+                if (random.NextDouble() < chance)
+                {
+                    result = "Win";
+                }
+                // spend runes
+                resultsScreen.GetComponent<ResultScreen>().Set($"Weekend {week}", WeekendResults.GetInstance().GetWeekendResult(week, result),
+                new List<Card>() { },
+                new List<Card>() { card });
+                // TODO: process result
+                break;
+            case MainGameState.WeekendResult:
+                break;
+        }
+        // go to next game state
         int nextState = (int)currState + 1;
         if(nextState > gameStateSize)
         {

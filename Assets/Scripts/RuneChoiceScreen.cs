@@ -13,12 +13,6 @@ public class RuneChoiceScreen : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AddRunes(new List<Card>()
-        {
-            Card.Random(),
-            Card.Random(),
-            Card.Random(),
-        });
     }
 
     // Update is called once per frame

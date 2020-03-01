@@ -31,7 +31,7 @@ public class FactionChoiceScreen : MonoBehaviour
     // displays fly up screen
     public void ClickFactionButton(string faction)
     {
-        int week = Chimera.GetInstance().week + 1;
+        int week = Chimera.GetInstance().week;
         Dictionary<string, string> reqs = FactionRequests.GetInstance().GetFactionRequests(week);
         ShowFlyUp(reqs[faction]);
         Chimera.GetInstance().faction = faction;

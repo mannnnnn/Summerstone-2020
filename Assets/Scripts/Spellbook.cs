@@ -32,6 +32,11 @@ public class Card
         return new Card(variant);
     }
 
+    public override string ToString()
+    {
+        return $"[{type}->{subType}->{variant}, Age {age}]";
+    }
+
     [SerializeField]
     public enum Type
     {
@@ -136,9 +141,9 @@ public class Spellbook : MonoBehaviour
     public Sprite luck7;
     public Sprite luck8;
 
+    // set up faction pools
     static Dictionary<Faction, List<Card.Variant>> pools = new Dictionary<Faction, List<Card.Variant>>();
     static System.Random random = new System.Random();
-
     static Spellbook()
     {
         foreach (Faction f in Enum.GetValues(typeof(Faction)))
@@ -170,6 +175,7 @@ public class Spellbook : MonoBehaviour
         }
     }
 
+    // get a random card from a faction pool
     public static Card RandomFromPool(string faction)
     {
         Faction f = (Faction)Enum.Parse(typeof(Faction), faction);
