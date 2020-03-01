@@ -17,7 +17,7 @@ public class Chimera : MonoBehaviour
         CardPick,
         WeekendResult //Camera State 4
     }
-    private int gameStateSize = 5; //c# has a dumb way of handling this.
+    private int gameStateSize = 6; //c# has a dumb way of handling this.
 
     public MainGameState currState = MainGameState.Week;
     [NonSerialized]
