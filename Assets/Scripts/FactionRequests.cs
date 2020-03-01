@@ -21,14 +21,10 @@ public class FactionRequests : MonoBehaviour
 
     void Awake()
     {
-        using (var reader = new StreamReader("Assets/Scripts/Dialogue/FactionRequests.csv"))
+        foreach (string line in Resources.Load<TextAsset>("Text/FactionRequests").text.Split('\n'))
         {
-            while (!reader.EndOfStream)
-            {
-                var line = reader.ReadLine();
-                var values = line.Split(new[] { ',' }, 2);
-                requests[values[0]] = values[1];
-            }
+            var values = line.Split(new[] { ',' }, 2);
+            requests[values[0]] = values[1];
         }
     }
 
