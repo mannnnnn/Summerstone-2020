@@ -74,6 +74,10 @@ public class RuneStats : MonoBehaviour
         {
             Mathf.Max(chance, 0.1f);
         }
+        if (card.type == Card.Type.Patience)
+        {
+            chance += 0.05f * card.age;
+        }
         return chance;
     }
 }
