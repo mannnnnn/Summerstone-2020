@@ -58,7 +58,7 @@ public class StoneCard : MonoBehaviour
 
     public void AgeCard()
     {
-        card.age = card.age++;
+        card.age++;
     }
 
     public void DiscardCard()

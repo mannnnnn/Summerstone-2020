@@ -5,13 +5,13 @@ using System.IO;
 using UnityEngine;
 using static DialogUtils;
 
+public enum Faction
+{
+    Oxx, Day, Wolf, Deer, Night, Bark, Neutral
+}
+
 public class FactionRequests : MonoBehaviour
 {
-    enum Faction
-    {
-        Oxx, Day, Wolf, Deer, Night, Bark
-    }
-
     public static FactionRequests GetInstance()
     {
         return GameObject.FindGameObjectWithTag("chimera")?.GetComponent<FactionRequests>();
@@ -24,7 +24,7 @@ public class FactionRequests : MonoBehaviour
         foreach (string line in Resources.Load<TextAsset>("Text/FactionRequests").text.Split('\n'))
         {
             var values = line.Split(new[] { ',' }, 2);
-            requests[values[0]] = values[1];
+            requests[values[0].Trim()] = values[1].Trim();
         }
     }
 
