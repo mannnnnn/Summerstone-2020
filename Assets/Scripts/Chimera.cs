@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
@@ -23,8 +24,6 @@ public class Chimera : MonoBehaviour
     [NonSerialized]
     public int week = 1;
 
-    private GameObject currScreen;
-
     public GameObject chatScreen;
     public GameObject factionScreen;
     public GameObject resultsScreen;
@@ -35,6 +34,8 @@ public class Chimera : MonoBehaviour
     public Material[] skyboxes = new Material[4];
 
     public WeekImageSwapper weekImageSwapper;
+
+    public List<StoneCard> cards = new List<StoneCard>();
 
     // currently selected player input
     public Card card { get; set; }
@@ -55,26 +56,8 @@ public class Chimera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (chatScreen.activeSelf)
-        {
-            weekImageSwapper.updateImage(currState == MainGameState.Week, week);
-            currScreen = chatScreen;
-        }
-        if (factionScreen.activeSelf) currScreen = factionScreen;
-        if (resultsScreen.activeSelf)
-        {
-            currScreen = resultsScreen;
-        }
-        if (cardChooserScreen.activeSelf) currScreen = cardChooserScreen;
-        if (mastermindScreen.activeSelf) currScreen = mastermindScreen;
-
+        showGameStateScreenUI(currState);
         updateSkybox();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public static Chimera GetInstance()
@@ -84,6 +67,7 @@ public class Chimera : MonoBehaviour
 
     public void nextGameState()
     {
+        Save();
         // finish current game state
         switch (currState)
         {
@@ -104,7 +88,7 @@ public class Chimera : MonoBehaviour
                 };
                 resultsScreen.GetComponent<ResultScreen>().Set($"Week {week}", WeekResults.GetInstance().GetWeekResult(week, faction),
                     newRunes, new List<Card>() { });
-                cardChooserScreen.GetComponent<RuneChoiceScreen>().AddRunes(newRunes);
+                cards.AddRange(cardChooserScreen.GetComponent<RuneChoiceScreen>().AddRunes(newRunes));
                 break;
             case MainGameState.WeekResult:
                 break;
@@ -140,45 +124,54 @@ public class Chimera : MonoBehaviour
             nextState = 0;
         }
         currState = (MainGameState)nextState;
-        showGameStateScreenUI();
+        showGameStateScreenUI(currState);
     }
 
-    public void showGameStateScreenUI()
+    public void showGameStateScreenUI(MainGameState current)
     {
-        GameObject nextScreen = null;
-        switch (currState)
+        // disable all
+        chatScreen.SetActive(false);
+        factionScreen.SetActive(false);
+        cardChooserScreen.SetActive(false);
+        mastermindScreen.SetActive(false);
+        resultsScreen.SetActive(false);
+        // enable active one
+        GameObject screen = null;
+        switch (current)
         {
             case MainGameState.Weekend:
                 weekImageSwapper.updateImage(false, week);
-                if (!chatScreen.activeSelf) nextScreen = chatScreen; break;
+                screen = chatScreen;
+                break;
             case MainGameState.Week:
                 weekImageSwapper.updateImage(true, week);
-                if (!chatScreen.activeSelf) nextScreen = chatScreen; break;
-            case MainGameState.FactionPick: if (!factionScreen.activeSelf) nextScreen = factionScreen; break;
-            case MainGameState.CardPick: if (!cardChooserScreen.activeSelf) nextScreen = cardChooserScreen; break;
-            case MainGameState.Mastermind: if (!mastermindScreen.activeSelf) nextScreen = mastermindScreen; break;
+                screen = chatScreen;
+                break;
+            case MainGameState.FactionPick:
+                screen = factionScreen;
+                break;
+            case MainGameState.CardPick:
+                screen = cardChooserScreen;
+                break;
+            case MainGameState.Mastermind:
+                screen = mastermindScreen;
+                break;
             case MainGameState.WeekResult:
             case MainGameState.WeekendResult:
-            default: if (!resultsScreen.activeSelf) nextScreen = resultsScreen; break;
+            default:
+                screen = resultsScreen;
+                break;
         }
-
-        currScreen.SetActive(false);
-        nextScreen.SetActive(true);
-        currScreen = nextScreen;
-
-
+        screen.SetActive(true);
         if (shouldMoveCamera())
         {
             updateSkybox();
             MainCameraAnimator.SetTrigger("MoveCamera");
         }
-       
     }
 
     private bool shouldMoveCamera()
     {
-
-       
         if (currState == MainGameState.Week) return true;
         
         if (currState == MainGameState.WeekResult) return true;
@@ -201,10 +194,104 @@ public class Chimera : MonoBehaviour
             case MainGameState.WeekendResult: 
             default: nextSkybox = 3; break;
         }
-
         RenderSettings.skybox = skyboxes[nextSkybox];
     }
 
+    // save to playerprefs
+    public void Save()
+    {
+        PlayerPrefs.SetInt("save", 1);
+        string cards = string.Join(";", this.cards.Select(x => x.ToSaveString()));
+        PlayerPrefs.SetString("cards", cards);
+        PlayerPrefs.SetInt("week", week);
+        foreach (Faction f in Enum.GetValues(typeof(Faction)))
+        {
+            PlayerPrefs.SetInt($"factionChoices{f}", factionChoices[f.ToString()]);
+        }
+        PlayerPrefs.SetString("state", currState.ToString());
+        PlayerPrefs.SetString("faction", faction);
+        PlayerPrefs.SetString("card", "");
+        if (card != null)
+        {
+            PlayerPrefs.SetString("card", card.ToSaveString());
+        }
+        PlayerPrefs.Save();
+    }
+    // load from playerprefs
+    public void Load()
+    {
+        if (!CanLoad)
+        {
+            throw new InvalidOperationException("There is no save data.");
+        }
+        // set stone cards
+        for (int i = 0; i < cards.Count; i++)
+        {
+            Destroy(cards[i].gameObject);
+            cards.RemoveAt(i);
+            i--;
+        }
+        string[] cardStrs = PlayerPrefs.GetString("cards").Split(';');
+        if (cardStrs[0] != "")
+        {
+            List<Card> dummies = new List<Card>();
+            for (int i = 0; i < cardStrs.Length; i++)
+            {
+                dummies.Add(new Card(Card.Variant.Time));
+            }
+            cards.AddRange(cardChooserScreen.GetComponent<RuneChoiceScreen>().AddRunes(dummies));
+            for (int i = 0; i < cards.Count; i++)
+            {
+                cards[i].FromSaveString(cardStrs[i]);
+            }
+        }
+        // set game state
+        week = PlayerPrefs.GetInt("week");
+        currState = (MainGameState)Enum.Parse(typeof(MainGameState), PlayerPrefs.GetString("state"));
+        // set faction choices
+        foreach (Faction f in Enum.GetValues(typeof(Faction)))
+        {
+            factionChoices[f.ToString()] = PlayerPrefs.GetInt($"factionChoices{f}");
+        }
+        // set selected card or faction
+        faction = PlayerPrefs.GetString("faction");
+        card = null;
+        if (PlayerPrefs.GetString("card") != "")
+        {
+            card = new Card(Card.Variant.Time, 0f);
+            card.FromSaveString(PlayerPrefs.GetString("card"));
+        }
+    }
+    // check for loadability
+    public bool CanLoad => PlayerPrefs.HasKey("save");
+
+    // Update is called once per frame
+    void Update()
+    {
+        // attempt load
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.O))
+        {
+            Load();
+            nextGameState();
+        }
+        // print all saved values
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.P))
+        {
+            Debug.Log($"save: {PlayerPrefs.GetInt("save")}");
+            Debug.Log($"cards: {PlayerPrefs.GetString("cards")}");
+            Debug.Log($"week: {PlayerPrefs.GetInt("week")}");
+            string s = "Choices: ";
+            foreach (Faction f in Enum.GetValues(typeof(Faction)))
+            {
+                string k = $"factionChoices{f}";
+                s += $"{f}: {PlayerPrefs.GetInt(k)}, ";
+            }
+            Debug.Log(s);
+            Debug.Log($"state: {PlayerPrefs.GetString("state")}");
+            Debug.Log($"faction: {PlayerPrefs.GetString("faction")}");
+            Debug.Log($"card: {PlayerPrefs.GetString("card")}");
+        }
+    }
 }
 
 

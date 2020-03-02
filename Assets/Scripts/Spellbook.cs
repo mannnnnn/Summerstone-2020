@@ -32,6 +32,19 @@ public class Card
         return new Card(variant);
     }
 
+    public string ToSaveString()
+    {
+        return $"{variant}:{age}";
+    }
+    public void FromSaveString(string s)
+    {
+        var values = s.Split(':');
+        variant = (Variant)Enum.Parse(typeof(Variant), values[0]);
+        subType = Spellbook.getCardSubType(variant);
+        type = Spellbook.getCardType(subType);
+        age = float.Parse(values[1]);
+    }
+
     public override string ToString()
     {
         return $"[{type}->{subType}->{variant}, Age {age}]";

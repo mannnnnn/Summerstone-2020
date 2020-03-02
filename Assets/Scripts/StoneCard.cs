@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System;
 
 public class StoneCard : MonoBehaviour
 {
@@ -47,8 +48,8 @@ public class StoneCard : MonoBehaviour
     public void PlayCard()
     {
         Chimera.GetInstance().card = card;
-        Chimera.GetInstance().nextGameState();
         DiscardCard();
+        Chimera.GetInstance().nextGameState();
     }
 
     public void AgeCard()
@@ -58,6 +59,7 @@ public class StoneCard : MonoBehaviour
 
     public void DiscardCard()
     {
+        Chimera.GetInstance().cards.Remove(this);
         Destroy(gameObject);
     }
 
@@ -69,12 +71,21 @@ public class StoneCard : MonoBehaviour
         subTypeLabel.GetComponent<Text>().text = card.subType.ToString();
         variantLabel.GetComponent<Text>().text = card.variant.ToString();
         ageLabel.GetComponent<Text>().text = card.age.ToString();
-        Debug.Log(GetComponent<Image>());
-        Debug.Log(Spellbook.GetInstance());
-        Debug.Log(card);
         GetComponent<Image>().sprite = Spellbook.GetInstance().getCardArt(card.variant);
-        Debug.Log(GetComponent<Rigidbody2D>());
         GetComponent<Rigidbody2D>().isKinematic = !physics;
+    }
+
+    public string ToSaveString()
+    {
+        return $"{transform.position.x},{transform.position.y},{transform.eulerAngles.z},{card.ToSaveString()}";
+    }
+    public void FromSaveString(string s)
+    {
+        var values = s.Split(',');
+        transform.position = new Vector3(float.Parse(values[0]), float.Parse(values[1]), transform.position.z);
+        transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, float.Parse(values[2]));
+        card.FromSaveString(values[3]);
+        Set(card);
     }
 
     void Update()

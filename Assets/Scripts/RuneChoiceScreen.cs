@@ -21,15 +21,18 @@ public class RuneChoiceScreen : MonoBehaviour
         
     }
 
-    public void AddRunes(List<Card> addedRunes)
+    public List<StoneCard> AddRunes(List<Card> addedRunes)
     {
+        List<StoneCard> cardsCreated = new List<StoneCard>();
         // create new runes
         int i = 0;
         foreach (Card c in addedRunes)
         {
             // create rune
-            Instantiate(cardPrefab, spawnPosition.transform.position + Vector3.right * i * 40, Quaternion.identity, runeParent.transform)
-                .GetComponent<StoneCard>().Set(c, true);
+            GameObject go = Instantiate(cardPrefab, spawnPosition.transform.position + Vector3.right * i * 40, Quaternion.identity, runeParent.transform);
+            StoneCard s = go.GetComponent<StoneCard>();
+            s.Set(c, true);
+            cardsCreated.Add(s);
             // prevent runes from overlapping
             if (i > 0)
             {
@@ -41,5 +44,6 @@ public class RuneChoiceScreen : MonoBehaviour
                 i += 1;
             }
         }
+        return cardsCreated;
     }
 }
