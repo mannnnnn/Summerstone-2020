@@ -217,7 +217,6 @@ public class Chimera : MonoBehaviour
         {
             PlayerPrefs.SetString("card", card.ToSaveString());
         }
-        PlayerPrefs.SetString("dialog", chatScreen.GetComponent<DialogUI>().currentFile);
         PlayerPrefs.Save();
     }
     // load from playerprefs
@@ -264,7 +263,6 @@ public class Chimera : MonoBehaviour
             card = new Card(Card.Variant.Time, 0f);
             card.FromSaveString(PlayerPrefs.GetString("card"));
         }
-        chatScreen.GetComponent<DialogUI>().Run(PlayerPrefs.GetString("dialog"));
     }
     // check for loadability
     public bool CanLoad => PlayerPrefs.HasKey("save");
@@ -294,7 +292,6 @@ public class Chimera : MonoBehaviour
             Debug.Log($"state: {PlayerPrefs.GetString("state")}");
             Debug.Log($"faction: {PlayerPrefs.GetString("faction")}");
             Debug.Log($"card: {PlayerPrefs.GetString("card")}");
-            Debug.Log($"dialog: {PlayerPrefs.GetString("dialog")}");
         }
     }
 }
