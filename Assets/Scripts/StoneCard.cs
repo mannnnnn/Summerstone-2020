@@ -15,9 +15,20 @@ public class StoneCard : MonoBehaviour
     public GameObject tooltip;
     public GameObject button;
 
+    int gracePeriod = 0;
+    private Chimera chimera; 
     void Awake()
     {
         tooltip.SetActive(false);
+        chimera = Chimera.GetInstance();
+
+        if(chimera.currState == Chimera.MainGameState.CardPick)
+        {
+            button.SetActive(true);
+        } else
+        {
+            button.SetActive(false);
+        }
     }
 
     public void showHideTooltip()
@@ -29,6 +40,7 @@ public class StoneCard : MonoBehaviour
         else
         {
             tooltip.SetActive(true);
+            gracePeriod += 10;
             Set(card, !GetComponent<Rigidbody2D>().isKinematic);
             if (GetComponent<Rigidbody2D>().isKinematic)
             {
@@ -47,9 +59,9 @@ public class StoneCard : MonoBehaviour
 
     public void PlayCard()
     {
-        Chimera.GetInstance().card = card;
+        chimera.card = card;
         DiscardCard();
-        Chimera.GetInstance().nextGameState();
+        chimera.nextGameState();
     }
 
     public void AgeCard()
@@ -59,7 +71,7 @@ public class StoneCard : MonoBehaviour
 
     public void DiscardCard()
     {
-        Chimera.GetInstance().cards.Remove(this);
+        chimera.cards.Remove(this);
         Destroy(gameObject);
     }
 
@@ -90,5 +102,16 @@ public class StoneCard : MonoBehaviour
 
     void Update()
     {
+
+        if(gracePeriod > 0)
+        {
+            gracePeriod--;
+        }
+
+        if (Input.GetMouseButtonUp(0) && tooltip.activeSelf && gracePeriod<=0)
+        {
+            tooltip.SetActive(false);
+        }
+  
     }
 }
