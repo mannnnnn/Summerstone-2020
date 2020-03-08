@@ -242,6 +242,7 @@ GameObject:
   - component: {fileID: 3870095783592183153}
   - component: {fileID: 4577187878041639219}
   - component: {fileID: 6625920421052169670}
+  - component: {fileID: 2639012646135609254}
   m_Layer: 11
   m_Name: infotip
   m_TagString: Untagged
@@ -304,6 +305,25 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!95 &2639012646135609254
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133908441192001017}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 274ea9d430eda344da34c54874e28679, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3929706313879257938
 GameObject:
   m_ObjectHideFlags: 0
