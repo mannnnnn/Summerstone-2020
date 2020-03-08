@@ -16,6 +16,8 @@ public class DialogUI : MonoBehaviour, IDialogUI
 
     DialogSprites dialogSprites;
 
+    public string currentFile;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,7 +45,8 @@ public class DialogUI : MonoBehaviour, IDialogUI
 
     public void Run(string type, int week)
     {
-        Run($"Text/{type}/{type}{week}");
+        currentFile = $"Text/{type}/{type}{week}";
+        Run(currentFile);
     }
 
     // next button clicked
@@ -62,6 +65,7 @@ public class DialogUI : MonoBehaviour, IDialogUI
     public void Run(string s)
     {
         // load dialog and run, such as "Assets/Dialog/control_test.yaml"
+        DialogRunner.GetInstance().StopDialog();
         DialogRunner.Run(this, s);
         foreach (Transform child in chatBoxParent)
         {
