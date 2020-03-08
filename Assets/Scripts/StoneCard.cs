@@ -15,6 +15,8 @@ public class StoneCard : MonoBehaviour
     public GameObject tooltip;
     public GameObject button;
 
+    public Text chance;
+    
     int gracePeriod = 0;
     private Chimera chimera; 
     void Awake()
@@ -29,6 +31,9 @@ public class StoneCard : MonoBehaviour
         {
             button.SetActive(false);
         }
+
+        chance.text = (int)(RuneStats.GetInstance().GetRuneChance(chimera.week, card)*100)+"%";
+      
     }
 
     public void showHideTooltip()
