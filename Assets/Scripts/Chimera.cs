@@ -141,10 +141,12 @@ public class Chimera : MonoBehaviour
         {
             case MainGameState.Weekend:
                 weekImageSwapper.updateImage(false, week);
+                chatScreen.GetComponent<DialogUI>().Run("Weekend", week);
                 screen = chatScreen;
                 break;
             case MainGameState.Week:
                 weekImageSwapper.updateImage(true, week);
+                chatScreen.GetComponent<DialogUI>().Run("Week", week);
                 screen = chatScreen;
                 break;
             case MainGameState.FactionPick:

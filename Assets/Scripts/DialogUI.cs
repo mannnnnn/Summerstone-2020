@@ -21,7 +21,6 @@ public class DialogUI : MonoBehaviour, IDialogUI
     {
         dialogSprites = DialogSprites.GetInstance();
         chimera = Chimera.GetInstance();
-        Run("Text/TestForParser");
     }
 
     // Update is called once per frame
@@ -40,6 +39,11 @@ public class DialogUI : MonoBehaviour, IDialogUI
             }
         }
         nextPressed = false;
+    }
+
+    public void Run(string type, int week)
+    {
+        Run($"Text/{type}/{type}{week}");
     }
 
     // next button clicked
