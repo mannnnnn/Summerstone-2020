@@ -784,6 +784,7 @@ MonoBehaviour:
   ageLabel: {fileID: 1977786293173184596}
   tooltip: {fileID: 2133908441192001017}
   button: {fileID: 6894932309897048195}
+  chance: {fileID: 9000391237228926206}
 --- !u!50 &317240336
 Rigidbody2D:
   serializedVersion: 4
