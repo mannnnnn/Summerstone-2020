@@ -31,9 +31,6 @@ public class StoneCard : MonoBehaviour
         {
             button.SetActive(false);
         }
-
-        chance.text = (int)(RuneStats.GetInstance().GetRuneChance(chimera.week, card)*100)+"%";
-      
     }
 
     public void showHideTooltip()
@@ -44,6 +41,7 @@ public class StoneCard : MonoBehaviour
         }
         else
         {
+            chance.text = (int)(RuneStats.GetInstance().GetRuneChance(chimera.week, card) * 100) + "%";
             tooltip.SetActive(true);
             gracePeriod += 10;
             Set(card, !GetComponent<Rigidbody2D>().isKinematic);
@@ -107,7 +105,6 @@ public class StoneCard : MonoBehaviour
 
     void Update()
     {
-
         if(gracePeriod > 0)
         {
             gracePeriod--;
@@ -117,6 +114,5 @@ public class StoneCard : MonoBehaviour
         {
             tooltip.SetActive(false);
         }
-  
     }
 }
