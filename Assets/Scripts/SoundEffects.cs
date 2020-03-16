@@ -10,7 +10,7 @@ public class SoundEffects : MonoBehaviour
 
     AudioSource audioSource;
 
-    public SoundEffects GetInstance()
+    public static SoundEffects GetInstance()
     {
         return GameObject.FindGameObjectWithTag("chimera").GetComponent<SoundEffects>();
     }

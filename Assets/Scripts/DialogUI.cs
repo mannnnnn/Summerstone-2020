@@ -65,6 +65,11 @@ public class DialogUI : MonoBehaviour, IDialogUI
         // load dialog and run, such as "Assets/Dialog/control_test.yaml"
         DialogRunner.GetInstance().StopDialog();
         DialogRunner.Run(this, s);
+        Clear();
+    }
+
+    public void Clear()
+    {
         foreach (Transform child in chatBoxParent)
         {
             Destroy(child.gameObject);

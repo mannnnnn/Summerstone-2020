@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 using static DialogUtils;
 
 // dialog events are sections of code that can be
@@ -55,22 +56,54 @@ public class DialogEvents : MonoBehaviour
                 break;
             // kicks off the intro animation
             case "Week1_intro":
-
+                StartCoroutine(Week1Intro());
                 break;
             // stab sound effect and red flash
             case "Week1_stab":
-
+                StartCoroutine(Week1Stab());
                 break;
         }
     }
 
     IEnumerator Week1Intro()
     {
+        Chimera chimera = Chimera.GetInstance();
+        Overlay overlay = chimera.overlay.GetComponent<Overlay>();
+        DialogUI dialog = chimera.chatScreen.GetComponent<DialogUI>();
+        Animator cam = Camera.main.GetComponent<Animator>();
+        SoundEffects sfx = SoundEffects.GetInstance();
+        // hide dialogue screen
+        dialog.SetVisible(false);
+        overlay.Set(Color.clear, 0f);
+        // camera walking and attack animation
+        cam.SetTrigger("CameraAttack");
+        sfx.PlaySound("intro");
+        yield return new WaitForSeconds(3.5f);
+        yield return overlay.Set(Color.black, 0.5f);
+        yield return new WaitForSeconds(1f);
+        dialog.SetVisible(true);
+        overlay.Set(Color.clear, 2f);
+        yield return new WaitForSeconds(0.5f);
+        dialog.Next();
         yield break;
     }
 
     IEnumerator Week1Stab()
     {
+        Chimera chimera = Chimera.GetInstance();
+        Overlay overlay = chimera.overlay.GetComponent<Overlay>();
+        SoundEffects sfx = SoundEffects.GetInstance();
+        DialogUI dialog = chimera.chatScreen.GetComponent<DialogUI>();
+        sfx.PlaySound("stab");
+        yield return new WaitForSeconds(0.1f);
+        yield return overlay.Set(Color.red, 0.05f);
+        yield return new WaitForSeconds(0.5f);
+        yield return overlay.Set(Color.black, 1f);
+        dialog.Clear();
+        yield return new WaitForSeconds(1f);
+        overlay.Set(Color.clear, 2f);
+        yield return new WaitForSeconds(0.5f);
+        dialog.Next();
         yield break;
     }
 }
