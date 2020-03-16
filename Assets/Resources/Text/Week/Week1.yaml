@@ -1,3 +1,47 @@
+# white screen
+# fade to camera walking
+# footsteps: https://freesound.org/people/revolt2563/sounds/352870/
+# flash black
+# fighting noises: https://freesound.org/people/damnsatinist/sounds/493916/
+# https://freesound.org/people/Hybrid_V/sounds/319590/
+# https://freesound.org/people/Adam_N/sounds/330268/
+# https://freesound.org/people/original_sound/sounds/376818/
+# fade in from black
+- event:
+    id: Week1_intro
+
+- R: Such barbaric practices, stealing away travellers in the middle of night...
+- H: Is that not what your children do, Rubus?
+- H: You seem to only feign distaste when I suggest the course of action.
+- R: I'm just saying I didn't want to be involved in this, that's all.
+- H: And yet you show up on my doorstep with your pack asking for this exact miracle.
+- H: If the forest is to survive, then sacrifices must be made.
+- R: And that sacrifice has to be an innocent bystander lost in the woods?
+- H: Are you volunteering for the position?
+- R: ...
+- H: I thought not.
+- H: Now, pay tribute to the spirit of the Summerstone, before we set it free.
+- R: And thank it for what, killing our land?
+- R: Driving out the families that once called this place home?
+- H: Thank it for its many, many years of service to this forest.
+- H: And bid it a swift journey onwards.
+- R: Hmph.
+- R: Thank you, O Summerstone.
+- H: Under your direction, we have seen this forest thrive and wither through many a-year.
+- H: But the time has come to change hands. Summerstone, we bid you farewell.
+- R: And good riddance.
+- H: Now... bring the human forward.
+- R: This is barbaric.
+- R: At least let me take off the bag before you-
+
+# stab: https://freesound.org/people/Rock%20Savage/sounds/81042/
+# red flash to black
+# fade in from black
+# clear dialogue
+- event:
+    id: Week1_stab
+
+- H: It is done. The traveler has become one with the Summerstone. It can hear us now.
 - R: I have my doubts about talking to a rock.
 - H: The Summerstone is a powerful device, Rubus.
 - H: Do you even understand where you stand?
@@ -21,5 +65,5 @@
 - H: It is unwise to make requests from the spirit at this time. They know best.
 - H: Allow the spirit to work its course in due time.
 - R: That's what we did the last time, and that's how people got killed.
-- R: A spirit tied to a rock knows nothing of mortal struggles.
+- R: A spirit tied to a rock knows nothing of mortal struggles if we just let it 'work its course'.
 - R: Listen to me, O Summerstone. We need help.

@@ -53,23 +53,24 @@ public class DialogEvents : MonoBehaviour
                     Debug.Log(args["value"]);
                 }
                 break;
+            // kicks off the intro animation
+            case "Week1_intro":
+
+                break;
+            // stab sound effect and red flash
+            case "Week1_stab":
+
+                break;
         }
     }
 
-    // used for test_menu
-    void TestDialogMenuChoiceA()
+    IEnumerator Week1Intro()
     {
-        Debug.Log("Choice A was clicked!");
-        flags["test_menu_choice_A"] = true;
+        yield break;
     }
-    void TestDialogMenuChoiceB()
+
+    IEnumerator Week1Stab()
     {
-        Debug.Log("Choice B was clicked!");
-        flags["test_menu_choice_B"] = true;
-    }
-    void TestDialogMenuChoiceC()
-    {
-        Debug.Log("Choice C was clicked!");
-        flags["test_menu_choice_C"] = true;
+        yield break;
     }
 }

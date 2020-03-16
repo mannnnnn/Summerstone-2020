@@ -29,6 +29,7 @@ public class Chimera : MonoBehaviour
     public GameObject resultsScreen;
     public GameObject cardChooserScreen;
     public GameObject mastermindScreen;
+    public GameObject overlay;
     public Animator MainCameraAnimator;
 
     public Material[] skyboxes = new Material[4];

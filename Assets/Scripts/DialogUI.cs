@@ -30,15 +30,13 @@ public class DialogUI : MonoBehaviour, IDialogUI
     {
         if (nextPressed)
         {
-            if (textScroll == null)
+            if (textScroll != null)
             {
-                DialogRunner.RequestAdvance();
+                StopCoroutine(textScroll);
+                textScroll = null;
+                chatbox.SetText(text);
             }
-            else
-            {
-                // finish scrolling
-                scrollTimer += 9001f;
-            }
+            DialogRunner.RequestAdvance();
         }
         nextPressed = false;
     }
@@ -73,12 +71,29 @@ public class DialogUI : MonoBehaviour, IDialogUI
         }
     }
 
+    public void SetVisible(bool visible)
+    {
+        foreach (Transform child in transform)
+        {
+            // ignore stick overlay
+            if (child.gameObject.name == "StickOverlay")
+            {
+                continue;
+            }
+            child.gameObject.SetActive(visible);
+        }
+    }
+
     // creates a new dialog box and scrolls up
+    float scrollTimer = 0;
+    ChatRow chatbox;
+    string text;
     public void DisplayText(string name, string text)
     {
         // create new chat box
+        this.text = text;
         GameObject go = Instantiate(chatBoxPrefab, chatBoxParent);
-        ChatRow chatbox = go.GetComponent<ChatRow>();
+        chatbox = go.GetComponent<ChatRow>();
         chatbox.Set(name, text, dialogSprites.GetByName(name));
         // stop old text scroll animation if it is still running
         if (textScroll != null)
@@ -87,11 +102,10 @@ public class DialogUI : MonoBehaviour, IDialogUI
             textScroll = null;
         }
         // use speed as Mathf.Infinity to turn off scrolling
-        textScroll = StartCoroutine(ScrollText(chatbox, text, 75f));
+        textScroll = StartCoroutine(ScrollText(text, 75f));
     }
     // speed is in characters/second
-    float scrollTimer = 0;
-    IEnumerator ScrollText(ChatRow chatbox, string text, float speed)
+    IEnumerator ScrollText(string text, float speed)
     {
         scrollTimer = Time.deltaTime;
         int len = 0;
