@@ -94,6 +94,7 @@ public class DialogEvents : MonoBehaviour
         Overlay overlay = chimera.overlay.GetComponent<Overlay>();
         SoundEffects sfx = SoundEffects.GetInstance();
         DialogUI dialog = chimera.chatScreen.GetComponent<DialogUI>();
+        dialog.SetNextable(false);
         sfx.PlaySound("stab");
         yield return new WaitForSeconds(0.1f);
         yield return overlay.Set(Color.red, 0.05f);
@@ -103,6 +104,7 @@ public class DialogEvents : MonoBehaviour
         yield return new WaitForSeconds(1f);
         overlay.Set(Color.clear, 2f);
         yield return new WaitForSeconds(0.5f);
+        dialog.SetNextable(true);
         dialog.Next();
         yield break;
     }

@@ -49,8 +49,13 @@ public class DialogUI : MonoBehaviour, IDialogUI
 
     // next button clicked
     bool nextPressed = false;
+    bool nextEnabled = true;
     public void Next()
     {
+        if (!nextEnabled)
+        {
+            return;
+        }
         nextPressed = true;
         // if we forgot to start dialog, allow user to advance
         // actually, this should probably throw an error but...
@@ -58,6 +63,10 @@ public class DialogUI : MonoBehaviour, IDialogUI
         {
             chimera.nextGameState();
         }
+    }
+    public void SetNextable(bool enabled)
+    {
+        nextEnabled = enabled;
     }
 
     public void Run(string s)
