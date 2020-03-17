@@ -26,6 +26,10 @@ public class Overlay : MonoBehaviour
         {
             StopCoroutine(current);
         }
+        if (image.color.a == 0f)
+        {
+            image.color = new Color(c.r, c.g, c.b, 0f);
+        }
         current = StartCoroutine(TransitionToColor(image.color, c, time));
         return current;
     }

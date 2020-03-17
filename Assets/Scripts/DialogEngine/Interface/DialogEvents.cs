@@ -18,6 +18,20 @@ public class DialogEvents : MonoBehaviour
         return GameObject.FindGameObjectWithTag("chimera")?.GetComponent<DialogEvents>();
     }
 
+    Chimera chimera;
+    Overlay overlay;
+    SoundEffects sfx;
+    DialogUI dialog;
+    Animator cam;
+    void Awake()
+    {
+        chimera = Chimera.GetInstance();
+        overlay = chimera.overlay.GetComponent<Overlay>();
+        sfx = SoundEffects.GetInstance();
+        dialog = chimera.chatScreen.GetComponent<DialogUI>();
+        cam = Camera.main.GetComponent<Animator>();
+    }
+
     Dictionary<string, bool> flags;
     // Start is called before the first frame update
     void Start()
@@ -62,16 +76,18 @@ public class DialogEvents : MonoBehaviour
             case "Week1_stab":
                 StartCoroutine(Week1Stab());
                 break;
+            // stab sound effect and red flash
+            case "Week4_scratch":
+                StartCoroutine(Week4Scratch());
+                break;
+            case "Weekend4_mousedeath":
+                StartCoroutine(Weekend4MouseDeath());
+                break;
         }
     }
 
     IEnumerator Week1Intro()
     {
-        Chimera chimera = Chimera.GetInstance();
-        Overlay overlay = chimera.overlay.GetComponent<Overlay>();
-        DialogUI dialog = chimera.chatScreen.GetComponent<DialogUI>();
-        Animator cam = Camera.main.GetComponent<Animator>();
-        SoundEffects sfx = SoundEffects.GetInstance();
         // hide dialogue screen
         dialog.SetVisible(false);
         overlay.Set(Color.clear, 0f);
@@ -90,10 +106,6 @@ public class DialogEvents : MonoBehaviour
 
     IEnumerator Week1Stab()
     {
-        Chimera chimera = Chimera.GetInstance();
-        Overlay overlay = chimera.overlay.GetComponent<Overlay>();
-        SoundEffects sfx = SoundEffects.GetInstance();
-        DialogUI dialog = chimera.chatScreen.GetComponent<DialogUI>();
         dialog.SetNextable(false);
         sfx.PlaySound("stab");
         yield return new WaitForSeconds(0.1f);
@@ -104,6 +116,34 @@ public class DialogEvents : MonoBehaviour
         yield return new WaitForSeconds(1f);
         overlay.Set(Color.clear, 2f);
         yield return new WaitForSeconds(0.5f);
+        dialog.SetNextable(true);
+        dialog.Next();
+        yield break;
+    }
+
+    IEnumerator Week4Scratch()
+    {
+        dialog.SetVisible(false);
+        dialog.SetNextable(false);
+        yield return overlay.Set(Color.black, 1f);
+        sfx.PlaySound("scratch");
+        dialog.SetVisible(true);
+        yield return new WaitForSeconds(6f);
+        overlay.Set(Color.clear, 1f);
+        dialog.SetNextable(true);
+        dialog.Next();
+        yield break;
+    }
+
+    IEnumerator Weekend4MouseDeath()
+    {
+        dialog.SetVisible(false);
+        dialog.SetNextable(false);
+        yield return overlay.Set(Color.black, 1f);
+        sfx.PlaySound("mousedeath", 0.5f);
+        dialog.SetVisible(true);
+        yield return new WaitForSeconds(12f);
+        overlay.Set(Color.clear, 1f);
         dialog.SetNextable(true);
         dialog.Next();
         yield break;
