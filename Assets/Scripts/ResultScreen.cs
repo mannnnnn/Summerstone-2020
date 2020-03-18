@@ -21,7 +21,7 @@ public class ResultScreen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void Set(string title, string result, List<Card> earned, List<Card> spent)
