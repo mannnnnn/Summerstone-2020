@@ -12,6 +12,7 @@ public class ChoiceScript : MonoBehaviour
     void Start()
     {
       parent = transform.parent.gameObject;
+      Debug.Log("started");
     }
 
     // Update is called once per frame
@@ -19,18 +20,22 @@ public class ChoiceScript : MonoBehaviour
     {
 
     }
-    public void addIn(){
-      Debug.Log("hla");
+
+    public void colorSelect(){
+      Debug.Log("hla" + gameObject.name);
       parent.GetComponent<Mastermind>().postAttempt();
       Debug.Log("try it here ");
       Debug.Log(parent.GetComponent<Mastermind>().goal);
       redChoice = 100;
     }
-
     void OnDestroy(){
       Debug.Log("aafafafaafaf");
       Debug.Log("teaaa");
       Debug.Log(parent.name);
+    }
+
+    public void submit(){
+      //parent.GetComponent<Mastermind>().Test();
     }
 
 }

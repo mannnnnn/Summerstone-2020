@@ -15,6 +15,7 @@ public class Mastermind : MonoBehaviour
     //second attempt, creating prefabs for a row;
     public GameObject testRow;
     public int rowModifier;
+    public List<MastermindRow> mRows = new List<MastermindRow>();
 
     public int rowNumber;
     public MastermindColor[] goal = new MastermindColor[4];
@@ -51,12 +52,33 @@ public class Mastermind : MonoBehaviour
     }
 
     [Serializable]
+    public class MastermindRow
+    {
+        // Start is called before the first frame update
+        public int redChoice;
+        public int whiteChoice;
+        public List<GameObject> choices = new List<GameObject>();
+        public List<MastermindColor> testColors = new List<MastermindColor>();
+        public void Set(GameObject a){
+          choices.Add(a);
+        }
+        public void selectRed(){
+          redChoice = 1;
+        }
+        public void selectWhite(){
+          whiteChoice = 1;
+        }
+
+    }
+
+    [Serializable]
     public class FileAttempt2
     {
         // Start is called before the first frame update
         public int redChoice;
         public int whiteChoice;
         public List<GameObject> choices = new List<GameObject>();
+        public List<MastermindColor> testColors = new List<MastermindColor>();
         public void Set(GameObject a){
           choices.Add(a);
         }
@@ -91,6 +113,7 @@ public class Mastermind : MonoBehaviour
         for(int i = 0; i < 9; i++){
             var mytest = Instantiate(testRow, gameObject.transform.position, Quaternion.identity);
             mytest.transform.parent = gameObject.transform;
+            mRows[rowNumber].Set(mytest);
             rowModifier = rowModifier + 1;
         }
     }
@@ -106,6 +129,7 @@ public class Mastermind : MonoBehaviour
         for(int i = 0; i < 9; i++){
           var mytest = Instantiate(testRow, new Vector3(300 + (i * 225), 1850 - (rowModifier * 200),0), Quaternion.identity);
           mytest.transform.parent = gameObject.transform;
+          mRows[rowNumber].Set(mytest);
           rowModifier = rowModifier + 1;
         }
     }
