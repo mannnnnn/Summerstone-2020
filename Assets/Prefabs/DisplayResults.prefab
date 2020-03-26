@@ -744,10 +744,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayButtons:
-  - {fileID: 6476341181324869244, guid: 5cac0941ccc790f46be51192fd185809, type: 3}
-  - {fileID: 6476341181324869244, guid: 5cac0941ccc790f46be51192fd185809, type: 3}
-  - {fileID: 6476341181324869244, guid: 5cac0941ccc790f46be51192fd185809, type: 3}
-  - {fileID: 6476341181324869244, guid: 5cac0941ccc790f46be51192fd185809, type: 3}
+  - {fileID: 1831841473198392050}
+  - {fileID: 4181408552899298569}
+  - {fileID: 8262096586829987004}
+  - {fileID: 8524633705440842342}
 --- !u!1 &4656229177400003148
 GameObject:
   m_ObjectHideFlags: 0

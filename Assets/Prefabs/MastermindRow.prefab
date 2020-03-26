@@ -120,8 +120,7 @@ MonoBehaviour:
   - {fileID: 6921041994057448222}
   - {fileID: 8198347323496089554}
   submitButton: {fileID: 4188861112008229952}
-  displayResults: {fileID: 4285703372780062280, guid: efdc2f371e53cc54697a63eff8f4cfdd,
-    type: 3}
+  displayResults: {fileID: 4925111551104809063}
 --- !u!114 &4928399718827715796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -566,6 +565,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SubmitButton
       objectReference: {fileID: 0}
+    - target: {fileID: 8603001327192298565, guid: f596747172afc1c49a26ea5668952982,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 896607837069834241}
     - target: {fileID: 335268170523939424, guid: f596747172afc1c49a26ea5668952982,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -671,11 +675,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 8603001327192298565, guid: f596747172afc1c49a26ea5668952982,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 896607837069834241}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f596747172afc1c49a26ea5668952982, type: 3}
 --- !u!224 &5324044497999561317 stripped
@@ -1115,3 +1114,15 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 9160429799179140655}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4925111551104809063 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4285703372780062280, guid: efdc2f371e53cc54697a63eff8f4cfdd,
+    type: 3}
+  m_PrefabInstance: {fileID: 9160429799179140655}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 608f6def965dfaf419c2cc80bf6cd290, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
