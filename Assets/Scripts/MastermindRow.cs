@@ -9,6 +9,7 @@ public class MastermindRow : MonoBehaviour
 {
     public ChoiceButton[] buttons;
     public Button submitButton;
+    public Button displayButton;
 
     Mastermind mastermind;
 
@@ -21,7 +22,7 @@ public class MastermindRow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     // user submits row
@@ -33,18 +34,30 @@ public class MastermindRow : MonoBehaviour
         MastermindColor[] guess = buttons.Select(button => button.mastermindColor).ToArray();
         // submit
         MastermindResult result = mastermind.Test(guess);
+        Debug.Log("Results " + result);
         // TODO: do something at end of game
         if (mastermind.Success())
         {
+            displayButton.GetComponent<DisplayButton>().displaySuccess();
             Debug.Log("Success!");
         }
         else if (mastermind.Failure())
         {
+            displayButton.GetComponent<DisplayButton>().displayFailure();
             Debug.Log("Failure!");
         }
         // TODO: display result
         else
         {
+            if(result.red> 0){
+              displayButton.GetComponent<DisplayButton>().displayCorrectColorSpace();
+            }
+            else if (result.white > 0){
+              displayButton.GetComponent<DisplayButton>().displayCorrectColor();
+            }
+            else{
+              displayButton.GetComponent<DisplayButton>().displayIncorrect();
+            }
             Debug.Log($"Red: {result.red}, White: {result.white}");
             // create next row
             mastermind.AddRow();

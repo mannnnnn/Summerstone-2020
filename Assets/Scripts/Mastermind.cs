@@ -6,7 +6,7 @@ using UnityEngine;
 public class Mastermind : MonoBehaviour
 {
     public List<MastermindColor> colors = new List<MastermindColor>();
-
+    public List<MastermindColor> displayColors = new List<MastermindColor>();
     public List<MastermindRow> rows = new List<MastermindRow>();
 
     public MastermindColor[] goal { get; private set; }
@@ -96,8 +96,9 @@ public class Mastermind : MonoBehaviour
     public MastermindResult Test(MastermindColor[] guess)
     {
         triesRemaining--;
-        MastermindResult result = new MastermindResult() { red = 0, white = 0 };
+        MastermindResult result = new MastermindResult() { red = 0, white = 0};
         Dictionary<MastermindColor, int> nohits = new Dictionary<MastermindColor, int>();
+        Debug.Log("goals here " + goal);
         // count reds
         for (int i = 0; i < goal.Length; i++)
         {
