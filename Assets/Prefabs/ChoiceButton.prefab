@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 3859921755237229975}
   - component: {fileID: 3859921755237229968}
   - component: {fileID: 8490480203753066453}
-  - component: {fileID: 2328092351289127086}
+  - component: {fileID: 4605488840191801077}
   m_Layer: 5
   m_Name: ChoiceButton
   m_TagString: Untagged
@@ -107,7 +107,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3859921755237229970}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -118,8 +118,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 150, y: 300}
-  m_SizeDelta: {x: 137.9, y: 68.6}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3859921755237229974
 CanvasRenderer:
@@ -198,8 +198,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2328092351289127086}
-        m_MethodName: addIn
+      - m_Target: {fileID: 4605488840191801077}
+        m_MethodName: Next
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -230,7 +230,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2328092351289127086
+--- !u!114 &4605488840191801077
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -239,11 +239,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3859921755237229970}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c8f35eacc7ee724eb36a1b17d635fc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 71860e6521cdae242b77ca74111b966b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  redChoice: 0
-  whiteChoice: 0
 --- !u!1 &7196333126544196051
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,7 +277,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.000005722, y: 0.0000019073}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9171802557975441742
 CanvasRenderer:

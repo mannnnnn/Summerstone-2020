@@ -7,21 +7,15 @@ public class Mastermind : MonoBehaviour
 {
     public List<MastermindColor> colors = new List<MastermindColor>();
 
-    // stuff for the first attempt (creating prefabs with a list)
-    public GameObject testPrefab;
-    public int heightModifier;
-    public List<FileAttempt2> rows = new List<FileAttempt2>();
+    public List<MastermindRow> rows = new List<MastermindRow>();
 
-    //second attempt, creating prefabs for a row;
-    public GameObject testRow;
-    public int rowModifier;
-    public List<MastermindRow> mRows = new List<MastermindRow>();
-
-    public int rowNumber;
-    public MastermindColor[] goal = new MastermindColor[4];
+    public MastermindColor[] goal { get; private set; }
     System.Random random = new System.Random();
     int triesRemaining = 0;
     bool success;
+
+    public GameObject rowPrefab;
+    public GameObject rowBox;
 
     public class MastermindResult
     {
@@ -51,46 +45,6 @@ public class Mastermind : MonoBehaviour
         }
     }
 
-    [Serializable]
-    public class MastermindRow
-    {
-        // Start is called before the first frame update
-        public int redChoice;
-        public int whiteChoice;
-        public List<GameObject> choices = new List<GameObject>();
-        public List<MastermindColor> testColors = new List<MastermindColor>();
-        public void Set(GameObject a){
-          choices.Add(a);
-        }
-        public void selectRed(){
-          redChoice = 1;
-        }
-        public void selectWhite(){
-          whiteChoice = 1;
-        }
-
-    }
-
-    [Serializable]
-    public class FileAttempt2
-    {
-        // Start is called before the first frame update
-        public int redChoice;
-        public int whiteChoice;
-        public List<GameObject> choices = new List<GameObject>();
-        public List<MastermindColor> testColors = new List<MastermindColor>();
-        public void Set(GameObject a){
-          choices.Add(a);
-        }
-        public void selectRed(){
-          redChoice = 1;
-        }
-        public void selectWhite(){
-          whiteChoice = 1;
-        }
-
-    }
-
     void Awake()
     {
         for (int i = 0; i < colors.Count; i++)
@@ -102,20 +56,8 @@ public class Mastermind : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        heightModifier = 1;
-        rowModifier = 1;
-        for (int i = 0; i<9; i++){
-          FileAttempt2 first = new FileAttempt2();
-          rows.Add(first);
-        }
-        rowNumber = 0;
-
-        for(int i = 0; i < 9; i++){
-            var mytest = Instantiate(testRow, gameObject.transform.position, Quaternion.identity);
-            mytest.transform.parent = gameObject.transform;
-            mRows[rowNumber].Set(mytest);
-            rowModifier = rowModifier + 1;
-        }
+        StartGame();
+        AddRow();
     }
 
     // Update is called once per frame
@@ -123,46 +65,17 @@ public class Mastermind : MonoBehaviour
     {
 
     }
-    //This is creating a list of prefab rows, with set buttons.
 
-    public void rowStart(){
-        for(int i = 0; i < 9; i++){
-          var mytest = Instantiate(testRow, new Vector3(300 + (i * 225), 1850 - (rowModifier * 200),0), Quaternion.identity);
-          mytest.transform.parent = gameObject.transform;
-          mRows[rowNumber].Set(mytest);
-          rowModifier = rowModifier + 1;
-        }
+    public void AddRow()
+    {
+        GameObject row = Instantiate(rowPrefab, rowBox.transform);
+        rows.Add(row.GetComponent<MastermindRow>());
     }
-
-
-    // This is creating a list, and setting created prefab buttons to them style
-    public void initialStart(){
-        for(int i = 0; i < 4; i++){
-          var mytest = Instantiate(testPrefab, new Vector3(300 + (i * 225), 1850,0), Quaternion.identity);
-          mytest.transform.parent = gameObject.transform;
-          //adding to the rows knowledge of prefabs (?)
-          rows[rowNumber].Set(mytest);
-        }
-        // Moving to next list (total rows is 10);
-        rowNumber = rowNumber + 1;
-    }
-
-    //Temporarily generated per click on the start button on top
-    public void postAttempt(){
-      for(int i = 0; i < 4; i++){
-        var mytest = Instantiate(testPrefab, new Vector3(300 + (i * 225), 1850 - (heightModifier * 200),0), Quaternion.identity);
-        mytest.transform.parent = gameObject.transform;
-        rows[rowNumber].Set(mytest);
-      }
-      rowNumber = rowNumber + 1;
-      heightModifier += 1;
-    }
-
-
 
     //Original Code
     public void StartGame()
     {
+        goal = new MastermindColor[4];
         for (int i = 0; i < goal.Length; i++)
         {
             goal[i] = colors[random.Next(colors.Count)];
