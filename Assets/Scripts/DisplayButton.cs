@@ -30,6 +30,20 @@ public class DisplayButton : MonoBehaviour
         image.sprite = c.image;
     }
 
+    public void displayRed(){
+      MastermindColor c = mastermind.displayColors[0];
+      SetResultColor(c);
+    }
+    public void displayWhite(){
+      MastermindColor c = mastermind.displayColors[0];
+      SetResultColor(c);
+    }
+    public void displayNull(){
+      MastermindColor c = mastermind.displayColors[0];
+      SetResultColor(c);
+    }
+
+
     public void displaySuccess(){
       MastermindColor c = mastermind.displayColors[0];
       SetResultColor(c);

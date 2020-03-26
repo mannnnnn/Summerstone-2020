@@ -52,7 +52,9 @@ public class Mastermind : MonoBehaviour
             colors[i].index = i;
         }
     }
-
+    public void tests(){
+      Debug.Log("hello!");
+    }
     // Start is called before the first frame update
     void Start()
     {
