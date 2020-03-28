@@ -57,6 +57,7 @@ public class Chimera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currState = MainGameState.Mastermind;
         showGameStateScreenUI(currState);
         updateSkybox();
     }
@@ -136,6 +137,7 @@ public class Chimera : MonoBehaviour
         cardChooserScreen.SetActive(false);
         mastermindScreen.SetActive(false);
         resultsScreen.SetActive(false);
+        Debug.Log("ast" + current);
         // enable active one
         GameObject screen = null;
         switch (current)
@@ -176,7 +178,7 @@ public class Chimera : MonoBehaviour
     private bool shouldMoveCamera()
     {
         if (currState == MainGameState.Week) return true;
-        
+
         if (currState == MainGameState.WeekResult) return true;
 
         if (currState == MainGameState.Weekend) return true;
@@ -194,7 +196,7 @@ public class Chimera : MonoBehaviour
             case MainGameState.Week: nextSkybox = 0; break;
             case MainGameState.WeekResult: nextSkybox = 1; break;
             case MainGameState.Weekend: nextSkybox = 2; break;
-            case MainGameState.WeekendResult: 
+            case MainGameState.WeekendResult:
             default: nextSkybox = 3; break;
         }
         RenderSettings.skybox = skyboxes[nextSkybox];
@@ -296,6 +298,3 @@ public class Chimera : MonoBehaviour
         }
     }
 }
-
-
-

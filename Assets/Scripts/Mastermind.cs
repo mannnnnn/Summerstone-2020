@@ -6,10 +6,16 @@ using UnityEngine;
 public class Mastermind : MonoBehaviour
 {
     public List<MastermindColor> colors = new List<MastermindColor>();
-    public MastermindColor[] goal = new MastermindColor[4];
+    public List<MastermindColor> displayColors = new List<MastermindColor>();
+    public List<MastermindRow> rows = new List<MastermindRow>();
+
+    public MastermindColor[] goal { get; private set; }
     System.Random random = new System.Random();
     int triesRemaining = 0;
     bool success;
+
+    public GameObject rowPrefab;
+    public GameObject rowBox;
 
     public class MastermindResult
     {
@@ -46,21 +52,32 @@ public class Mastermind : MonoBehaviour
             colors[i].index = i;
         }
     }
-
+    public void tests(){
+      Debug.Log("hello!");
+    }
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartGame();
+        AddRow();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
+    public void AddRow()
+    {
+        GameObject row = Instantiate(rowPrefab, rowBox.transform);
+        rows.Add(row.GetComponent<MastermindRow>());
+    }
+
+    //Original Code
     public void StartGame()
     {
+        goal = new MastermindColor[4];
         for (int i = 0; i < goal.Length; i++)
         {
             goal[i] = colors[random.Next(colors.Count)];
@@ -81,8 +98,9 @@ public class Mastermind : MonoBehaviour
     public MastermindResult Test(MastermindColor[] guess)
     {
         triesRemaining--;
-        MastermindResult result = new MastermindResult() { red = 0, white = 0 };
+        MastermindResult result = new MastermindResult() { red = 0, white = 0};
         Dictionary<MastermindColor, int> nohits = new Dictionary<MastermindColor, int>();
+        Debug.Log("goals here " + goal);
         // count reds
         for (int i = 0; i < goal.Length; i++)
         {
