@@ -53,7 +53,6 @@ public class Mastermind : MonoBehaviour
         }
     }
     public void tests(){
-      Debug.Log("hello!");
     }
     // Start is called before the first frame update
     void Start()
@@ -100,7 +99,6 @@ public class Mastermind : MonoBehaviour
         triesRemaining--;
         MastermindResult result = new MastermindResult() { red = 0, white = 0};
         Dictionary<MastermindColor, int> nohits = new Dictionary<MastermindColor, int>();
-        Debug.Log("goals here " + goal);
         // count reds
         for (int i = 0; i < goal.Length; i++)
         {

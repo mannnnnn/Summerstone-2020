@@ -25,21 +25,24 @@ public class DisplayButton : MonoBehaviour
 
     public void SetResultColor(MastermindColor c)
     {
+        image.GetComponent<Animator>().SetTrigger("reveal");
         mastermindColor = c;
-        Debug.Log("upt to here " );
         image.sprite = c.image;
     }
 
     public void displayRed(){
-      MastermindColor c = mastermind.displayColors[0];
+        image.GetComponent<Animator>().SetTrigger("reveal");
+        MastermindColor c = mastermind.displayColors[0];
       SetResultColor(c);
     }
     public void displayWhite(){
-      MastermindColor c = mastermind.displayColors[1];
+        image.GetComponent<Animator>().SetTrigger("reveal");
+        MastermindColor c = mastermind.displayColors[1];
       SetResultColor(c);
     }
     public void displayNull(){
-      MastermindColor c = mastermind.displayColors[2];
+        image.GetComponent<Animator>().SetTrigger("reveal");
+        MastermindColor c = mastermind.displayColors[2];
       SetResultColor(c);
     }
 }
