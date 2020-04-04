@@ -30,6 +30,8 @@ public class MastermindRow : MonoBehaviour
     {
         // lock buttons
         Lock();
+
+        submitButton.gameObject.SetActive(false);
         // get row colors
         MastermindColor[] guess = buttons.Select(button => button.mastermindColor).ToArray();
         // submit
