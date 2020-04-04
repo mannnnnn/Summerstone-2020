@@ -13,6 +13,8 @@ public class Mastermind : MonoBehaviour
     public GameObject winRune;
     public GameObject failRune;
 
+    public GameObject helpPanel;
+
     public MastermindColor[] goal { get; private set; }
     System.Random random = new System.Random();
     int triesRemaining = 0;
@@ -21,11 +23,33 @@ public class Mastermind : MonoBehaviour
     public GameObject rowPrefab;
     public GameObject rowBox;
 
+    Boolean helpShowing = false;
+
     public class MastermindResult
     {
         public int red;
         public int white;
     }
+
+    public void toggleHelp()
+    {
+       
+        if (helpShowing)
+        {
+            helpPanel.GetComponent<Animator>().SetTrigger("Out");
+        } else if (helpPanel.active)
+        {
+            helpPanel.GetComponent<Animator>().SetTrigger("In");
+        }
+
+        if (!helpPanel.active)
+        {
+            helpPanel.SetActive(true);
+        }
+
+        helpShowing = !helpShowing;
+    }
+
 
     [Serializable]
     public class MastermindColor
@@ -55,15 +79,13 @@ public class Mastermind : MonoBehaviour
         {
             colors[i].index = i;
         }
-    }
-    public void tests(){
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
+
         nextBtn.SetActive(false);
         StartGame();
         AddRow();
+
+    }
+    public void tests(){
     }
 
     // Update is called once per frame
@@ -81,7 +103,17 @@ public class Mastermind : MonoBehaviour
     //Original Code
     public void StartGame()
     {
-        goal = new MastermindColor[4];
+        nextBtn.SetActive(false);
+        winRune.SetActive(false);
+        failRune.SetActive(false);
+        foreach (Transform child in rowBox.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+        rows = new List<MastermindRow>();
+
+
+    goal = new MastermindColor[4];
         for (int i = 0; i < goal.Length; i++)
         {
             goal[i] = colors[random.Next(colors.Count)];
@@ -105,12 +137,11 @@ public class Mastermind : MonoBehaviour
         {
             List<Card> wonCard = new List<Card>();
             wonCard.Add(Spellbook.RandomCard());
-
-            Debug.Log("You won a " + wonCard[0]);
-
             Chimera.GetInstance().cards.AddRange(Chimera.GetInstance().cardChooserScreen.GetComponent<RuneChoiceScreen>().AddRunes(wonCard));
             nextBtn.SetActive(true);
             winRune.SetActive(true);
+            winRune.GetComponent<StoneCard>().Set(wonCard[0], false);
+
         }
        
         return success;
