@@ -199,6 +199,14 @@ public class Spellbook : MonoBehaviour
         return new Card(pools[f][random.Next(pools[f].Count)]);
     }
 
+
+    public static Card RandomCard()
+    {
+
+        Card.Variant[] enums = (Card.Variant[])Enum.GetValues(typeof(Card.Variant));
+        return new Card(enums[random.Next(enums.Length-1)]);
+    }
+
     public static Card.Type getCardType(Card.SubType type)
     {
         switch (type)

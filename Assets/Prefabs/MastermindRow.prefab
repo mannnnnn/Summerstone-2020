@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 627698090016234304}
   - component: {fileID: 7784617263546537089}
-  - component: {fileID: 3089144359855081389}
   - component: {fileID: 896607837069834241}
+  - component: {fileID: 4781182776885392550}
   m_Layer: 5
   m_Name: MastermindRow
   m_TagString: Untagged
@@ -47,33 +47,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 502005261808497603}
   m_CullTransparentMesh: 0
---- !u!114 &3089144359855081389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 502005261808497603}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.14509805}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
 --- !u!114 &896607837069834241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,6 +66,25 @@ MonoBehaviour:
   - {fileID: 8198347323496089554}
   submitButton: {fileID: 4188861112008229952}
   displayResults: {fileID: 4925111551104809063}
+--- !u!95 &4781182776885392550
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502005261808497603}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fb9ca201e6052af48b1b6f6b352ef6fd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &4928399718827715796
 MonoBehaviour:
   m_ObjectHideFlags: 0

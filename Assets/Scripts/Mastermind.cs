@@ -9,6 +9,10 @@ public class Mastermind : MonoBehaviour
     public List<MastermindColor> displayColors = new List<MastermindColor>();
     public List<MastermindRow> rows = new List<MastermindRow>();
 
+    public GameObject nextBtn;
+    public GameObject winRune;
+    public GameObject failRune;
+
     public MastermindColor[] goal { get; private set; }
     System.Random random = new System.Random();
     int triesRemaining = 0;
@@ -57,6 +61,7 @@ public class Mastermind : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        nextBtn.SetActive(false);
         StartGame();
         AddRow();
     }
@@ -86,14 +91,31 @@ public class Mastermind : MonoBehaviour
 
     public bool Failure()
     {
+        if (triesRemaining <= 0)
+        {
+            failRune.SetActive(true);
+            nextBtn.SetActive(true);
+        }
         return triesRemaining <= 0 && !Success();
     }
 
     public bool Success()
     {
+        if (success)
+        {
+            List<Card> wonCard = new List<Card>();
+            wonCard.Add(Spellbook.RandomCard());
+
+            Debug.Log("You won a " + wonCard[0]);
+
+            Chimera.GetInstance().cards.AddRange(Chimera.GetInstance().cardChooserScreen.GetComponent<RuneChoiceScreen>().AddRunes(wonCard));
+            nextBtn.SetActive(true);
+            winRune.SetActive(true);
+        }
+       
         return success;
     }
-
+    
     public MastermindResult Test(MastermindColor[] guess)
     {
         triesRemaining--;
