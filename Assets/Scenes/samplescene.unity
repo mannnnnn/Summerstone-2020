@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.41226333, g: 0.4892343, b: 0.6032816, a: 1}
+  m_IndirectSpecularColor: {r: 0.4122631, g: 0.48923588, b: 0.60327953, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7181,8 +7181,8 @@ GameObject:
   - component: {fileID: 1342540824}
   - component: {fileID: 1342540823}
   - component: {fileID: 1342540822}
-  - component: {fileID: 1342540826}
   - component: {fileID: 1342540827}
+  - component: {fileID: 1342540826}
   m_Layer: 0
   m_Name: ChimeraController
   m_TagString: chimera
@@ -7395,39 +7395,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1342540814}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: bfe844b5ee004ec48a2e0a21a7b93bbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
+  soundEffects:
+  - {fileID: 8300000, guid: d5d93a01ebcd5f64aa06fb43ef1a04c9, type: 3}
+  - {fileID: 8300000, guid: 532c03d3917cf7e408f1dbafbad969cd, type: 3}
+  - {fileID: 8300000, guid: b524d0e1a18dd08418cefe624565769f, type: 3}
+  - {fileID: 8300000, guid: d00950a023384534bbb9b77a6a159c7d, type: 3}
 --- !u!82 &1342540827
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7439,7 +7414,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
