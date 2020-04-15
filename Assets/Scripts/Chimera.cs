@@ -57,7 +57,13 @@ public class Chimera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currState = MainGameState.Mastermind;
+        if (CanLoad)
+        {
+            Load();
+        } else
+        {
+            currState = MainGameState.Week;
+        }
         showGameStateScreenUI(currState);
         updateSkybox();
     }
@@ -137,7 +143,6 @@ public class Chimera : MonoBehaviour
         cardChooserScreen.SetActive(false);
         mastermindScreen.SetActive(false);
         resultsScreen.SetActive(false);
-        Debug.Log("ast" + current);
         // enable active one
         GameObject screen = null;
         switch (current)
@@ -193,8 +198,12 @@ public class Chimera : MonoBehaviour
         int nextSkybox = 0;
         switch (currState)
         {
-            case MainGameState.Week: nextSkybox = 0; break;
-            case MainGameState.WeekResult: nextSkybox = 1; break;
+            case MainGameState.Week:
+            case MainGameState.FactionPick:
+                nextSkybox = 0; break;
+            case MainGameState.WeekResult:
+            case MainGameState.Mastermind:
+                nextSkybox = 1; break;
             case MainGameState.Weekend: nextSkybox = 2; break;
             case MainGameState.WeekendResult:
             default: nextSkybox = 3; break;
@@ -270,9 +279,17 @@ public class Chimera : MonoBehaviour
     // check for loadability
     public bool CanLoad => PlayerPrefs.HasKey("save");
 
+
+    public void ClearSaves()
+    {
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
+    }
+
     // Update is called once per frame
     void Update()
     {
+        /* Debug key commands? In My Chimera?s
         // attempt load
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.O))
         {
@@ -296,5 +313,6 @@ public class Chimera : MonoBehaviour
             Debug.Log($"faction: {PlayerPrefs.GetString("faction")}");
             Debug.Log($"card: {PlayerPrefs.GetString("card")}");
         }
+        */
     }
 }
