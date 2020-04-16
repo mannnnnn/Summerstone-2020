@@ -25,7 +25,7 @@ public class RuneChoiceScreen : MonoBehaviour
     {
         List<StoneCard> cardsCreated = new List<StoneCard>();
         // create new runes
-        int i = 0;
+        int i = 10;
         foreach (Card c in addedRunes)
         {
             // create rune

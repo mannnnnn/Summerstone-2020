@@ -32,6 +32,9 @@ public class Chimera : MonoBehaviour
     public GameObject overlay;
     public Animator MainCameraAnimator;
 
+    private string forcedResult = "";
+    private float forcedNum = 0;
+
     public Material[] skyboxes = new Material[4];
 
     public WeekImageSwapper weekImageSwapper;
@@ -95,7 +98,7 @@ public class Chimera : MonoBehaviour
                     Spellbook.RandomFromPool(faction),
                 };
                 resultsScreen.GetComponent<ResultScreen>().Set($"Week {week}", WeekResults.GetInstance().GetWeekResult(week, faction),
-                    newRunes, new List<Card>() { });
+                    newRunes, new List<Card>() { }, false, 0);
                 cards.AddRange(cardChooserScreen.GetComponent<RuneChoiceScreen>().AddRunes(newRunes));
                 break;
             case MainGameState.WeekResult:
@@ -106,6 +109,13 @@ public class Chimera : MonoBehaviour
                 break;
             case MainGameState.CardPick:
                 string result = "Fail";
+
+                if (forcedResult != "")
+                {
+                    card = Spellbook.RandomCard();
+                }
+                
+
                 float chance = RuneStats.GetInstance().GetRuneChance(week, card);
                 if (chance == Mathf.Infinity)
                 {
@@ -116,9 +126,11 @@ public class Chimera : MonoBehaviour
                     result = "Win";
                 }
                 // spend runes
+
                 resultsScreen.GetComponent<ResultScreen>().Set($"Weekend {week}", WeekendResults.GetInstance().GetWeekendResult(week, result),
                 new List<Card>() { },
-                new List<Card>() { card });
+                new List<Card>() { card },
+                result != "Fail", chance);
                 // TODO: process result
                 break;
             case MainGameState.WeekendResult:
@@ -315,4 +327,36 @@ public class Chimera : MonoBehaviour
         }
         */
     }
+
+    public void backOneStage()
+    {
+        currState = currState - 1;
+        showGameStateScreenUI(currState);
+        updateSkybox();
+    }
+
+    public void force75Win()
+    {
+        forcedResult = "Pass";
+        forcedNum = 0.75f;
+        currState = MainGameState.CardPick;
+        nextGameState();
+    }
+
+    public void force10Fail()
+    {
+        forcedResult = "Fail";
+        forcedNum = 0.15f;
+        currState = MainGameState.CardPick;
+        nextGameState();
+    }
+
+    public void forcePerfect()
+    {
+        forcedResult = "Perfect";
+        forcedNum = 2f;
+        currState = MainGameState.CardPick;
+        nextGameState();
+    }
+
 }
