@@ -336,6 +336,56 @@ public class Spellbook : MonoBehaviour
         return typeList;
     }
 
+    public String getFancyCardName(Card.Variant type)
+    {
+        switch (type)
+        {
+            case Card.Variant.Build: return "Build";
+            case Card.Variant.Delegate: return "Delegate";
+            case Card.Variant.Assist: return "Assist";
+            case Card.Variant.Fight: return "Fight";
+
+            case Card.Variant.Legion: return "Form Legion";
+            case Card.Variant.Workforce: return "Form Workforce";
+            case Card.Variant.SearchParty: return "Form Search Party";
+            case Card.Variant.Inclusion: return "Inclusion";
+
+            case Card.Variant.Reality: return "Alter Reality";
+            case Card.Variant.Time: return "Alter Time";
+            case Card.Variant.Outcomes: return "Alter Outcomes";
+            case Card.Variant.Creature: return "Alter Creature";
+
+            case Card.Variant.Sorcery: return "Superior Sorcery";
+            case Card.Variant.Leader: return "Skilled Leader";
+            case Card.Variant.AllKnowing: return "All Knowing";
+            case Card.Variant.Mystery: return "Unknown Powers";
+
+            case Card.Variant.Seek: return "Seek Out";
+            case Card.Variant.Examine: return "Examine";
+            case Card.Variant.Remember: return "Remember";
+            case Card.Variant.Observe: return "Observe";
+
+            case Card.Variant.Weaponry: return "Master of Weaponry";
+            case Card.Variant.Stealth: return "Master of Stealth";
+            case Card.Variant.Words: return "Master of Words";
+            case Card.Variant.Tricks: return "Master of Tricks";
+
+            case Card.Variant.History: return "Recall History";
+            case Card.Variant.Rumors: return "Recall Rumors";
+            case Card.Variant.Readings: return "Recall Readings";
+            case Card.Variant.Experience: return "Guess from Experience";
+
+            case Card.Variant.Canines: return "Friend of Canines";
+            case Card.Variant.Vermin: return "Friend of Vermin";
+            case Card.Variant.Commoners: return "Friend of Commoners";
+            case Card.Variant.Leaders: return "Friend of Leaders";
+
+            default:
+                return "The Best Card (because its not in game)";
+        }
+    }
+
+
     public static Card.SubType getCardSubType(Card.Variant type)
     {
         switch (type)

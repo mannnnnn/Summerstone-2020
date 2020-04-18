@@ -9,43 +9,67 @@ public class StoneCard : MonoBehaviour
 {
     public Card card;
     public GameObject typeLabel;
-    public GameObject subTypeLabel;
     public GameObject variantLabel;
-    public GameObject ageLabel;
     public GameObject tooltip;
     public GameObject button;
+    public GameObject goldenWheel;
+    public GameObject passWheel;
+    public GameObject percentPassFail;
 
-    public Text chance;
-    
+    public GameObject cardImage;
+
+    Image passWheelFill;
+
+    bool gold = false;
+    float passFill = 0;
+    long aniDelay = 1000;
+
     int gracePeriod = 0;
-    private Chimera chimera; 
+    private Chimera chimera;
     void Awake()
     {
+        gold = false;
+        aniDelay = 1000;
         tooltip.SetActive(false);
         chimera = Chimera.GetInstance();
-
-        if(chimera.currState == Chimera.MainGameState.CardPick)
+        passWheelFill = passWheel.GetComponent<Image>();
+        passWheelFill.fillAmount = 0;
+        if (chimera.currState == Chimera.MainGameState.CardPick)
         {
             button.SetActive(true);
-        } else
+            float chance = RuneStats.GetInstance().GetRuneChance(Chimera.GetInstance().week, card);
+            percentPassFail.SetActive(true);
+            percentPassFail.GetComponent<Text>().text = "0%";
+            if (chance > 1)
+            {
+                goldenWheel.SetActive(true);
+                gold = true;
+                percentPassFail.GetComponent<Text>().text = "100%";
+            } else
+            {
+                goldenWheel.SetActive(false);
+            }
+            passFill = chance;
+        }
+        else
         {
             button.SetActive(false);
+            gold = false;
         }
     }
 
     public void showHideTooltip()
     {
-        if(tooltip.activeSelf)
+        if (tooltip.activeSelf)
         {
             tooltip.SetActive(false);
         }
         else
         {
-            chance.text = (int)(RuneStats.GetInstance().GetRuneChance(chimera.week, card) * 100) + "%";
             tooltip.SetActive(true);
             gracePeriod += 10;
-            Set(card, !GetComponent<Rigidbody2D>().isKinematic);
-            if (GetComponent<Rigidbody2D>().isKinematic)
+            Set(card, !cardImage.GetComponent<Rigidbody2D>().isKinematic);
+            if (cardImage.GetComponent<Rigidbody2D>().isKinematic)
             {
                 button.SetActive(false);
             }
@@ -82,12 +106,10 @@ public class StoneCard : MonoBehaviour
     public void Set(Card c, bool physics = true)
     {
         card = c;
+        variantLabel.GetComponent<Text>().text = Spellbook.GetInstance().getFancyCardName(card.variant);
         typeLabel.GetComponent<Text>().text = card.type.ToString();
-        subTypeLabel.GetComponent<Text>().text = card.subType.ToString();
-        variantLabel.GetComponent<Text>().text = card.variant.ToString();
-        ageLabel.GetComponent<Text>().text = card.age.ToString();
-        GetComponent<Image>().sprite = Spellbook.GetInstance().getCardArt(card.variant);
-        GetComponent<Rigidbody2D>().isKinematic = !physics;
+        cardImage.GetComponent<Image>().sprite = Spellbook.GetInstance().getCardArt(card.variant);
+        cardImage.GetComponent<Rigidbody2D>().isKinematic = !physics;
     }
 
     public string ToSaveString()
@@ -105,14 +127,32 @@ public class StoneCard : MonoBehaviour
 
     void Update()
     {
-        if(gracePeriod > 0)
+        if (gracePeriod > 0)
         {
             gracePeriod--;
         }
 
-        if (Input.GetMouseButtonUp(0) && tooltip.activeSelf && gracePeriod<=0)
+        if (Input.GetMouseButtonUp(0) && tooltip.activeSelf && gracePeriod <= 0)
         {
             tooltip.SetActive(false);
+        }
+    }
+
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        if (aniDelay > 0)
+        {
+            aniDelay--;
+        }
+        else
+        {
+            if (button.activeSelf && passWheelFill.fillAmount < passFill && !gold)
+            {
+                passWheelFill.fillAmount += 0.01f;
+                percentPassFail.GetComponent<Text>().text = (int)(passWheelFill.fillAmount * 100) + "%";
+            }
         }
     }
 }
