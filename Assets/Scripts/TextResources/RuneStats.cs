@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 
 public class RuneStats : MonoBehaviour
@@ -64,7 +62,7 @@ public class RuneStats : MonoBehaviour
         }
         if (stats.chance.ContainsKey(card.variant))
         {
-            Mathf.Max(chance, stats.chance[card.variant]);
+            chance = Mathf.Max(chance, stats.chance[card.variant]);
         }
         if (stats.boost == card.type)
         {
@@ -72,7 +70,7 @@ public class RuneStats : MonoBehaviour
         }
         if (card.type == Card.Type.Luck)
         {
-            Mathf.Max(chance, 0.1f);
+            chance = Mathf.Max(chance, 0.1f);
         }
         if (card.type == Card.Type.Patience)
         {

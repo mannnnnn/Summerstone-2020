@@ -14,6 +14,7 @@ public class Mastermind : MonoBehaviour
     public GameObject failRune;
 
     public GameObject helpPanel;
+    public GameObject helpBtn;
 
     public MastermindColor[] goal { get; private set; }
     System.Random random = new System.Random();
@@ -103,6 +104,7 @@ public class Mastermind : MonoBehaviour
     //Original Code
     public void StartGame()
     {
+        helpBtn.SetActive(true);
         nextBtn.SetActive(false);
         winRune.SetActive(false);
         failRune.SetActive(false);
@@ -127,6 +129,7 @@ public class Mastermind : MonoBehaviour
         {
             failRune.SetActive(true);
             nextBtn.SetActive(true);
+            helpBtn.SetActive(false);
         }
         return triesRemaining <= 0 && !Success();
     }
@@ -141,7 +144,7 @@ public class Mastermind : MonoBehaviour
             nextBtn.SetActive(true);
             winRune.SetActive(true);
             winRune.GetComponent<StoneCard>().Set(wonCard[0], false);
-
+            helpBtn.SetActive(false);
         }
        
         return success;

@@ -32,6 +32,9 @@ public class Chimera : MonoBehaviour
     public GameObject overlay;
     public Animator MainCameraAnimator;
 
+    private string forcedResult = "";
+    private float forcedNum = 0;
+
     public Material[] skyboxes = new Material[4];
 
     public WeekImageSwapper weekImageSwapper;
@@ -57,7 +60,13 @@ public class Chimera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currState = MainGameState.Mastermind;
+        if (CanLoad)
+        {
+            Load();
+        } else
+        {
+            currState = MainGameState.Week;
+        }
         showGameStateScreenUI(currState);
         updateSkybox();
     }
@@ -89,7 +98,7 @@ public class Chimera : MonoBehaviour
                     Spellbook.RandomFromPool(faction),
                 };
                 resultsScreen.GetComponent<ResultScreen>().Set($"Week {week}", WeekResults.GetInstance().GetWeekResult(week, faction),
-                    newRunes, new List<Card>() { });
+                    newRunes, new List<Card>() { }, false, 0);
                 cards.AddRange(cardChooserScreen.GetComponent<RuneChoiceScreen>().AddRunes(newRunes));
                 break;
             case MainGameState.WeekResult:
@@ -100,6 +109,13 @@ public class Chimera : MonoBehaviour
                 break;
             case MainGameState.CardPick:
                 string result = "Fail";
+
+                if (forcedResult != "")
+                {
+                    card = Spellbook.RandomCard();
+                }
+                
+
                 float chance = RuneStats.GetInstance().GetRuneChance(week, card);
                 if (chance == Mathf.Infinity)
                 {
@@ -110,9 +126,11 @@ public class Chimera : MonoBehaviour
                     result = "Win";
                 }
                 // spend runes
+
                 resultsScreen.GetComponent<ResultScreen>().Set($"Weekend {week}", WeekendResults.GetInstance().GetWeekendResult(week, result),
                 new List<Card>() { },
-                new List<Card>() { card });
+                new List<Card>() { card },
+                result != "Fail", chance);
                 // TODO: process result
                 break;
             case MainGameState.WeekendResult:
@@ -137,7 +155,6 @@ public class Chimera : MonoBehaviour
         cardChooserScreen.SetActive(false);
         mastermindScreen.SetActive(false);
         resultsScreen.SetActive(false);
-        Debug.Log("ast" + current);
         // enable active one
         GameObject screen = null;
         switch (current)
@@ -193,8 +210,12 @@ public class Chimera : MonoBehaviour
         int nextSkybox = 0;
         switch (currState)
         {
-            case MainGameState.Week: nextSkybox = 0; break;
-            case MainGameState.WeekResult: nextSkybox = 1; break;
+            case MainGameState.Week:
+            case MainGameState.FactionPick:
+                nextSkybox = 0; break;
+            case MainGameState.WeekResult:
+            case MainGameState.Mastermind:
+                nextSkybox = 1; break;
             case MainGameState.Weekend: nextSkybox = 2; break;
             case MainGameState.WeekendResult:
             default: nextSkybox = 3; break;
@@ -270,9 +291,17 @@ public class Chimera : MonoBehaviour
     // check for loadability
     public bool CanLoad => PlayerPrefs.HasKey("save");
 
+
+    public void ClearSaves()
+    {
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
+    }
+
     // Update is called once per frame
     void Update()
     {
+        /* Debug key commands? In My Chimera?s
         // attempt load
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.O))
         {
@@ -296,5 +325,38 @@ public class Chimera : MonoBehaviour
             Debug.Log($"faction: {PlayerPrefs.GetString("faction")}");
             Debug.Log($"card: {PlayerPrefs.GetString("card")}");
         }
+        */
     }
+
+    public void backOneStage()
+    {
+        currState = currState - 1;
+        showGameStateScreenUI(currState);
+        updateSkybox();
+    }
+
+    public void force75Win()
+    {
+        forcedResult = "Pass";
+        forcedNum = 0.75f;
+        currState = MainGameState.CardPick;
+        nextGameState();
+    }
+
+    public void force10Fail()
+    {
+        forcedResult = "Fail";
+        forcedNum = 0.15f;
+        currState = MainGameState.CardPick;
+        nextGameState();
+    }
+
+    public void forcePerfect()
+    {
+        forcedResult = "Perfect";
+        forcedNum = 2f;
+        currState = MainGameState.CardPick;
+        nextGameState();
+    }
+
 }
