@@ -71,9 +71,6 @@ public class ResultScreen : MonoBehaviour
         this.result.text = result;
         this.earned = earned;
         this.spent = spent;
-        percentPassFail.GetComponent<Animator>().ResetTrigger("pass");
-        percentPassFail.GetComponent<Animator>().ResetTrigger("fail");
-        passWheelFill.fillAmount = 0;
         gold = false;
         passFill = 0;
         aniDelay = 10;
@@ -102,6 +99,10 @@ public class ResultScreen : MonoBehaviour
             baseWheel.SetActive(true);
             passWheel.SetActive(true);
             percentPassFail.SetActive(true);
+            percentPassFail.GetComponent<Animator>().ResetTrigger("pass");
+            percentPassFail.GetComponent<Animator>().ResetTrigger("fail");
+            passWheelFill = passWheel.GetComponent<Image>();
+            passWheelFill.fillAmount = 0;
             percentPassFail.GetComponent<Text>().text = "0%";
             if (chance > 1)
             {

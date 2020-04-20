@@ -18,18 +18,19 @@ public class StoneCard : MonoBehaviour
 
     public GameObject cardImage;
 
+    bool shouldShow = false;
     Image passWheelFill;
 
     bool gold = false;
     float passFill = 0;
-    long aniDelay = 1000;
+    long aniDelay = 20;
 
     int gracePeriod = 0;
     private Chimera chimera;
-    void Awake()
+    void Start()
     {
         gold = false;
-        aniDelay = 1000;
+        aniDelay = 200;
         tooltip.SetActive(false);
         chimera = Chimera.GetInstance();
         passWheelFill = passWheel.GetComponent<Image>();
@@ -45,8 +46,7 @@ public class StoneCard : MonoBehaviour
                 goldenWheel.SetActive(true);
                 gold = true;
                 percentPassFail.GetComponent<Text>().text = "100%";
-            } else
-            {
+            } else {
                 goldenWheel.SetActive(false);
             }
             passFill = chance;
@@ -62,17 +62,16 @@ public class StoneCard : MonoBehaviour
     {
         if (tooltip.activeSelf)
         {
+            aniDelay = 20;
             tooltip.SetActive(false);
         }
         else
         {
-            tooltip.SetActive(true);
-            gracePeriod += 10;
-            Set(card, !cardImage.GetComponent<Rigidbody2D>().isKinematic);
-            if (cardImage.GetComponent<Rigidbody2D>().isKinematic)
-            {
-                button.SetActive(false);
-            }
+            aniDelay = 20;
+            passWheelFill.fillAmount = 0;
+            gracePeriod += 4;
+            tooltip.transform.position = new Vector3(cardImage.transform.position.x + 25, cardImage.transform.position.y + 370, cardImage.transform.position.z);
+            shouldShow = true;
         }
     }
 
@@ -130,6 +129,17 @@ public class StoneCard : MonoBehaviour
         if (gracePeriod > 0)
         {
             gracePeriod--;
+        }
+
+        if(gracePeriod == 0 && !tooltip.activeSelf && shouldShow)
+        {
+            tooltip.SetActive(true);
+            Set(card, !cardImage.GetComponent<Rigidbody2D>().isKinematic);
+            if (cardImage.GetComponent<Rigidbody2D>().isKinematic)
+            {
+                button.SetActive(false);
+            }
+            shouldShow = false;
         }
 
         if (Input.GetMouseButtonUp(0) && tooltip.activeSelf && gracePeriod <= 0)
