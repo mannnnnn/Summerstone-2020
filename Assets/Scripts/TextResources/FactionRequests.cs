@@ -24,7 +24,11 @@ public class FactionRequests : MonoBehaviour
         foreach (string line in Resources.Load<TextAsset>("Text/FactionRequests").text.Split('\n'))
         {
             var values = line.Split(new[] { ',' }, 2);
-            requests[values[0].Trim()] = values[1].Trim();
+
+            if (values[0] != null && values[0].Trim() != "")
+            {
+                requests[values[0].Trim()] = values[1].Trim();
+            }
         }
     }
 

@@ -1,60 +1,60 @@
 WolfRequest1,"Good, warm weather should bring prosperity back to the forest. With a week of sun, we should see most of the life begin to return to the forest."
 DeerRequest1,The Summerstone is a relic powerful enough to restore even the stars themselves. Set the skies alight to signal the return of this ancient power.
-DayRequest1,"The signs along the trailways have become deteriorated, and travellers are losing their way. We should find a means to guide people through the forest."
-NightRequest1,"It has been a long time since rains have fallen upon this land. Gently ease the world back into its natural state, and it will find its foothold once again."
-OxxRequest1,placeholders are nice
-BarkRequest1,"The world will sort itself out with time, just you wait."
-WolfRequest2,WolfRequest2
-DeerRequest2,DeerRequest2
-DayRequest2,DayRequest2
-NightRequest2,NightRequest2
-OxxRequest2,OxxRequest2
-BarkRequest2,BarkRequest2
-WolfRequest3,WolfRequest3
-DeerRequest3,DeerRequest3
-DayRequest3,DayRequest3
-NightRequest3,NightRequest3
-OxxRequest3,OxxRequest3
-BarkRequest3,BarkRequest3
-WolfRequest4,WolfRequest4
-DeerRequest4,DeerRequest4
-DayRequest4,DayRequest4
-NightRequest4,NightRequest4
-OxxRequest4,OxxRequest4
-BarkRequest4,BarkRequest4
-WolfRequest5,WolfRequest5
-DeerRequest5,DeerRequest5
-DayRequest5,DayRequest5
-NightRequest5,NightRequest5
-OxxRequest5,OxxRequest5
-BarkRequest5,BarkRequest5
-WolfRequest6,WolfRequest6
-DeerRequest6,DeerRequest6
-DayRequest6,DayRequest6
-NightRequest6,NightRequest6
-OxxRequest6,OxxRequest6
-BarkRequest6,BarkRequest6
-WolfRequest7,WolfRequest7
-DeerRequest7,DeerRequest7
-DayRequest7,DayRequest7
-NightRequest7,NightRequest7
-OxxRequest7,OxxRequest7
-BarkRequest7,BarkRequest7
-WolfRequest8,WolfRequest8
-DeerRequest8,DeerRequest8
-DayRequest8,DayRequest8
-NightRequest8,NightRequest8
-OxxRequest8,OxxRequest8
-BarkRequest8,BarkRequest8
-WolfRequest9,WolfRequest9
-DeerRequest9,DeerRequest9
-DayRequest9,DayRequest9
-NightRequest9,NightRequest9
-OxxRequest9,OxxRequest9
-BarkRequest9,BarkRequest9
-WolfRequest10,WolfRequest10
-DeerRequest10,DeerRequest10
-DayRequest10,DayRequest10
-NightRequest10,NightRequest10
-OxxRequest10,OxxRequest10
-BarkRequest10,BarkRequest10
+DayRequest1,Blocked off for week 1
+NightRequest1,Blocked off for week 1
+OxxRequest1,Blocked off for week 1
+BarkRequest1,Blocked off for week 1
+WolfRequest2,"The forest is safe enough for the younglings to return, even my own. With children running about the forest, we ought to be careful with how the creatures interact with each other in this domain. The children of wolves can cause trouble, but they can also stumble into it themselves."
+DeerRequest2,"Thank you, Summerstone, for what you have done this past week. As you fit further into your mold, please take the time to speak with us and let us know if you are content with your position. I fear I have forced you into this role, and I must confess I know not how to return you, should you be upset."
+DayRequest2,"Look at all the people heading back into the woods! If only there were more who would stop by, it would be such a delight. Oh Summerstone, won't you send some people our way so that we can keep company with them?"
+NightRequest2,"The forest grows noisy again. It is both a blessing and a curse. The outcast were distraught and beaten, but now they are hopeful. And yet, joy is a precious thing, better remembered than burnt. But how does one preserve such a thing without smothering it?"
+OxxRequest2,Blocked off for week 2
+BarkRequest2,Blocked off for week 2
+WolfRequest3,"So much to do in this short span of life we are given... I fear I am beginning to feel the burden of it all. Between the meetings and the struggles that others bring to me, I feel as though to give anything less than all my life to these creatures would be unthinkable. Oh to be a rock in the woods, unbending and unwavering, hearing only what the people bring and executing only what they wish for..."
+DeerRequest3,"My apprentice, Oxx, has been flightly as of late with his studies. Truth be told, I do not think he has much potential as a scholar, nor do I think he vests much thought into how magic should be maintained in the woods. He is a good lad, and I'd like to see him prosper. Do you think you could show him the gravity of what it is we do here, so that he will take his studies a bit more seriously?"
+DayRequest3,"All night I busy myself sewing good luck charms for the inhabitants of the forest, and those who pass through it. Alas, the ferns with the soft pods no longer produce the fluff I require to sew my goods, and I haven't the heart to collect rabbits feet. Something soft and warm, where could I find such a thing?"
+NightRequest3,"Towns and villages have started to pop up every here and there, but most folks still just runabout. They harvest what they can, collect what they need, it's all survival. Long gone are the days of working to create something for the sake of creation. I long to see those days again, though I understand why they have fled."
+OxxRequest3,"Hello Mister Summerstone. You're looking very nice today. There's a bit of moss growing on the alter, but I'll scrape that off. Leader Rubus asked a very important task of me! He wants me to dig up your bones so the twins see what Hedera did to you. But... Hedera already planted flowers on top of the grave, though. I don't want to displace them, and I don't really want to see what's beneath the grave..."
+BarkRequest3,~Ya da do da doooooo. Ya da do dah day.yyyyy Ya da do da day-a-lay-a-lay I'm a headed on down my way!~
+WolfRequest4,"The situation with the mice has everyone ill at ease. Their deaths are disturbing, especially at a time of prosperity such as this. We thought that everything was going well, all things considered, but now everyone is wondering if we were only turning a blind eye. I've sent as much help as we can to saving the other mice colonies, but it's unclear why these disasters are striking them so hard. It's difficult to admit, but perhaps not every problem has a solution, even if we as a collective band together."
+DeerRequest4,"Perhaps Oxx is right. You do not require an old thing such as myself to guide your every movement. The world has been restored, and that is enough for me, but still I fear. The mice are in danger, and I do not know why. What's worse is that I haven't the faintest of clues as to why this has come to be, or what these scratchings will tell of the future. It is my duty to bring clarity out of this mess, but I see nothing of which I am certain."
+DayRequest4,"The poor mice! I knew they were in a tough spot right from the start, but I thought that things were getting better for them all this time. There doesn't seem to be any rhyme or reason to why they're all dying off, it's just happening. A flood here, a fire there... they seem to be incredibly unlucky. Wish that I could turn that around for them..."
+NightRequest4,"This is a troubling revelation, to say the least. We knew nothing of the plight of the mice, but then again, my sister and I have stayed by your side since we first arrived. It is frustrating to see both the little creatures of the woods go unattended, but still have no clue what's happening at the Summerstone either. It seems as though we are not vigilant enough, though I know not how to abet a soluation to that issue without abandoning my post here."
+OxxRequest4,"My family's gone through a lot lately. Eating tainted food, rain flooding our homes, some of us straight up disappeared! But everything's going to be okay with you, Sir Summerstone, I just know it! I wish there was something I could do to make them all feel better."
+BarkRequest4,"~Lah-dah-da-do-da-dee, just walkin' on past that tree, headed down to the sea, gonna have me some tea, so no one needs answer my plea~"
+WolfRequest5,"The situation with the mice turned out to be far worse than I could imagine. The only surviving mouse, Oxx, has been left without a pack to rely on, a death sentence in my family. I turned to the deer out of desperation, but with his lack of mourning I fear that Hedera may not have the best of intentions in mind. I hope that my fears are unfounded."
+DeerRequest5,"The mice were... a gifted bunch. I knew that Oxx always had it in him to succeed me in the magical arts. I faced some scorn for my decision, but I have no ally nor enemy to scold me any longer. And now, Oxx is devoid of company as well. It seems he fills my shoes a bit too well."
+DayRequest5,"Who would dare do such a thing! In front of my all-seeing gaze! To murder and maim in the name of the hunt is barely tolerable, but to leave such a mess on no fathomable terms? Simply abhorent! I miss my dear mice visiting the stone, and my little Oxx! Oh Summerstone, don't ignore his plea."
+NightRequest5,"I... have no idea who could have done this. Tensions have been high in the past before, but this is unheard of. There's simply no excuse for the death of those mice, but I'm more curious about what's going to happen now. It seems difficult to imagine a bright future with such a devastating force lurking beneath our throats."
+OxxRequest5,. . .
+BarkRequest5,"Now what's this with everyone scurrying away and hiding? Look at how pretty the forest is today, all those lovely flowers blooming over there? Where's everyone gone?"
+WolfRequest6,"The young mouse has... asked to come live among the wolves. I am happy to oblige him for now, but I worry for his well-being. I cannot deny that Hedera has helped the forest, though perhaps not as much as he would have us all believe. Still, it would be dangerous to lose all knowledge of the arcane arts, and Oxx is the only one left who can pass on that knowledge. I do not know what to do about such things."
+DeerRequest6,"Oxx has left me. That means I have no apprentice any longer, and I am far too old to consider training a replacement. I... am sure what to do now. I am not much use to the forest, even with the training of my mentor. Perhaps Rubus is right."
+DayRequest6,"This magic seems familiar. How so? I don't know! I don't know a lot of things actually, which is odd. Everyone seems to have very concrete memories about their pasts, but sis and I? We don't have much. I remember showing up here, guarding the Summerstone, and that's it. I wish I had a clue as to why this is familiar."
+NightRequest6,"What is it about the Summerstone's magic that feels so... recognizable? I accompany you all day, that much is certain, but... this feels BEYOND that. This feels like, like something I've been aware of for far longer than we've been together. Is something like that possible?"
+OxxRequest6,"Hello Old Summerstone. I'm scared to say I'm glad to be rid of those studies. I'm glad to be away from it all. I don't know what to do about what's happening, but I'm happy to know that Rubus had a place for me to go. All my life I'd been hoping to learn this magic to help my people, but now there are no people. How can you find a new purpose in life when your life is already in-progress?"
+BarkRequest6,Helloooooooooo? Where's everybody gone?
+WolfRequest7,"If I had any idea what was going on, I'd suggest we do something about it. As it stands though, I don't know what's going on or what's to come, just what I've been asked to do. There's been unrest in the forest regarding the rumors going around about an unknown threat. I don't want to put these rumors to rest, but I do wish that I could keep everyone from panicking. Everyone's afraid the forest is going to up and die again. I hope that is not the case, but it's not my faith I'm staking that claim on."
+DeerRequest7,"Divination is not my strongest suite, but I am indeed a hart of magic, and I do my best to keep up those studies of mine. I ask for any guidance you may have to offer this week, in what is to come. We may not have the means to prepare, or if we do... perhaps it will not always be the right tool for the right occasion. Regardless, any help you have to offer, and any glipse of the future you may provide, we will do our best to prepare in the days to come."
+DayRequest7,"Sis is right, there's something coming, but... that's all I know. There's not a lot to be said for a spirit's intuition, unfortunately. Mortals are the ones who can follow their guts. Something about having flesh and blood, it'll do it to ya! When you've got a body at stake, your mind just gets better at all that instinct stuff. Maybe if we were to enlist the help of the mortals, we'd get a better idea for how to prepare."
+NightRequest7,"This is unsettling, to say the least. Though, I feel like I say that about most things nowadays. I do not like being in the dark regarding any information such as this, and now is not a good time for it. I am concerned about whether or not I should leave this post, as well as... why exactly I feel the need to stay in this place."
+OxxRequest7,"Hello Lord Summerstone. Hedera has been asking about you. I said all good things, of course. Hedera's been asking things about me as well, but I don't know what to tell him. I don't want to go back to my studies. I don't want to go back to the way things were before all the mice died. Rubus says there's strength in numbers but... it's just me now. I don't know what to do."
+BarkRequest7,"Everyone all worked out 'bout this Summerstone fella, I tell ya old rocky it's a real shame. Missing out on a lotta good life to live today. Why, I wouldn't both stressing about a rock, 'specially when that rock's busy worryin' 'bout you."
+WolfRequest8,"I... do not understand how such a thing came to be, nor who could harbor anger against one such as yourself. You've done much for this forest, despite your life being unfairly taken from you. You do not owe us anything, Summerstone. We shall remember that."
+DeerRequest8,"I never expected something like this to happen. I was not even aware of the possibility. I did not think that a rock could be so fragile, or perhaps an adversary so strong. There's... going to be fall out from this, I'm sure. But, this is my duty, even now. I will fix what has been destroyed, you can count me for that much, Summerstone."
+DayRequest8,Blocked off for week 8
+NightRequest8,Blocked off for week 8
+OxxRequest8,"Hello Lady Summerstone. Sternella used to say that polishing you brings good luck. She always used to say that when she visited the mice, and that's why the creatures of the forest sent a mouse to polish the stone. But... now the mice are gone, Sternella's asleep, and you're hurt. What happened to all our luck? Did we have it in the first place?"
+BarkRequest8,Now this isn't how this rock is supposed to be! I could've sworn that it looked right last time I passed through here. Hello? Isn't anyone going to fix this mess?
+WolfRequest9,"If we're going to sort through my father's texts, we're going to need a lot of manpower. Also... probably a means to distract him. When issues began to happen in the forest due to the Summerstone, he was the first person I turned to for advice. Ended up being useless. He can't remember a darn thing, and his library is so disorganized it's like finding a needle in a haystack."
+DeerRequest9,"I... never knew that this forest had any sort of library besides my own. I can't help but feel a bit jealous, hearing about the scale of it. To think that all this arcance knowledge was simply under our noses this whole time. It almost boils my blood a bit."
+DayRequest9,"Ugh... I may not be a mortal, but I sure feel like one. I still ache all over from that attack, but I'm glad I can be at the Summerstone once more. It felt odd being away, like I was neglecting an elderly family member. Not that I'm calling you old of course. Or a part of my family. Though you could be considered that if that's what you want! It's not like I have anyone else besides Agelaius. Even the two of us don't always get along..."
+NightRequest9,"So now that we know about what attacked us, are we ever going to address HOW we knew about it? I didn't recognize the old Summerstone at all when it attacked us, but... I fulfulled the same role that Hedera had upon your death, correct? I killed the last Summerstone, and I simply forgot? And now I'm tied to this Summerstone, and I didn't even know why until now. Is there something else happening here?"
+OxxRequest9,"I didn't know the wolf lord had a father, or that he was... um... Bark? They don't seem like each other at all. I guess I understand why we have to take the books away, but why doesn't Bark remember writing things down like this? Is that even possible? Um... well I guess I'll get to helping move books. I hope Bark keeps some pamplets or something that I can actually carry..."
+BarkRequest9,"I say, I don't have the slightest idea what that young boy thinks he's doing rummaging through my stuff. Why, if I had my way, he'd be contributing to this household by helping out with all this recording, but no, he's got to go off and be king of the hill or some jazz like that."
+WolfRequest10,"Wolves, Deer, Day, Night, and all the creatures within the forest band together. There is no time disunity now. In order for the woods to survive, all the factions must work together."
+DeerRequest10,Blocked off for week 10
+DayRequest10,Blocked off for week 10
+NightRequest10,Blocked off for week 10
+OxxRequest10,Blocked off for week 10
+BarkRequest10,Blocked off for week 10

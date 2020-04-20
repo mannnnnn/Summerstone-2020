@@ -17,20 +17,28 @@ public class WeekendResults : MonoBehaviour
         return GameObject.FindGameObjectWithTag("chimera")?.GetComponent<WeekendResults>();
     }
 
+    Dictionary<string, string> resultTitles = new Dictionary<string, string>();
     Dictionary<string, string> results = new Dictionary<string, string>();
 
     void Awake()
     {
         foreach (string line in Resources.Load<TextAsset>("Text/WeekendResults").text.Split('\n'))
         {
-            var values = line.Split(new[] { ',' }, 2);
-            results[values[0]] = values[1];
+            var values = line.Split(new[] { ',' }, 3);
+
+
+            if (values[0] != null && values[0].Trim() != "")
+            {
+                resultTitles[values[0]] = values[1];
+                results[values[0]] = values[2];
+            }
+
         }
     }
 
     public string GetWeekendResult(int week, string result)
     {
-        string key = $"Weekend{week}{result}";
+        string key = $"Week{week}{result}";
         if (results.ContainsKey(key))
         {
             return results[key];
