@@ -96,6 +96,8 @@ public class ResultScreen : MonoBehaviour
 
         if (spent.Count > 0)
         {
+            spentRunes.SetActive(true);
+            earnedRunes.SetActive(false);
             baseWheel.SetActive(true);
             passWheel.SetActive(true);
             percentPassFail.SetActive(true);
@@ -112,6 +114,8 @@ public class ResultScreen : MonoBehaviour
             }
             passFill = chance;
         } else{
+            spentRunes.SetActive(false);
+            earnedRunes.SetActive(true);
                 baseWheel.SetActive(false);
                 passWheel.SetActive(false);
                 goldenWheel.SetActive(false);
