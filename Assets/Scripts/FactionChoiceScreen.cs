@@ -11,10 +11,57 @@ public class FactionChoiceScreen : MonoBehaviour
     public GameObject flyUpPanel;
     public Text flyUpPanelText;
 
+    public Image summerStone;
+    public Sprite regularStone;
+    public Sprite brokenStone;
+
+    public GameObject wolfOrb;
+    public GameObject deerOrb;
+    public GameObject sunOrb;
+    public GameObject nightOrb;
+    public GameObject barkOrb;
+    public GameObject oxOrb;
+
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
-        
+        float week = Chimera.GetInstance().week;
+
+        if(week == 1)
+        {
+            sunOrb.SetActive(false);
+            nightOrb.SetActive(false);
+            barkOrb.SetActive(false);
+            oxOrb.SetActive(false);
+        } else if(week == 2)
+        {
+            sunOrb.SetActive(true);
+            nightOrb.SetActive(true);
+            barkOrb.SetActive(false);
+            oxOrb.SetActive(false);
+        } else if (week == 8)
+        {
+            summerStone.sprite = brokenStone;
+            sunOrb.SetActive(false);
+            nightOrb.SetActive(false);
+        } else if (week == 10)
+        {
+            deerOrb.SetActive(false);
+            sunOrb.SetActive(false);
+            nightOrb.SetActive(false);
+            barkOrb.SetActive(false);
+            oxOrb.SetActive(false);
+        }
+         else {
+            summerStone.sprite = regularStone;
+            wolfOrb.SetActive(true);
+            deerOrb.SetActive(true);
+            sunOrb.SetActive(true);
+            nightOrb.SetActive(true);
+            barkOrb.SetActive(true);
+            oxOrb.SetActive(true);
+        }
+
     }
 
     // Update is called once per frame
