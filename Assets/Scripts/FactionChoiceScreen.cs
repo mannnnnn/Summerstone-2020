@@ -22,12 +22,18 @@ public class FactionChoiceScreen : MonoBehaviour
     public GameObject barkOrb;
     public GameObject oxOrb;
 
+    public Sprite[] factionSprites;
+    public Image portrait;
+    public GameObject nextBtn;
+
     // Start is called before the first frame update
     void OnEnable()
     {
         float week = Chimera.GetInstance().week;
+        flyUpPanel.SetActive(false);
+        nextBtn.SetActive(false);
 
-        if(week == 1)
+        if (week == 1)
         {
             sunOrb.SetActive(false);
             nightOrb.SetActive(false);
@@ -78,15 +84,31 @@ public class FactionChoiceScreen : MonoBehaviour
     // displays fly up screen
     public void ClickFactionButton(string faction)
     {
+        flyUpPanel.SetActive(false);
         int week = Chimera.GetInstance().week;
         Dictionary<string, string> reqs = FactionRequests.GetInstance().GetFactionRequests(week);
-        ShowFlyUp(reqs[faction]);
+        ShowFlyUp(reqs[faction], faction);
         Chimera.GetInstance().faction = faction;
     }
 
-    void ShowFlyUp(string message)
+    void ShowFlyUp(string message, string faction)
     {
         flyUpPanel.SetActive(true);
+
+
+        switch (faction)
+        {
+            case "Oxx": portrait.sprite = factionSprites[0]; break;
+            case "Day": portrait.sprite = factionSprites[1]; break;
+            case "Wolf": portrait.sprite = factionSprites[2]; break;
+            case "Deer": portrait.sprite = factionSprites[3]; break;
+            case "Night": portrait.sprite = factionSprites[4]; break;
+            case "Bark": portrait.sprite = factionSprites[5]; break;
+            default: break;
+        }
+
+
         flyUpPanelText.text = message;
+        nextBtn.SetActive(true);
     }
 }
