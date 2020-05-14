@@ -16,7 +16,8 @@ public class Chimera : MonoBehaviour
         Mastermind,
         Weekend, //Camera State 3
         CardPick,
-        WeekendResult //Camera State 4
+        WeekendResult, //Camera State 4
+        Ending
     }
     private int gameStateSize = 6; //c# has a dumb way of handling this.
 
@@ -29,6 +30,7 @@ public class Chimera : MonoBehaviour
     public GameObject resultsScreen;
     public GameObject cardChooserScreen;
     public GameObject mastermindScreen;
+    public GameObject endingScreen;
     public GameObject overlay;
     public Animator MainCameraAnimator;
 
@@ -97,7 +99,7 @@ public class Chimera : MonoBehaviour
                     Spellbook.RandomFromPool(faction),
                     Spellbook.RandomFromPool(faction),
                 };
-                resultsScreen.GetComponent<ResultScreen>().Set($"Week {week}", WeekResults.GetInstance().GetWeekResult(week, faction),
+                resultsScreen.GetComponent<ResultScreen>().Set(WeekResults.GetInstance().GetWeekTitleResult(week, faction), WeekResults.GetInstance().GetWeekResult(week, faction),
                     newRunes, new List<Card>() { }, false, 0);
                 cards.AddRange(cardChooserScreen.GetComponent<RuneChoiceScreen>().AddRunes(newRunes));
                 break;
@@ -126,12 +128,10 @@ public class Chimera : MonoBehaviour
                     result = "Win";
                 }
                 // spend runes
-
-                resultsScreen.GetComponent<ResultScreen>().Set($"Weekend {week}", WeekendResults.GetInstance().GetWeekendResult(week, result),
+                resultsScreen.GetComponent<ResultScreen>().Set(WeekendResults.GetInstance().GetWeekendTitleResult(week, result), WeekendResults.GetInstance().GetWeekendResult(week, result),
                 new List<Card>() { },
                 new List<Card>() { card },
                 result != "Fail", chance);
-                // TODO: process result
                 break;
             case MainGameState.WeekendResult:
                 break;
@@ -144,6 +144,43 @@ public class Chimera : MonoBehaviour
             nextState = 0;
         }
         currState = (MainGameState)nextState;
+
+
+        if(week == 8)
+        {
+            //Check to see if at the end
+            if (factionChoices["Oxx"] >= week - 3)
+            {
+                endGame("Oxx");
+            }
+            else if (factionChoices["Oxx"] >= week - 3)
+            {
+                endGame("Bark");
+            }
+            else if (factionChoices["Day"] >= week - 2)
+            {
+                endGame("Day");
+            }
+            else if (factionChoices["Night"] >= week - 2)
+            {
+                endGame("Night");
+            }
+            else if (factionChoices["Wolf"] >= week - 1)
+            {
+                endGame("Wolf");
+            }
+            else if (factionChoices["Deer"] >= week - 1)
+            {
+                endGame("Deer");
+            }
+        }
+
+        if(week == 11)
+        {
+            endGame("Neutral");
+        }
+
+
         showGameStateScreenUI(currState);
     }
 
@@ -155,6 +192,7 @@ public class Chimera : MonoBehaviour
         cardChooserScreen.SetActive(false);
         mastermindScreen.SetActive(false);
         resultsScreen.SetActive(false);
+        endingScreen.SetActive(false);
         // enable active one
         GameObject screen = null;
         switch (current)
@@ -178,6 +216,9 @@ public class Chimera : MonoBehaviour
             case MainGameState.Mastermind:
                 screen = mastermindScreen;
                 break;
+            case MainGameState.Ending:
+                screen = endingScreen;
+                break;
             case MainGameState.WeekResult:
             case MainGameState.WeekendResult:
             default:
@@ -191,6 +232,15 @@ public class Chimera : MonoBehaviour
             MainCameraAnimator.SetTrigger("MoveCamera");
         }
     }
+
+
+    private void endGame(String faction)
+    {
+        showGameStateScreenUI(MainGameState.Ending);
+        updateSkybox();
+        MainCameraAnimator.SetTrigger("Ending");
+    }
+
 
     private bool shouldMoveCamera()
     {

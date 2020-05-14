@@ -40,4 +40,14 @@ public class WeekResults : MonoBehaviour
         }
         throw new DialogError($"Week Results file has no entries for Faction {faction} and Week {week}.");
     }
+
+    public string GetWeekTitleResult(int week, string faction)
+    {
+        string key = $"{faction}Result{week}";
+        if (results.ContainsKey(key))
+        {
+            return resultTitles[key];
+        }
+        throw new DialogError($"Week Results Titles file has no entries for Faction {faction} and Week {week}.");
+    }
 }

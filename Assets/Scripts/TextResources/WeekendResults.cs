@@ -45,4 +45,14 @@ public class WeekendResults : MonoBehaviour
         }
         throw new DialogError($"Weekend Results file has no entries for Week {week} with Result {result}.");
     }
+
+    public string GetWeekendTitleResult(int week, string result)
+    {
+        string key = $"Week{week}{result}";
+        if (results.ContainsKey(key))
+        {
+            return resultTitles[key];
+        }
+        throw new DialogError($"Weekend Results file has no entries for Week {week} with Result {result}.");
+    }
 }
