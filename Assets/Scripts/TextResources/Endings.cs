@@ -18,7 +18,7 @@ public class Endings : MonoBehaviour
     {
         string[] lines = Resources.Load<TextAsset>("Text/Endings").text.Split('\n');
         var factions = lines[0].Split(',');
-        var text = lines[0].Split(',');
+        var text = lines[1].Split(',');
         for (int i = 0; i < factions.Length; i++)
         {
             if (factions[i].Trim() != "")

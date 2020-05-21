@@ -151,33 +151,33 @@ public class Chimera : MonoBehaviour
             //Check to see if at the end
             if (factionChoices["Oxx"] >= week - 3)
             {
-                endGame("Oxx");
+                endGame("Oxx", 0);
             }
             else if (factionChoices["Oxx"] >= week - 3)
             {
-                endGame("Bark");
+                endGame("Bark", 1);
             }
             else if (factionChoices["Day"] >= week - 2)
             {
-                endGame("Day");
+                endGame("Day", 2);
             }
             else if (factionChoices["Night"] >= week - 2)
             {
-                endGame("Night");
+                endGame("Night",3 );
             }
             else if (factionChoices["Wolf"] >= week - 1)
             {
-                endGame("Wolf");
+                endGame("Wolf", 4);
             }
             else if (factionChoices["Deer"] >= week - 1)
             {
-                endGame("Deer");
+                endGame("Deer",5);
             }
         }
 
         if(week == 11)
         {
-            endGame("Neutral");
+            endGame("Neutral",6);
         }
 
 
@@ -234,11 +234,13 @@ public class Chimera : MonoBehaviour
     }
 
 
-    private void endGame(String faction)
+    private void endGame(String faction, int factionNum)
     {
         showGameStateScreenUI(MainGameState.Ending);
         updateSkybox();
         MainCameraAnimator.SetTrigger("Ending");
+
+        endingScreen.GetComponent<EndingScreen>().Set(Endings.GetInstance().GetEnding(faction), factionNum);
     }
 
 
