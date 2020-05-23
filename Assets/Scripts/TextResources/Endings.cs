@@ -4,6 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using static DialogUtils;
+using System.Collections;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Reflection;
+using System.Text;
 
 public class Endings : MonoBehaviour
 {
@@ -18,12 +23,25 @@ public class Endings : MonoBehaviour
     {
         string[] lines = Resources.Load<TextAsset>("Text/Endings").text.Split('\n');
         var factions = lines[0].Split(',');
-        var text = lines[1].Split(',');
+
+        //manual split
+        List<string> endingStrings = new List<string>();
+        int j = 1;
+        while ((j = lines[1].IndexOf("\",")) > 0)
+        {
+            string temp = lines[1].Substring(0, j);
+            lines[1] = lines[1].Substring(j + 3);
+            endingStrings.Add(temp);
+        }
+
+        endingStrings.Add(lines[1].Substring(0, lines[1].Length - 2));
+
+        // var text = ((String)lines[1]).Split("\",", StringSplitOptions.None);
         for (int i = 0; i < factions.Length; i++)
         {
             if (factions[i].Trim() != "")
             {
-                endings[factions[i].Trim()] = text[i].Trim();
+                endings[factions[i].Trim()] = endingStrings[i].Trim();
             }
         }
     }

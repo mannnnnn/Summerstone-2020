@@ -27,7 +27,7 @@ public class StoneCard : MonoBehaviour
 
     int gracePeriod = 0;
     private Chimera chimera;
-    void Start()
+    void OnEnable()
     {
         gold = false;
         aniDelay = 200;
@@ -57,6 +57,7 @@ public class StoneCard : MonoBehaviour
             gold = false;
         }
     }
+
 
     public void showHideTooltip()
     {

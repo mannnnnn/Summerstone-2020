@@ -152,32 +152,39 @@ public class Chimera : MonoBehaviour
             if (factionChoices["Oxx"] >= week - 3)
             {
                 endGame("Oxx", 0);
+                currState = MainGameState.Ending;
             }
             else if (factionChoices["Oxx"] >= week - 3)
             {
                 endGame("Bark", 1);
+                currState = MainGameState.Ending;
             }
             else if (factionChoices["Day"] >= week - 2)
             {
                 endGame("Day", 2);
+                currState = MainGameState.Ending;
             }
             else if (factionChoices["Night"] >= week - 2)
             {
                 endGame("Night",3 );
+                currState = MainGameState.Ending;
             }
             else if (factionChoices["Wolf"] >= week - 1)
             {
                 endGame("Wolf", 4);
+                currState = MainGameState.Ending;
             }
             else if (factionChoices["Deer"] >= week - 1)
             {
                 endGame("Deer",5);
+                currState = MainGameState.Ending;
             }
         }
 
         if(week == 11)
         {
             endGame("Neutral",6);
+            currState = MainGameState.Ending;
         }
 
 
@@ -348,7 +355,12 @@ public class Chimera : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
         PlayerPrefs.Save();
+        currState = MainGameState.Week;
+        week = 1;
+        showGameStateScreenUI(currState);
+        updateSkybox();
     }
+
 
     // Update is called once per frame
     void Update()

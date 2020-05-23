@@ -9,15 +9,27 @@ public class EndingScreen : MonoBehaviour
 {
     public Text result;
     Image endingCard;
+    public GameObject clearSave;
 
     public Sprite[] endingCardImages;
     int cardNum = 0;
 
     public void Set(string result, int cardNum)
     {
+        
         this.result.text = result;
         this.cardNum = cardNum;
        // endingCard.sprite = endingCardImages[cardNum];
+    }
+
+    public void OnDisable()
+    {
+        clearSave.SetActive(false);
+    }
+
+    public void OnEnable()
+    {
+        clearSave.SetActive(true);
     }
 
 }
