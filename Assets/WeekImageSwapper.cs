@@ -14,15 +14,15 @@ public class WeekImageSwapper : MonoBehaviour
     {
         if (isWeek)
         {
-            if (currImage != null && weekImages[index] != null)
+            if (currImage != null && weekImages[index-1] != null)
             {
-                currImage.sprite = weekImages[index];
+                currImage.sprite = weekImages[index-1];
             }
         } else
         {
-            if (currImage != null && weekendImages[index] != null)
+            if (currImage != null && weekendImages[index-1] != null)
             {
-                currImage.sprite = weekendImages[index];
+                currImage.sprite = weekendImages[index-1];
             }
         }
         

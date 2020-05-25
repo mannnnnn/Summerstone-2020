@@ -71,7 +71,7 @@ public class StoneCard : MonoBehaviour
             aniDelay = 20;
             passWheelFill.fillAmount = 0;
             gracePeriod += 4;
-            tooltip.transform.position = new Vector3(cardImage.transform.position.x + 25, cardImage.transform.position.y + 370, cardImage.transform.position.z);
+            tooltip.transform.position = new Vector3(cardImage.transform.position.x + 25, cardImage.transform.position.y + 230, cardImage.transform.position.z);
             shouldShow = true;
         }
     }
@@ -164,6 +164,8 @@ public class StoneCard : MonoBehaviour
                 passWheelFill.fillAmount += 0.01f;
                 percentPassFail.GetComponent<Text>().text = (int)(passWheelFill.fillAmount * 100) + "%";
             }
+            tooltip.transform.position = new Vector3(cardImage.transform.position.x + 25, cardImage.transform.position.y + 230, cardImage.transform.position.z);
+
         }
     }
 }

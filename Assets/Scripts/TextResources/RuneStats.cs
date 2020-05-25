@@ -76,6 +76,12 @@ public class RuneStats : MonoBehaviour
         {
             chance += 0.05f * card.age;
         }
+
+        if(week >= 10 && chance < 1)
+        {
+            chance = 1;
+        }
+
         return chance;
     }
 }

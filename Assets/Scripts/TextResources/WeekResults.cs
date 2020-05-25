@@ -25,7 +25,7 @@ public class WeekResults : MonoBehaviour
             if (values[0] != null && values[0].Trim() != "")
             {
                 resultTitles[values[0]] = values[1];
-                results[values[0]] = values[2];
+                results[values[0]] = values[2].Substring(0, values[2].Length - 2);
             }
            
         }

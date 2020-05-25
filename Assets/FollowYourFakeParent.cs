@@ -16,7 +16,7 @@ public class FollowYourFakeParent : MonoBehaviour
     {
         if(transform.position != fakeParent.transform.position)
         {
-            transform.position = new Vector3(fakeParent.transform.position.x+25, fakeParent.transform.position.y+370, fakeParent.transform.position.z);
+            transform.position = new Vector3(fakeParent.transform.position.x+25, fakeParent.transform.position.y+20, fakeParent.transform.position.z);
         }   
     }
 }

@@ -1053,6 +1053,7 @@ namespace YamlDotNet.Core
                     if (!simpleKeyAllowed)
                     {
                         var mark = cursor.Mark();
+                        UnityEngine.Debug.Log(mark + "?");
                         throw new SyntaxErrorException(mark, mark, "Mapping values are not allowed in this context.");
                     }
 
