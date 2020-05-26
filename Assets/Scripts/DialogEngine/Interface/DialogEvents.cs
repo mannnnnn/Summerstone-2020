@@ -125,11 +125,9 @@ public class DialogEvents : MonoBehaviour
     {
         dialog.SetVisible(false);
         dialog.SetNextable(false);
-        yield return overlay.Set(Color.black, 1f);
         sfx.PlaySound("scratch");
         dialog.SetVisible(true);
-        yield return new WaitForSeconds(6f);
-        overlay.Set(Color.clear, 1f);
+        yield return new WaitForSeconds(1f);
         dialog.SetNextable(true);
         dialog.Next();
         yield break;
@@ -139,10 +137,10 @@ public class DialogEvents : MonoBehaviour
     {
         dialog.SetVisible(false);
         dialog.SetNextable(false);
-        yield return overlay.Set(Color.black, 1f);
+        yield return overlay.Set(Color.black, 0.1f);
         sfx.PlaySound("mousedeath", 0.5f);
         dialog.SetVisible(true);
-        yield return new WaitForSeconds(12f);
+        yield return new WaitForSeconds(2f);
         overlay.Set(Color.clear, 1f);
         dialog.SetNextable(true);
         dialog.Next();
