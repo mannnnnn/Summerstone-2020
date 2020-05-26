@@ -74,7 +74,7 @@ public class Mastermind : MonoBehaviour
         }
     }
 
-    void Awake()
+    void OnEnable()
     {
         for (int i = 0; i < colors.Count; i++)
         {
